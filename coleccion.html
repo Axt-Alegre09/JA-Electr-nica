@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colección Casio - JA Electrónica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="cart-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Fixed -->
+    <header class="header-fixed">
+        <div class="header-content">
+            <button class="hamburger-btn" id="hamburgerBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <a href="index.html" class="header-brand">
+                <span>JA Electrónica</span>
+            </a>
+            
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="Buscar productos..." id="mainSearch">
+            </div>
+
+            <div class="header-icons">
+                <button class="icon-btn theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                <div class="user-menu-container">
+                    <button class="icon-btn user-btn" id="userBtn">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="user-info">
+                            <i class="fas fa-user-circle"></i>
+                            <span>Marcos Alegre</span>
+                        </div>
+                        <ul class="user-menu">
+                            <li><a href="#"><i class="fas fa-cog"></i> Actualizar datos</a></li>
+                            <li><a href="#"><i class="fas fa-heart"></i> Mis favoritos</a></li>
+                            <li><a href="#"><i class="fab fa-whatsapp"></i> Soporte WhatsApp</a></li>
+                            <li><a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <button class="icon-btn cart-btn" id="cartBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar Menu -->
+    <div class="sidebar-menu" id="sidebarMenu">
+        <div class="sidebar-header">
+            <a href="index.html" class="sidebar-logo-link">
+                <span class="sidebar-logo-text">JA Electrónica</span>
+            </a>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <h3>Marcas</h3>
+            <ul>
+                <li><a href="index.html" data-brand="all">Todos los productos</a></li>
+                <li><a href="coleccion.html" data-brand="casio" class="active">Casio</a></li>
+                <li><a href="#" data-brand="qyq">QyQ</a></li>
+                <li><a href="#" data-brand="skmei">Skmei</a></li>
+                <li><a href="#" data-brand="aqua">Aqua</a></li>
+                <li><a href="#" data-brand="genericos">Genéricos</a></li>
+            </ul>
+
+            <h3>Información</h3>
+            <ul>
+                <li><a href="#">Sobre Nosotros</a></li>
+                <li><a href="#">Envíos</a></li>
+                <li><a href="#">Garantía</a></li>
+                <li><a href="#">Devoluciones</a></li>
+            </ul>
+
+            <h3>Ayuda</h3>
+            <ul>
+                <li><a href="#">Contacto</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Seguimiento</a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <p>&copy; 2024 JA Electrónica</p>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <span class="hero-badge">Colección Exclusiva</span>
+            <h1>Colección Casio</h1>
+            <p>Descubre los mejores relojes Casio con diseño premium y tecnología avanzada</p>
+        </div>
+    </section>
+
+    <!-- Filters Bar -->
+    <div class="filters-bar">
+        <div class="container">
+            <button class="filter-btn" id="filterBtn">
+                <i class="fas fa-filter"></i> Filtros
+            </button>
+            
+            <div class="quick-filters">
+                <button class="quick-filter active" data-type="all">Todos</button>
+                <button class="quick-filter" data-type="ofertas">Ofertas</button>
+                <button class="quick-filter" data-type="nuevos">Nuevos</button>
+                <button class="quick-filter" data-type="mas-vendidos">Más vendidos</button>
+            </div>
+
+            <select class="sort-select" id="sortSelect">
+                <option value="">Ordenar por</option>
+                <option value="price-asc">Precio: Menor a Mayor</option>
+                <option value="price-desc">Precio: Mayor a Menor</option>
+                <option value="popular">Más Populares</option>
+                <option value="rating">Mejor Valorados</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="main-content">
+        <section class="products-section">
+            <div class="container">
+                <div class="products-grid" id="productsGrid">
+                    <!-- Product Card 1 -->
+                    <div class="product-card" data-id="casio-efr539" data-brand="casio" data-gender="caballeros" data-material="metal" data-price="890000">
+                        <div class="product-badge sale">-25%</div>
+                        <button class="wishlist-btn">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400" alt="Reloj Casio">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-brand">CASIO</span>
+                            <h3 class="product-title">Reloj Casio Edifice EFR-539</h3>
+                            <div class="product-specs">
+                                <span><i class="fas fa-male"></i> Caballeros</span>
+                                <span><i class="fas fa-link"></i> Metal</span>
+                            </div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(124)</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="price-current">₲ 890.000</span>
+                                <span class="price-original">₲ 1.190.000</span>
+                            </div>
+                            <button class="btn-add-cart">
+                                <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 2 -->
+                    <div class="product-card" data-id="casio-she3059" data-brand="casio" data-gender="damas" data-material="metal" data-price="780000">
+                        <button class="wishlist-btn">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1539874754764-5a96559165b0?w=400" alt="Reloj Casio">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-brand">CASIO</span>
+                            <h3 class="product-title">Reloj Casio Sheen SHE-3059</h3>
+                            <div class="product-specs">
+                                <span><i class="fas fa-female"></i> Damas</span>
+                                <span><i class="fas fa-link"></i> Metal</span>
+                            </div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(312)</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="price-current">₲ 780.000</span>
+                            </div>
+                            <button class="btn-add-cart">
+                                <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Más productos Casio pueden agregarse aquí -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>JA Electrónica</h4>
+                    <p>Tu tienda de confianza para relojes y electrónica premium. Calidad garantizada en cada producto.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Productos</h4>
+                    <ul>
+                        <li><a href="coleccion.html">Relojes Casio</a></li>
+                        <li><a href="#">Relojes QyQ</a></li>
+                        <li><a href="#">Relojes Skmei</a></li>
+                        <li><a href="#">Relojes Aqua</a></li>
+                        <li><a href="index.html">Ver Todos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Ayuda</h4>
+                    <ul>
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Envíos y Entrega</a></li>
+                        <li><a href="#">Garantía</a></li>
+                        <li><a href="#">Devoluciones</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Seguimiento de Pedidos</a></li>
+                        <li><a href="#">Soporte WhatsApp</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 JA Electrónica. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Carrito Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal-content">
+            <div class="cart-modal-header">
+                <h2>Mi Carrito <span class="cart-count-badge" id="cartCountBadge">0</span></h2>
+                <button class="cart-close-btn" id="cartCloseBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-modal-body" id="cartModalBody">
+                <div class="cart-empty">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Tu carrito está vacío</p>
+                    <a href="index.html" class="btn-primary">Seguir Comprando</a>
+                </div>
+            </div>
+            <div class="cart-modal-footer" id="cartModalFooter" style="display: none;">
+                <div class="cart-subtotal">
+                    <span>Subtotal:</span>
+                    <span class="cart-total-price" id="cartTotalPrice">₲ 0</span>
+                </div>
+                <div class="cart-actions">
+                    <a href="checkout.html" class="btn-primary btn-block">Finalizar Pedido</a>
+                    <a href="index.html" class="btn-secondary btn-block">Seguir Comprando</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html>
+
