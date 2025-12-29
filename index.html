@@ -11,8 +11,8 @@
         rel="stylesheet">
     <link rel="icon" type="image" href="logo.png" />
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive_index.css">
     <link rel="stylesheet" href="cart-styles.css">
-    <link rel="stylesheet" href="filters-improved.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -87,36 +87,43 @@
     <div class="main-layout">
         <!-- Sidebar Filtros -->
         <aside class="filters-sidebar-bristol" id="filtersSidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo-container">
+                    <img src="logo.png" alt="JA Electrónica" class="sidebar-logo"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="sidebar-brand-text" style="display: none;">JA</span>
+                </div>
+            </div>
             <div class="filters-scrollable">
                 <!-- Marcas -->
                 <div class="filter-section">
-                    <h3 class="filter-section-title">Marcas</h3>
+                    <h3 class="filter-section-title"><i class="fas fa-tags"></i> Marcas</h3>
                     <ul class="filter-list">
-                        <li><a href="#" class="filter-link">Casio <span class="filter-count">(12)</span></a></li>
-                        <li><a href="#" class="filter-link">QyQ <span class="filter-count">(8)</span></a></li>
-                        <li><a href="#" class="filter-link">Skmei <span class="filter-count">(10)</span></a></li>
-                        <li><a href="#" class="filter-link">Aqua <span class="filter-count">(6)</span></a></li>
-                        <li><a href="#" class="filter-link">Genéricos <span class="filter-count">(12)</span></a></li>
+                        <li><a href="#" class="filter-link" data-brand="casio">Casio <span class="filter-count">12</span></a></li>
+                        <li><a href="#" class="filter-link" data-brand="qyq">QyQ <span class="filter-count">8</span></a></li>
+                        <li><a href="#" class="filter-link" data-brand="skmei">Skmei <span class="filter-count">10</span></a></li>
+                        <li><a href="#" class="filter-link" data-brand="aqua">Aqua <span class="filter-count">6</span></a></li>
+                        <li><a href="#" class="filter-link" data-brand="genericos">Genéricos <span class="filter-count">12</span></a></li>
                     </ul>
                 </div>
 
                 <!-- Especiales -->
                 <div class="filter-section">
-                    <h3 class="filter-section-title">Especiales</h3>
+                    <h3 class="filter-section-title"><i class="fas fa-star"></i> Especiales</h3>
                     <ul class="filter-list">
-                        <li><a href="#" class="filter-link">Sale <span class="filter-count">(18)</span></a></li>
-                        <li><a href="#" class="filter-link">Nuevos <span class="filter-count">(5)</span></a></li>
-                        <li><a href="#" class="filter-link">Outlet <span class="filter-count">(12)</span></a></li>
+                        <li><a href="#" class="filter-link" data-special="sale">Sale <span class="filter-count">18</span></a></li>
+                        <li><a href="#" class="filter-link" data-special="new">Nuevos <span class="filter-count">5</span></a></li>
+                        <li><a href="#" class="filter-link" data-special="outlet">Outlet <span class="filter-count">12</span></a></li>
                     </ul>
                 </div>
 
                 <!-- Género -->
                 <div class="filter-section">
-                    <h3 class="filter-section-title">Género</h3>
+                    <h3 class="filter-section-title"><i class="fas fa-users"></i> Género</h3>
                     <ul class="filter-list">
-                        <li><a href="#" class="filter-link">Caballeros <span class="filter-count">(24)</span></a></li>
-                        <li><a href="#" class="filter-link">Damas <span class="filter-count">(16)</span></a></li>
-                        <li><a href="#" class="filter-link">Niños <span class="filter-count">(8)</span></a></li>
+                        <li><a href="#" class="filter-link" data-gender="caballeros">Caballeros <span class="filter-count">24</span></a></li>
+                        <li><a href="#" class="filter-link" data-gender="damas">Damas <span class="filter-count">16</span></a></li>
+                        <li><a href="#" class="filter-link" data-gender="ninos">Niños <span class="filter-count">8</span></a></li>
                     </ul>
                 </div>
 
@@ -125,7 +132,7 @@
                     <label class="filter-checkbox-label">
                         <input type="checkbox" class="filter-checkbox" id="withDiscount">
                         <span>Con Descuento</span>
-                        <span class="filter-count">(18)</span>
+                        <span class="filter-count">18</span>
                     </label>
                 </div>
             </div>
@@ -511,56 +518,6 @@
                     <a href="checkout.html" class="btn-primary btn-block">Finalizar Pedido</a>
                     <a href="index.html" class="btn-secondary btn-block">Seguir Comprando</a>
                 </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Newsletter Popup -->
-    <div class="newsletter-popup-overlay" id="newsletterPopup">
-        <div class="newsletter-popup-container">
-            <button class="newsletter-close-btn" id="closeNewsletterPopup">
-                <i class="fas fa-times"></i>
-            </button>
-
-            <div class="newsletter-popup-content">
-                <div class="newsletter-popup-icon">
-                    <i class="fas fa-bolt"></i>
-                </div>
-
-                <h2 class="newsletter-popup-title">
-                    <i class="fas fa-bolt newsletter-icon-inline"></i>
-                    ¡Suscríbete a nuestro newsletter!
-                    <i class="fas fa-bolt newsletter-icon-inline"></i>
-                </h2>
-
-                <p class="newsletter-popup-description">
-                    Estarás siempre al día de promociones y descuentos en nuestra tienda.
-                </p>
-
-                <form class="newsletter-popup-form" id="newsletterForm">
-                    <div class="newsletter-input-group">
-                        <i class="fas fa-envelope newsletter-input-icon"></i>
-                        <input type="email" class="newsletter-input" placeholder="Ingresa tu email" required
-                            id="newsletterEmail">
-                    </div>
-
-                    <div class="newsletter-input-group">
-                        <i class="fab fa-whatsapp newsletter-input-icon"></i>
-                        <input type="tel" class="newsletter-input" placeholder="Ingresa tu WhatsApp (opcional)"
-                            id="newsletterWhatsapp" pattern="[0-9]{8,15}">
-                    </div>
-
-                    <button type="submit" class="newsletter-submit-btn">
-                        <span>Suscribirme</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-
-                    <p class="newsletter-privacy-text">
-                        Al suscribirte, aceptas recibir correos promocionales.
-                        Puedes cancelar tu suscripción en cualquier momento.
-                    </p>
-                </form>
             </div>
         </div>
     </div>

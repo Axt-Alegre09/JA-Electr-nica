@@ -1,0 +1,1056 @@
+/* ===========================================
+   RESPONSIVE INDEX.CSS - JA ELECTRÓNICA
+   Sistema de Menú Hamburguesa Estilo Bristol/Paniquiños
+   =========================================== */
+
+/* ===========================================
+   VARIABLES RESPONSIVE
+   =========================================== */
+:root {
+    --sidebar-width-desktop: 280px;
+    --sidebar-width-mobile: 320px;
+    --header-height-desktop: 72px;
+    --header-height-mobile: 60px;
+    --nav-height: 52px;
+}
+
+/* ===========================================
+   SIDEBAR MENU HAMBURGUESA - ESTILO BRISTOL
+   =========================================== */
+.filters-sidebar-bristol {
+    width: var(--sidebar-width-desktop);
+    background: var(--bg-elevated);
+    border-right: 1px solid var(--border-light);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Sidebar Header - Oculto por defecto en desktop */
+.filters-sidebar-bristol .sidebar-header {
+    display: none;
+}
+
+/* En móvil/tablet, convertir a overlay */
+@media (max-width: 991px) {
+    .filters-sidebar-bristol {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        max-width: 340px;
+        height: 100vh;
+        box-shadow: 2px 0 24px rgba(0, 0, 0, 0.15);
+        z-index: 2000;
+        transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .filters-sidebar-bristol.active {
+        left: 0;
+    }
+    
+    .filters-sidebar-bristol .sidebar-header {
+        display: flex;
+    }
+}
+
+/* Header del Sidebar */
+.filters-sidebar-bristol .sidebar-header {
+    padding: var(--spacing-xl) var(--spacing-lg);
+    border-bottom: 1px solid var(--border-light);
+    background: var(--bg-secondary);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filters-sidebar-bristol .sidebar-logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    width: 100%;
+}
+
+.filters-sidebar-bristol .sidebar-logo {
+    height: 64px;
+    width: auto;
+    object-fit: contain;
+}
+
+.filters-sidebar-bristol .sidebar-brand-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+/* Ocultar botón de cierre */
+.filters-sidebar-bristol .sidebar-close-btn {
+    display: none;
+}
+
+/* Contenido Scrollable */
+.filters-scrollable {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: var(--spacing-lg) 0;
+}
+
+.filters-scrollable::-webkit-scrollbar {
+    width: 6px;
+}
+
+.filters-scrollable::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+.filters-scrollable::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: var(--radius-full);
+}
+
+.filters-scrollable::-webkit-scrollbar-thumb:hover {
+    background: var(--text-tertiary);
+}
+
+/* Secciones de Filtro */
+.filter-section {
+    padding: 0 var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.filter-section-title {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.filter-section-title i {
+    font-size: 1rem;
+    color: var(--primary-color);
+}
+
+/* Lista de Filtros */
+.filter-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.filter-list li {
+    margin: 0;
+}
+
+.filter-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem var(--spacing-md);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    transition: all 0.2s;
+    position: relative;
+}
+
+.filter-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 60%;
+    background: var(--primary-color);
+    border-radius: 0 4px 4px 0;
+    transition: width 0.2s;
+}
+
+.filter-link:hover {
+    background: var(--bg-secondary);
+    color: var(--primary-color);
+    padding-left: 1.25rem;
+}
+
+.filter-link:hover::before {
+    width: 4px;
+}
+
+.filter-link.active {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    font-weight: 600;
+    padding-left: 1.25rem;
+}
+
+.filter-link.active::before {
+    width: 4px;
+    background: white;
+}
+
+.filter-count {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    background: var(--bg-tertiary);
+    padding: 0.25rem 0.625rem;
+    border-radius: var(--radius-full);
+    min-width: 28px;
+    text-align: center;
+}
+
+.filter-link.active .filter-count {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* Checkbox de Filtro */
+.filter-checkbox-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem var(--spacing-md);
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.filter-checkbox-label:hover {
+    background: var(--bg-secondary);
+}
+
+.filter-checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--primary-color);
+    cursor: pointer;
+    margin-right: var(--spacing-md);
+}
+
+.filter-checkbox-label span {
+    flex: 1;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* ===========================================
+   OVERLAY MEJORADO
+   =========================================== */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 1500;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===========================================
+   RESPONSIVE BREAKPOINTS
+   =========================================== */
+
+/* ===========================================
+   DESKTOP GRANDE (1400px+)
+   =========================================== */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1400px;
+    }
+    
+    .filters-sidebar-bristol {
+        position: sticky;
+        top: calc(var(--header-height-desktop) + var(--nav-height));
+        left: 0;
+        width: var(--sidebar-width-desktop);
+        max-width: var(--sidebar-width-desktop);
+        height: calc(100vh - var(--header-height-desktop) - var(--nav-height));
+        box-shadow: none;
+        border-right: 1px solid var(--border-light);
+    }
+    
+    .filters-sidebar-bristol .sidebar-header {
+        display: none;
+    }
+    
+    .hamburger-btn {
+        display: none;
+    }
+    
+    .overlay {
+        display: none;
+    }
+    
+    .main-layout {
+        margin-top: 0;
+    }
+    
+    .main-content-bristol {
+        padding: 2rem 2.5rem;
+    }
+    
+    .products-grid-bristol {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+}
+
+/* ===========================================
+   DESKTOP (992px - 1399px)
+   =========================================== */
+@media (min-width: 992px) and (max-width: 1399px) {
+    .filters-sidebar-bristol {
+        position: sticky;
+        top: calc(var(--header-height-desktop) + var(--nav-height));
+        left: 0;
+        width: var(--sidebar-width-desktop);
+        max-width: var(--sidebar-width-desktop);
+        height: calc(100vh - var(--header-height-desktop) - var(--nav-height));
+        box-shadow: none;
+        border-right: 1px solid var(--border-light);
+    }
+    
+    .filters-sidebar-bristol .sidebar-header {
+        display: none;
+    }
+    
+    .hamburger-btn {
+        display: none;
+    }
+    
+    .overlay {
+        display: none;
+    }
+    
+    .products-grid-bristol {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+/* ===========================================
+   DESKTOP CUALQUIER TAMAÑO >= 992px
+   Forzar comportamiento de sidebar estático
+   =========================================== */
+@media (min-width: 992px) {
+    /* Asegurar que el sidebar NUNCA sea overlay en desktop */
+    .filters-sidebar-bristol {
+        position: sticky !important;
+        left: 0 !important;
+        transform: none !important;
+        box-shadow: none !important;
+        z-index: 1 !important;
+    }
+    
+    /* Asegurar que el header del sidebar esté oculto */
+    .filters-sidebar-bristol .sidebar-header {
+        display: none !important;
+    }
+    
+    /* Asegurar que el hamburger esté oculto */
+    .hamburger-btn {
+        display: none !important;
+    }
+    
+    /* Asegurar que el overlay esté oculto */
+    .overlay {
+        display: none !important;
+        pointer-events: none !important;
+    }
+}
+
+/* ===========================================
+   TABLET (768px - 991px)
+   =========================================== */
+@media (max-width: 991px) {
+    /* Header Ajustes */
+    .header-fixed {
+        height: var(--header-height-mobile);
+    }
+    
+    body {
+        padding-top: var(--header-height-mobile);
+    }
+    
+    .header-content {
+        padding: 0.75rem var(--spacing-md);
+    }
+    
+    .header-logo {
+        height: 42px;
+    }
+    
+    /* Sidebar Mobile/Tablet Overlay */
+    .filters-sidebar-bristol {
+        position: fixed;
+        left: -100%;
+    }
+    
+    .filters-sidebar-bristol.active {
+        left: 0;
+    }
+    
+    .filters-sidebar-bristol .sidebar-header {
+        display: flex;
+    }
+    
+    .hamburger-btn {
+        display: flex;
+    }
+    
+    /* Main Content */
+    .main-layout {
+        margin-top: 0;
+    }
+    
+    .main-content-bristol {
+        width: 100%;
+        padding: 1.5rem var(--spacing-md);
+    }
+    
+    .section-header-bristol {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+    }
+    
+    .section-info {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+    
+    .sort-select-bristol {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    /* Products Grid - 2 columnas en tablet */
+    .products-grid-bristol {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .product-card-bristol {
+        font-size: 0.875rem;
+    }
+    
+    .product-image-bristol {
+        height: 180px;
+    }
+    
+    .product-title-bristol {
+        font-size: 0.875rem;
+    }
+    
+    .price-current-bristol {
+        font-size: 1rem;
+    }
+}
+
+/* ===========================================
+   MÓVIL GRANDE (640px - 767px)
+   =========================================== */
+@media (max-width: 767px) {
+    /* Header Compacto */
+    .header-content {
+        grid-template-columns: auto 1fr auto auto auto auto;
+        gap: 0.5rem;
+        padding: 0.625rem var(--spacing-md);
+    }
+    
+    .header-brand {
+        display: none;
+    }
+    
+    .search-container {
+        max-width: 100%;
+    }
+    
+    .search-container input {
+        padding: 0.5rem 0.75rem 0.5rem 2.5rem;
+        font-size: 0.8125rem;
+    }
+    
+    .search-icon {
+        left: 0.875rem;
+        font-size: 0.875rem;
+    }
+    
+    .icon-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+    
+    /* Navigation */
+    .main-nav .container {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        padding: 0.75rem var(--spacing-md);
+    }
+    
+    .nav-link {
+        font-size: 0.875rem;
+        padding: 0.5rem 0;
+    }
+    
+    /* Sidebar Width en tablet pequeño */
+    .filters-sidebar-bristol {
+        width: 55%;
+        max-width: 300px;
+    }
+    
+    .filters-sidebar-bristol .sidebar-logo {
+        height: 60px;
+    }
+    
+    .filters-sidebar-bristol .sidebar-brand-text {
+        font-size: 1.5rem;
+    }
+    
+    /* Section Header */
+    .section-title-bristol {
+        font-size: 1.25rem;
+    }
+    
+    .product-count {
+        font-size: 0.875rem;
+    }
+    
+    /* Footer */
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-xl);
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .social-links a {
+        width: 52px;
+        height: 52px;
+        font-size: 1.375rem;
+    }
+}
+
+/* ===========================================
+   MÓVIL (480px - 639px)
+   =========================================== */
+@media (max-width: 639px) {
+    /* Header Ultra Compacto */
+    .header-content {
+        gap: 0.375rem;
+        padding: 0.5rem 0.75rem;
+    }
+    
+    .hamburger-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 1rem;
+        padding: 0;
+    }
+    
+    .icon-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 0.9375rem;
+        padding: 0;
+    }
+    
+    .search-container input {
+        padding: 0.5rem 0.625rem 0.5rem 2.25rem;
+        font-size: 0.75rem;
+    }
+    
+    .search-icon {
+        left: 0.75rem;
+        font-size: 0.8125rem;
+    }
+    
+    /* Badge */
+    .badge {
+        font-size: 0.625rem;
+        min-width: 16px;
+        padding: 0.125rem 0.3125rem;
+        top: 3px;
+        right: 3px;
+    }
+    
+    /* Navigation Móvil */
+    .main-nav {
+        position: sticky;
+        top: var(--header-height-mobile);
+        z-index: 99;
+    }
+    
+    .main-nav .container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 1rem;
+        padding: 0.625rem var(--spacing-sm);
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    .main-nav .container::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .nav-link {
+        white-space: nowrap;
+        font-size: 0.8125rem;
+        padding: 0.375rem 0;
+    }
+    
+    /* Sidebar - 60% del ancho en móvil */
+    .filters-sidebar-bristol {
+        width: 60%;
+        max-width: 320px;
+    }
+    
+    .filters-sidebar-bristol .sidebar-header {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+    
+    .filters-sidebar-bristol .sidebar-logo {
+        height: 56px;
+    }
+    
+    .filters-sidebar-bristol .sidebar-brand-text {
+        font-size: 1.375rem;
+    }
+    
+    .filter-section {
+        padding: 0 var(--spacing-md);
+    }
+    
+    /* Main Content */
+    .main-content-bristol {
+        padding: 1rem 0.75rem;
+    }
+    
+    .section-header-bristol {
+        padding-bottom: 0.75rem;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .section-title-bristol {
+        font-size: 1.125rem;
+    }
+    
+    /* Products Grid - Una Columna */
+    .products-grid-bristol {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .product-card-bristol {
+        max-width: 100%;
+    }
+    
+    .product-image-bristol {
+        height: 240px;
+    }
+    
+    .product-info-bristol {
+        padding: 1rem 0.875rem;
+    }
+    
+    /* Load More Button */
+    .btn-load-more-bristol {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+    }
+    
+    /* Footer */
+    .footer {
+        padding: var(--spacing-2xl) 0 var(--spacing-lg);
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+        text-align: center;
+    }
+    
+    .footer-section:not(:first-child) h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .footer-section ul li a {
+        justify-content: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+        gap: 1.25rem;
+    }
+    
+    .social-links a {
+        width: 56px;
+        height: 56px;
+        font-size: 1.5rem;
+        border-radius: 16px;
+    }
+}
+
+/* ===========================================
+   MÓVIL PEQUEÑO (360px - 479px)
+   =========================================== */
+@media (max-width: 479px) {
+    .header-content {
+        gap: 0.25rem;
+        padding: 0.5rem;
+    }
+    
+    .hamburger-btn,
+    .icon-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.875rem;
+    }
+    
+    .search-container input {
+        padding: 0.5rem 0.5rem 0.5rem 2rem;
+        font-size: 0.6875rem;
+    }
+    
+    .search-icon {
+        left: 0.625rem;
+        font-size: 0.75rem;
+    }
+    
+    /* Sidebar móvil pequeño - 60% */
+    .filters-sidebar-bristol {
+        width: 60%;
+        max-width: 280px;
+    }
+    
+    .filters-sidebar-bristol .sidebar-logo {
+        height: 52px;
+    }
+    
+    .filters-sidebar-bristol .sidebar-brand-text {
+        font-size: 1.25rem;
+    }
+    
+    .section-title-bristol {
+        font-size: 1rem;
+        letter-spacing: 0.025em;
+    }
+    
+    .product-image-bristol {
+        height: 200px;
+    }
+    
+    .product-title-bristol {
+        font-size: 0.8125rem;
+        -webkit-line-clamp: 2;
+    }
+    
+    .btn-add-cart-bristol {
+        padding: 0.625rem;
+        font-size: 0.8125rem;
+    }
+}
+
+/* ===========================================
+   MÓVIL EXTRA PEQUEÑO (< 360px)
+   =========================================== */
+@media (max-width: 359px) {
+    .header-content {
+        grid-template-columns: auto 1fr auto auto auto;
+        gap: 0.25rem;
+        padding: 0.375rem 0.5rem;
+    }
+    
+    /* Ocultar icono de home en pantallas muy pequeñas */
+    .header-icons .icon-btn[title="Inicio"] {
+        display: none;
+    }
+    
+    .hamburger-btn,
+    .icon-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8125rem;
+    }
+    
+    /* Sidebar extra pequeño - 65% para tener espacio mínimo */
+    .filters-sidebar-bristol {
+        width: 65%;
+        max-width: 260px;
+    }
+    
+    .filters-sidebar-bristol .sidebar-logo {
+        height: 48px;
+    }
+    
+    .filters-sidebar-bristol .sidebar-brand-text {
+        font-size: 1.125rem;
+    }
+    
+    .filter-section-title {
+        font-size: 0.875rem;
+    }
+    
+    .filter-link {
+        padding: 0.625rem 0.75rem;
+        font-size: 0.875rem;
+    }
+    
+    .section-title-bristol {
+        font-size: 0.9375rem;
+    }
+    
+    .footer-section h4 {
+        font-size: 1rem;
+    }
+    
+    .social-links a {
+        width: 48px;
+        height: 48px;
+        font-size: 1.25rem;
+    }
+}
+
+/* ===========================================
+   ORIENTACIÓN LANDSCAPE EN MÓVILES
+   =========================================== */
+@media (max-width: 991px) and (orientation: landscape) {
+    .filters-sidebar-bristol {
+        width: 320px;
+        max-width: 50vw;
+    }
+    
+    .product-image-bristol {
+        height: 160px;
+    }
+    
+    .products-grid-bristol {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 639px) and (orientation: landscape) {
+    .header-fixed {
+        height: 50px;
+    }
+    
+    body {
+        padding-top: 50px;
+    }
+    
+    .header-content {
+        padding: 0.375rem 0.5rem;
+    }
+    
+    .hamburger-btn,
+    .icon-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.875rem;
+    }
+    
+    .filters-sidebar-bristol {
+        max-width: 45vw;
+    }
+    
+    .filters-sidebar-bristol .sidebar-header {
+        padding: var(--spacing-md);
+    }
+    
+    .product-image-bristol {
+        height: 140px;
+    }
+}
+
+/* ===========================================
+   DARK MODE ADJUSTMENTS
+   =========================================== */
+[data-theme="dark"] .filters-sidebar-bristol {
+    background: var(--bg-elevated);
+    border-right-color: var(--border-light);
+}
+
+[data-theme="dark"] .filter-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .filter-checkbox-label:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .sidebar-close-btn {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .sidebar-close-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ===========================================
+   ANIMACIONES Y TRANSICIONES
+   =========================================== */
+
+/* Animación de entrada del sidebar */
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.filters-sidebar-bristol.active {
+    animation: slideInFromLeft 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animación de bounce en items */
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.filter-section {
+    animation: bounceIn 0.4s ease-out backwards;
+}
+
+.filter-section:nth-child(1) { animation-delay: 0.05s; }
+.filter-section:nth-child(2) { animation-delay: 0.1s; }
+.filter-section:nth-child(3) { animation-delay: 0.15s; }
+.filter-section:nth-child(4) { animation-delay: 0.2s; }
+
+/* Smooth scroll */
+.filters-scrollable {
+    scroll-behavior: smooth;
+}
+
+/* ===========================================
+   PERFORMANCE OPTIMIZATIONS
+   =========================================== */
+
+/* GPU Acceleration para animaciones suaves */
+.filters-sidebar-bristol,
+.overlay,
+.hamburger-btn,
+.filter-link {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Reducir animaciones si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .filters-sidebar-bristol {
+        transition: none;
+    }
+}
+
+/* ===========================================
+   PRINT STYLES
+   =========================================== */
+@media print {
+    .filters-sidebar-bristol,
+    .hamburger-btn,
+    .overlay,
+    .header-icons,
+    .main-nav,
+    .footer {
+        display: none !important;
+    }
+    
+    .main-content-bristol {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+    
+    .products-grid-bristol {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ===========================================
+   ACCESIBILIDAD
+   =========================================== */
+
+/* Focus visible para navegación por teclado */
+.filter-link:focus-visible,
+.filter-checkbox-label:focus-visible,
+.hamburger-btn:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: var(--radius-md);
+}
+
+/* Alto contraste */
+@media (prefers-contrast: high) {
+    .filter-link {
+        border: 1px solid var(--border-medium);
+    }
+    
+    .filter-link.active {
+        border: 2px solid var(--primary-color);
+    }
+}
+
+/* Reducir transparencias en modo de contraste alto */
+@media (prefers-contrast: high) {
+    .overlay {
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: none;
+    }
+}
