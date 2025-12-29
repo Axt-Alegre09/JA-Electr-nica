@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JA Electrónica - Relojes y Tecnología</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="cart-styles.css">
     <link rel="stylesheet" href="filters-improved.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <!-- Header Fixed -->
     <header class="header-fixed">
@@ -19,12 +22,13 @@
             <button class="hamburger-btn" id="hamburgerBtn">
                 <i class="fas fa-bars"></i>
             </button>
-            
+
             <a href="index.html" class="header-brand">
-                <img src="logo.png" alt="JA Electrónica" class="header-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <img src="logo.png" alt="JA Electrónica" class="header-logo"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <span class="header-logo-text" style="display: none;">JA Electrónica</span>
             </a>
-            
+
             <div class="search-container">
                 <i class="fas fa-search search-icon"></i>
                 <input type="text" placeholder="Buscar productos..." id="mainSearch">
@@ -37,12 +41,12 @@
                 <button class="icon-btn theme-toggle" id="themeToggle">
                     <i class="fas fa-moon"></i>
                 </button>
-                
+
                 <div class="user-menu-container">
                     <button class="icon-btn user-btn" id="userBtn">
                         <i class="fas fa-user"></i>
                     </button>
-                    
+
                     <div class="user-dropdown" id="userDropdown">
                         <div class="user-info">
                             <i class="fas fa-user-circle"></i>
@@ -70,9 +74,7 @@
         <div class="container">
             <a href="#" class="nav-link">Categorías</a>
             <a href="#" class="nav-link">Marcas</a>
-            <a href="#" class="nav-link">Sucursales</a>
-            <a href="#" class="nav-link">Envíos</a>
-            <a href="#" class="nav-link">Garantía</a>
+            <a href="#" class="nav-link">Ubicacion</a>
             <a href="#" class="nav-link">Contacto</a>
         </div>
     </nav>
@@ -85,19 +87,6 @@
         <!-- Sidebar Filtros -->
         <aside class="filters-sidebar-bristol" id="filtersSidebar">
             <div class="filters-scrollable">
-                <!-- Categorías -->
-                <div class="filter-section">
-                    <h3 class="filter-section-title">Categorías</h3>
-                    <ul class="filter-list">
-                        <li><a href="#" class="filter-link active">Todos los productos <span class="filter-count">(48)</span></a></li>
-                        <li><a href="coleccion.html" class="filter-link">Casio <span class="filter-count">(12)</span></a></li>
-                        <li><a href="#" class="filter-link">QyQ <span class="filter-count">(8)</span></a></li>
-                        <li><a href="#" class="filter-link">Skmei <span class="filter-count">(10)</span></a></li>
-                        <li><a href="#" class="filter-link">Aqua <span class="filter-count">(6)</span></a></li>
-                        <li><a href="#" class="filter-link">Genéricos <span class="filter-count">(12)</span></a></li>
-                    </ul>
-                </div>
-
                 <!-- Marcas -->
                 <div class="filter-section">
                     <h3 class="filter-section-title">Marcas</h3>
@@ -108,19 +97,6 @@
                         <li><a href="#" class="filter-link">Aqua <span class="filter-count">(6)</span></a></li>
                         <li><a href="#" class="filter-link">Genéricos <span class="filter-count">(12)</span></a></li>
                     </ul>
-                </div>
-
-                <!-- Precio -->
-                <div class="filter-section">
-                    <h3 class="filter-section-title">Precio (PYG)</h3>
-                    <div class="price-filter">
-                        <div class="price-input-group">
-                            <input type="number" class="price-input" id="priceFrom" placeholder="Desde">
-                            <span class="price-separator">-</span>
-                            <input type="number" class="price-input" id="priceTo" placeholder="Hasta">
-                        </div>
-                        <button class="price-ok-btn" id="priceOkBtn">OK</button>
-                    </div>
                 </div>
 
                 <!-- Especiales -->
@@ -151,15 +127,6 @@
                         <span class="filter-count">(18)</span>
                     </label>
                 </div>
-
-                <!-- Con Stock -->
-                <div class="filter-section">
-                    <label class="filter-checkbox-label">
-                        <input type="checkbox" class="filter-checkbox" id="withStock" checked>
-                        <span>Con Stock</span>
-                        <span class="filter-count">(48)</span>
-                    </label>
-                </div>
             </div>
         </aside>
 
@@ -183,7 +150,8 @@
             <!-- Products Grid -->
             <div class="products-grid-bristol" id="productsGrid">
                 <!-- Product Card 1 -->
-                <div class="product-card-bristol" data-id="casio-efr539" data-brand="casio" data-gender="caballeros" data-material="metal" data-price="890000">
+                <div class="product-card-bristol" data-id="casio-efr539" data-brand="casio" data-gender="caballeros"
+                    data-material="metal" data-price="890000">
                     <div class="product-badge-bristol sale">-25%</div>
                     <button class="wishlist-btn-bristol">
                         <i class="far fa-heart"></i>
@@ -217,7 +185,8 @@
                 </div>
 
                 <!-- Product Card 2 -->
-                <div class="product-card-bristol" data-id="qyq-elegant" data-brand="qyq" data-gender="damas" data-material="cuero" data-price="450000">
+                <div class="product-card-bristol" data-id="qyq-elegant" data-brand="qyq" data-gender="damas"
+                    data-material="cuero" data-price="450000">
                     <div class="product-badge-bristol new">NUEVO</div>
                     <button class="wishlist-btn-bristol">
                         <i class="far fa-heart"></i>
@@ -250,7 +219,8 @@
                 </div>
 
                 <!-- Product Card 3 -->
-                <div class="product-card-bristol" data-id="skmei-deportivo" data-brand="skmei" data-gender="caballeros" data-material="goma" data-price="180000">
+                <div class="product-card-bristol" data-id="skmei-deportivo" data-brand="skmei" data-gender="caballeros"
+                    data-material="goma" data-price="180000">
                     <button class="wishlist-btn-bristol">
                         <i class="far fa-heart"></i>
                     </button>
@@ -282,7 +252,8 @@
                 </div>
 
                 <!-- Product Card 4 -->
-                <div class="product-card-bristol" data-id="aqua-infantil" data-brand="aqua" data-gender="ninos" data-material="goma" data-price="120000">
+                <div class="product-card-bristol" data-id="aqua-infantil" data-brand="aqua" data-gender="ninos"
+                    data-material="goma" data-price="120000">
                     <div class="product-badge-bristol sale">-15%</div>
                     <button class="wishlist-btn-bristol">
                         <i class="far fa-heart"></i>
@@ -316,7 +287,8 @@
                 </div>
 
                 <!-- Product Card 5 -->
-                <div class="product-card-bristol" data-id="casio-she3059" data-brand="casio" data-gender="damas" data-material="metal" data-price="780000">
+                <div class="product-card-bristol" data-id="casio-she3059" data-brand="casio" data-gender="damas"
+                    data-material="metal" data-price="780000">
                     <button class="wishlist-btn-bristol">
                         <i class="far fa-heart"></i>
                     </button>
@@ -348,13 +320,15 @@
                 </div>
 
                 <!-- Product Card 6 -->
-                <div class="product-card-bristol" data-id="generico-minimalista" data-brand="genericos" data-gender="caballeros" data-material="cuero" data-price="85000">
+                <div class="product-card-bristol" data-id="generico-minimalista" data-brand="genericos"
+                    data-gender="caballeros" data-material="cuero" data-price="85000">
                     <div class="product-badge-bristol new">NUEVO</div>
                     <button class="wishlist-btn-bristol">
                         <i class="far fa-heart"></i>
                     </button>
                     <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400" alt="Reloj Genérico">
+                        <img src="https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400"
+                            alt="Reloj Genérico">
                     </div>
                     <div class="product-info-bristol">
                         <span class="product-brand-bristol">GENÉRICOS</span>
@@ -381,7 +355,8 @@
                 </div>
 
                 <!-- Product Card 7 -->
-                <div class="product-card-bristol" data-id="skmei-elegante-damas" data-brand="skmei" data-gender="damas" data-material="metal" data-price="220000">
+                <div class="product-card-bristol" data-id="skmei-elegante-damas" data-brand="skmei" data-gender="damas"
+                    data-material="metal" data-price="220000">
                     <button class="wishlist-btn-bristol">
                         <i class="far fa-heart"></i>
                     </button>
@@ -413,7 +388,8 @@
                 </div>
 
                 <!-- Product Card 8 -->
-                <div class="product-card-bristol" data-id="qyq-sport" data-brand="qyq" data-gender="caballeros" data-material="goma" data-price="320000">
+                <div class="product-card-bristol" data-id="qyq-sport" data-brand="qyq" data-gender="caballeros"
+                    data-material="goma" data-price="320000">
                     <div class="product-badge-bristol sale">-20%</div>
                     <button class="wishlist-btn-bristol">
                         <i class="far fa-heart"></i>
@@ -461,14 +437,15 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>JA Electrónica</h4>
-                    <p>Tu tienda de confianza para relojes y electrónica premium. Calidad garantizada en cada producto.</p>
+                    <p>Tu tienda de confianza para relojes y electrónica premium. Calidad garantizada en cada producto.
+                    </p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="footer-section">
                     <h4>Productos</h4>
                     <ul>
@@ -479,7 +456,7 @@
                         <li><a href="#">Ver Todos</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
                     <h4>Ayuda</h4>
                     <ul>
@@ -490,7 +467,7 @@
                         <li><a href="#">Contacto</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
                     <h4>Información</h4>
                     <ul>
@@ -503,7 +480,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 JA Electrónica. Todos los derechos reservados.</p>
+                <p>&copy; 2026 JA Electrónica. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
@@ -537,8 +514,58 @@
         </div>
     </div>
 
+
+    <!-- Newsletter Popup -->
+    <div class="newsletter-popup-overlay" id="newsletterPopup">
+        <div class="newsletter-popup-container">
+            <button class="newsletter-close-btn" id="closeNewsletterPopup">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="newsletter-popup-content">
+                <div class="newsletter-popup-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+
+                <h2 class="newsletter-popup-title">
+                    <i class="fas fa-bolt newsletter-icon-inline"></i>
+                    ¡Suscríbete a nuestro newsletter!
+                    <i class="fas fa-bolt newsletter-icon-inline"></i>
+                </h2>
+
+                <p class="newsletter-popup-description">
+                    Estarás siempre al día de promociones y descuentos en nuestra tienda.
+                </p>
+
+                <form class="newsletter-popup-form" id="newsletterForm">
+                    <div class="newsletter-input-group">
+                        <i class="fas fa-envelope newsletter-input-icon"></i>
+                        <input type="email" class="newsletter-input" placeholder="Ingresa tu email" required
+                            id="newsletterEmail">
+                    </div>
+
+                    <div class="newsletter-input-group">
+                        <i class="fab fa-whatsapp newsletter-input-icon"></i>
+                        <input type="tel" class="newsletter-input" placeholder="Ingresa tu WhatsApp (opcional)"
+                            id="newsletterWhatsapp" pattern="[0-9]{8,15}">
+                    </div>
+
+                    <button type="submit" class="newsletter-submit-btn">
+                        <span>Suscribirme</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                    <p class="newsletter-privacy-text">
+                        Al suscribirte, aceptas recibir correos promocionales.
+                        Puedes cancelar tu suscripción en cualquier momento.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
-    <script src="filters-improved.js"></script>
     <script src="cart.js"></script>
 </body>
+
 </html>

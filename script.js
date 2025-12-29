@@ -1,110 +1,113 @@
-// Theme Toggle
+// ===================================
+// CONFIGURACIÓN INICIAL
+// ===================================
+console.log('🚀 Iniciando JA Electrónica...');
+
+// ===================================
+// THEME TOGGLE
+// ===================================
 const themeToggle = document.getElementById('themeToggle');
-const htmlElement = document.documentElement;
-const themeIcon = themeToggle.querySelector('i');
-
-const currentTheme = localStorage.getItem('theme') || 'light';
-htmlElement.setAttribute('data-theme', currentTheme);
-
-if (currentTheme === 'dark') {
-    themeIcon.classList.remove('fa-moon');
-    themeIcon.classList.add('fa-sun');
-}
-
-themeToggle.addEventListener('click', () => {
-    themeToggle.classList.add('rotating');
+if (themeToggle) {
+    const htmlElement = document.documentElement;
+    const themeIcon = themeToggle.querySelector('i');
     
-    const currentTheme = htmlElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    htmlElement.setAttribute('data-theme', currentTheme);
     
-    htmlElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    
-    if (newTheme === 'dark') {
+    if (currentTheme === 'dark') {
         themeIcon.classList.remove('fa-moon');
         themeIcon.classList.add('fa-sun');
-    } else {
-        themeIcon.classList.remove('fa-sun');
-        themeIcon.classList.add('fa-moon');
     }
     
-    setTimeout(() => {
-        themeToggle.classList.remove('rotating');
-    }, 500);
-});
-
-// Hamburger Menu
-const hamburgerBtn = document.getElementById('hamburgerBtn');
-const sidebarMenu = document.getElementById('sidebarMenu');
-const overlay = document.getElementById('overlay');
-
-hamburgerBtn.addEventListener('click', () => {
-    sidebarMenu.classList.add('active');
-    overlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-});
-
-// Close menu when clicking overlay or outside
-overlay.addEventListener('click', closeMenu);
-
-// Detect touch/click outside sidebar
-document.addEventListener('click', (e) => {
-    if (sidebarMenu.classList.contains('active') && 
-        !sidebarMenu.contains(e.target) && 
-        !hamburgerBtn.contains(e.target)) {
-        closeMenu();
-    }
-});
-
-function closeMenu() {
-    sidebarMenu.classList.remove('active');
-    filtersSidebar.classList.remove('active');
-    overlay.classList.remove('active');
-    userDropdown.classList.remove('active');
-    document.body.style.overflow = 'auto';
+    themeToggle.addEventListener('click', () => {
+        themeToggle.classList.add('rotating');
+        
+        const current = htmlElement.getAttribute('data-theme');
+        const newTheme = current === 'light' ? 'dark' : 'light';
+        
+        htmlElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        if (newTheme === 'dark') {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+        
+        setTimeout(() => {
+            themeToggle.classList.remove('rotating');
+        }, 500);
+    });
 }
 
-// User Dropdown Menu
+// ===================================
+// MENU LATERAL Y OVERLAY
+// ===================================
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const filtersSidebar = document.getElementById('filtersSidebar');
+const overlay = document.getElementById('overlay');
 const userBtn = document.getElementById('userBtn');
 const userDropdown = document.getElementById('userDropdown');
 
-userBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    userDropdown.classList.toggle('active');
-});
+function closeMenu() {
+    if (filtersSidebar) filtersSidebar.classList.remove('active');
+    if (overlay) overlay.classList.remove('active');
+    if (userDropdown) userDropdown.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
 
-document.addEventListener('click', (e) => {
-    if (!userDropdown.contains(e.target) && !userBtn.contains(e.target)) {
-        userDropdown.classList.remove('active');
-    }
-});
+if (hamburgerBtn && filtersSidebar && overlay) {
+    hamburgerBtn.addEventListener('click', () => {
+        filtersSidebar.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = filtersSidebar.classList.contains('active') ? 'hidden' : 'auto';
+    });
+}
 
-// Search Functionality
+if (overlay) {
+    overlay.addEventListener('click', closeMenu);
+}
+
+// ===================================
+// USER DROPDOWN
+// ===================================
+if (userBtn && userDropdown) {
+    userBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        userDropdown.classList.toggle('active');
+    });
+    
+    document.addEventListener('click', (e) => {
+        if (!userDropdown.contains(e.target) && !userBtn.contains(e.target)) {
+            userDropdown.classList.remove('active');
+        }
+    });
+}
+
+// ===================================
+// BÚSQUEDA
+// ===================================
 const mainSearch = document.getElementById('mainSearch');
 
-mainSearch.addEventListener('input', () => {
-    performSearch();
-});
-
-mainSearch.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        performSearch();
-    }
-});
+if (mainSearch) {
+    mainSearch.addEventListener('input', performSearch);
+    mainSearch.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') performSearch();
+    });
+}
 
 function performSearch() {
+    if (!mainSearch) return;
+    
     const searchTerm = mainSearch.value.toLowerCase().trim();
-    const products = document.querySelectorAll('.product-card, .product-card-bristol');
+    const products = document.querySelectorAll('.product-card-bristol');
     
     products.forEach(product => {
-        const brandAttr = product.getAttribute('data-brand');
-        if (!brandAttr) return;
-        const brand = brandAttr.toLowerCase();
-        const titleEl = product.querySelector('.product-title, .product-title-bristol');
-        const categoryEl = product.querySelector('.product-brand, .product-brand-bristol');
-        if (!titleEl || !categoryEl) return;
-        const title = titleEl.textContent.toLowerCase();
-        const category = categoryEl.textContent.toLowerCase();
+        const brand = product.getAttribute('data-brand')?.toLowerCase() || '';
+        const title = product.querySelector('.product-title-bristol')?.textContent.toLowerCase() || '';
+        const category = product.querySelector('.product-brand-bristol')?.textContent.toLowerCase() || '';
         
         if (!searchTerm || brand.includes(searchTerm) || title.includes(searchTerm) || category.includes(searchTerm)) {
             product.style.display = 'flex';
@@ -114,88 +117,26 @@ function performSearch() {
     });
 }
 
-// Brand Filter from Sidebar
-const brandLinks = document.querySelectorAll('.sidebar-nav a[data-brand]');
-brandLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        
-        brandLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-        
-        const brand = link.getAttribute('data-brand');
-        filterByBrand(brand);
-        closeMenu();
-    });
-});
-
-function filterByBrand(brand) {
-    const products = document.querySelectorAll('.product-card, .product-card-bristol');
-    
-    products.forEach(product => {
-        const productBrand = product.getAttribute('data-brand');
-        
-        if (brand === 'all' || productBrand === brand) {
-            product.style.display = 'flex';
-        } else {
-            product.style.display = 'none';
-        }
-    });
-}
-
-// Quick Filters
-const quickFilters = document.querySelectorAll('.quick-filter');
-quickFilters.forEach(filter => {
-    filter.addEventListener('click', () => {
-        quickFilters.forEach(f => f.classList.remove('active'));
-        filter.classList.add('active');
-        
-        const filterType = filter.getAttribute('data-type');
-        applyQuickFilter(filterType);
-    });
-});
-
-function applyQuickFilter(type) {
-    const products = document.querySelectorAll('.product-card, .product-card-bristol');
-    
-    products.forEach(product => {
-        const hasDiscount = product.querySelector('.product-badge.sale, .product-badge-bristol.sale') !== null;
-        const isNew = product.querySelector('.product-badge.new, .product-badge-bristol.new') !== null;
-        
-        switch(type) {
-            case 'ofertas':
-                product.style.display = hasDiscount ? 'flex' : 'none';
-                break;
-            case 'nuevos':
-                product.style.display = isNew ? 'flex' : 'none';
-                break;
-            case 'mas-vendidos':
-                product.style.display = 'flex';
-                break;
-            default:
-                product.style.display = 'flex';
-        }
-    });
-}
-
-// Sort Select
+// ===================================
+// ORDENAR PRODUCTOS
+// ===================================
 const sortSelect = document.getElementById('sortSelect');
+
 if (sortSelect) {
     sortSelect.addEventListener('change', () => {
-        const sortValue = sortSelect.value;
-        sortProducts(sortValue);
+        sortProducts(sortSelect.value);
     });
 }
 
 function sortProducts(sortType) {
     const grid = document.getElementById('productsGrid');
-    const products = Array.from(document.querySelectorAll('.product-card, .product-card-bristol'));
+    if (!grid) return;
+    
+    const products = Array.from(document.querySelectorAll('.product-card-bristol'));
     
     products.sort((a, b) => {
         const priceA = parseInt(a.getAttribute('data-price')) || 0;
         const priceB = parseInt(b.getAttribute('data-price')) || 0;
-        const ratingA = a.querySelectorAll('.product-rating .fas.fa-star, .product-rating-bristol .fas.fa-star').length;
-        const ratingB = b.querySelectorAll('.product-rating .fas.fa-star, .product-rating-bristol .fas.fa-star').length;
         
         switch(sortType) {
             case 'price-asc':
@@ -203,13 +144,12 @@ function sortProducts(sortType) {
             case 'price-desc':
                 return priceB - priceA;
             case 'rating':
+                const ratingA = a.querySelectorAll('.product-rating-bristol .fas.fa-star').length;
+                const ratingB = b.querySelectorAll('.product-rating-bristol .fas.fa-star').length;
                 return ratingB - ratingA;
             case 'popular':
-                const ratingElA = a.querySelector('.product-rating span, .product-rating-bristol span');
-                const ratingElB = b.querySelector('.product-rating span, .product-rating-bristol span');
-                if (!ratingElA || !ratingElB) return 0;
-                const reviewsA = parseInt(ratingElA.textContent.match(/\d+/)?.[0] || '0');
-                const reviewsB = parseInt(ratingElB.textContent.match(/\d+/)?.[0] || '0');
+                const reviewsA = parseInt(a.querySelector('.product-rating-bristol span')?.textContent.match(/\d+/)?.[0] || '0');
+                const reviewsB = parseInt(b.querySelector('.product-rating-bristol span')?.textContent.match(/\d+/)?.[0] || '0');
                 return reviewsB - reviewsA;
             default:
                 return 0;
@@ -219,94 +159,10 @@ function sortProducts(sortType) {
     products.forEach(product => grid.appendChild(product));
 }
 
-// Filters Sidebar (Bristol style)
-const filterBtn = document.getElementById('filterBtn');
-const filtersSidebar = document.getElementById('filtersSidebar');
-
-if (filterBtn && filtersSidebar) {
-    filterBtn.addEventListener('click', () => {
-        filtersSidebar.classList.toggle('active');
-        if (overlay) {
-            overlay.classList.toggle('active');
-        }
-        document.body.style.overflow = filtersSidebar.classList.contains('active') ? 'hidden' : 'auto';
-    });
-}
-
-// Hamburger button para mostrar sidebar en móvil (Bristol style)
-if (hamburgerBtn && filtersSidebar) {
-    hamburgerBtn.addEventListener('click', (e) => {
-        // Solo si no existe el sidebar-menu, usar filtersSidebar
-        if (!sidebarMenu || sidebarMenu.offsetParent === null) {
-            filtersSidebar.classList.toggle('active');
-            if (overlay) {
-                overlay.classList.toggle('active');
-            }
-            document.body.style.overflow = filtersSidebar.classList.contains('active') ? 'hidden' : 'auto';
-        }
-    });
-}
-
-// Auto-apply filters on change
-const genderCheckboxes = document.querySelectorAll('input[name="gender"]');
-const materialCheckboxes = document.querySelectorAll('input[name="material"]');
-const priceMin = document.getElementById('priceMin');
-const priceMax = document.getElementById('priceMax');
-
-genderCheckboxes.forEach(cb => cb.addEventListener('change', applyAllFilters));
-materialCheckboxes.forEach(cb => cb.addEventListener('change', applyAllFilters));
-priceMin.addEventListener('input', applyAllFilters);
-priceMax.addEventListener('input', applyAllFilters);
-
-function applyAllFilters() {
-    const selectedGenders = Array.from(document.querySelectorAll('input[name="gender"]:checked')).map(cb => cb.value);
-    const selectedMaterials = Array.from(document.querySelectorAll('input[name="material"]:checked')).map(cb => cb.value);
-    const minPrice = priceMin.value ? parseInt(priceMin.value) : 0;
-    const maxPrice = priceMax.value ? parseInt(priceMax.value) : Infinity;
-    
-    const products = document.querySelectorAll('.product-card, .product-card-bristol');
-    
-    products.forEach(product => {
-        const productGender = product.getAttribute('data-gender');
-        const productMaterial = product.getAttribute('data-material');
-        const productPrice = parseInt(product.getAttribute('data-price'));
-        
-        let showProduct = true;
-        
-        if (selectedGenders.length > 0 && !selectedGenders.includes(productGender)) {
-            showProduct = false;
-        }
-        
-        if (selectedMaterials.length > 0 && !selectedMaterials.includes(productMaterial)) {
-            showProduct = false;
-        }
-        
-        if (productPrice < minPrice || productPrice > maxPrice) {
-            showProduct = false;
-        }
-        
-        product.style.display = showProduct ? 'flex' : 'none';
-    });
-}
-
-// Clear Filters
-const btnClearFilters = document.getElementById('btnClearFilters');
-if (btnClearFilters) {
-    btnClearFilters.addEventListener('click', () => {
-        document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-        if (priceMin) priceMin.value = '';
-        if (priceMax) priceMax.value = '';
-        if (priceFrom) priceFrom.value = '';
-        if (priceTo) priceTo.value = '';
-        
-        document.querySelectorAll('.product-card, .product-card-bristol').forEach(product => {
-            product.style.display = 'flex';
-        });
-    });
-}
-
-// Wishlist (soporta ambos estilos)
-const wishlistBtns = document.querySelectorAll('.wishlist-btn, .wishlist-btn-bristol');
+// ===================================
+// WISHLIST
+// ===================================
+const wishlistBtns = document.querySelectorAll('.wishlist-btn-bristol');
 wishlistBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -324,38 +180,186 @@ wishlistBtns.forEach(btn => {
     });
 });
 
-// Add to Cart
-const addCartBtns = document.querySelectorAll('.btn-add-cart');
-addCartBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const cartBadge = document.querySelector('.cart-btn .badge');
-        let currentCount = parseInt(cartBadge.textContent);
-        cartBadge.textContent = currentCount + 1;
-        
-        const originalHTML = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-check"></i> Agregado';
-        btn.style.background = 'var(--success-color)';
+// ===================================
+// LOAD MORE
+// ===================================
+const loadMoreBtn = document.getElementById('loadMore');
+
+if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', () => {
+        loadMoreBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cargando...';
         
         setTimeout(() => {
-            btn.innerHTML = originalHTML;
-            btn.style.background = 'var(--primary-color)';
-        }, 2000);
+            loadMoreBtn.innerHTML = 'Ver Más Productos <i class="fas fa-chevron-down"></i>';
+            alert('Aquí cargarías más productos desde tu backend');
+        }, 1500);
     });
-});
+}
 
-// Load More
-const loadMoreBtn = document.getElementById('loadMore');
-loadMoreBtn.addEventListener('click', () => {
-    loadMoreBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cargando...';
+
+// ===================================
+// NEWSLETTER POPUP
+// ===================================
+(function() {
+    const STORAGE_KEY = 'ja_newsletter_shown';
+    const DELAY_MS = 2000;
     
-    setTimeout(() => {
-        loadMoreBtn.innerHTML = 'Ver Más Productos <i class="fas fa-chevron-down"></i>';
-        alert('Aquí cargarías más productos desde tu backend');
-    }, 1500);
-});
+    const popup = document.getElementById('newsletterPopup');
+    const closeBtn = document.getElementById('closeNewsletterPopup');
+    const form = document.getElementById('newsletterForm');
+    const emailInput = document.getElementById('newsletterEmail');
+    const whatsappInput = document.getElementById('newsletterWhatsapp');
+    
+    if (!popup || !form) return;
+    
+    function hasBeenShown() {
+        return localStorage.getItem(STORAGE_KEY) === 'true';
+    }
+    
+    function markAsShown() {
+        localStorage.setItem(STORAGE_KEY, 'true');
+    }
+    
+    function showPopup() {
+        popup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closePopup() {
+        popup.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        markAsShown();
+    }
+    
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closePopup);
+    }
+    
+    popup.addEventListener('click', function(e) {
+        if (e.target === popup) closePopup();
+    });
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && popup.classList.contains('active')) {
+            closePopup();
+        }
+    });
+    
+    if (whatsappInput) {
+        whatsappInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 15) value = value.substring(0, 15);
+            e.target.value = value;
+        });
+    }
+    
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const email = emailInput.value.trim();
+        const whatsapp = whatsappInput.value.trim();
+        
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            showNotification('Por favor, ingresa un email válido', 'error');
+            emailInput.focus();
+            return;
+        }
+        
+        if (whatsapp && whatsapp.length < 8) {
+            showNotification('Por favor, ingresa un número de WhatsApp válido', 'error');
+            whatsappInput.focus();
+            return;
+        }
+        
+        const submitBtn = form.querySelector('.newsletter-submit-btn');
+        const originalHTML = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Enviando...</span>';
+        
+        try {
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            console.log('Suscripción:', { email, whatsapp });
+            
+            const content = popup.querySelector('.newsletter-popup-content');
+            content.innerHTML = `
+                <div class="newsletter-popup-success active">
+                    <div class="newsletter-success-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h3 class="newsletter-success-title">¡Suscripción Exitosa!</h3>
+                    <p class="newsletter-success-message">
+                        Gracias por suscribirte. Recibirás nuestras mejores ofertas en <strong>${email}</strong>
+                    </p>
+                </div>
+            `;
+            
+            setTimeout(closePopup, 3000);
+        } catch (error) {
+            console.error('Error:', error);
+            showNotification('Hubo un error. Por favor, intenta nuevamente.', 'error');
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalHTML;
+        }
+    });
+    
+    function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: ${type === 'error' ? '#ef4444' : '#3b82f6'};
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            z-index: 10000;
+            animation: slideInRight 0.3s ease;
+            font-size: 0.9375rem;
+            font-weight: 500;
+        `;
+        notification.innerHTML = `
+            <i class="fas fa-${type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+            <span>${message}</span>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideOutRight 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+    
+    function initNewsletterPopup() {
+        if (hasBeenShown()) return;
+        setTimeout(showPopup, DELAY_MS);
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initNewsletterPopup);
+    } else {
+        initNewsletterPopup();
+    }
+})();
 
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('JA Electrónica - Sitio cargado correctamente');
-    initCarousel();
-});
+// ===================================
+// ANIMACIONES CSS
+// ===================================
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideInRight {
+        from { transform: translateX(400px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOutRight {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(400px); opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
+
+console.log('✅ JA Electrónica - Script cargado correctamente');
