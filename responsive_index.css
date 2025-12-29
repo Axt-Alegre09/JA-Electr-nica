@@ -41,11 +41,11 @@
     background: #082a57;
     padding: 1rem;
     text-align: center;
-    border-bottom: none; /* Sin borde inferior para evitar líneas */
+    border: none; /* Sin bordes */
     position: sticky; /* Sticky para quedarse fijo al hacer scroll */
     top: 60px; /* Debajo del header */
     z-index: 999;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: none; /* Sin sombra para evitar líneas */
     margin: 0; /* Sin márgenes */
 }
 
@@ -495,25 +495,86 @@
    TABLET (768px - 991px)
    =========================================== */
 @media (max-width: 991px) {
-    /* Mostrar banner de logo móvil */
+    /* ============================================
+       INVERSIÓN DE ORDEN VISUAL - SOLO RESPONSIVE
+       1. Banner Logo (arriba)
+       2. Navigation (medio)
+       3. Header (abajo con búsqueda e iconos)
+       ============================================ */
+    
+    /* Convertir body en flexbox para reordenar */
+    body {
+        display: flex;
+        flex-direction: column;
+        padding-top: 0;
+        margin: 0;
+        gap: 0;
+    }
+    
+    /* Banner Logo - Orden 1 (ARRIBA) */
     .mobile-logo-banner {
         display: block;
-    }
-    
-    /* Header Ajustes */
-    .header-fixed {
-        height: var(--header-height-mobile);
-        margin-bottom: 0; /* Sin margen inferior */
-    }
-    
-    body {
-        padding-top: var(--header-height-mobile); /* Solo el header fixed */
+        order: 1;
+        position: sticky;
+        top: 0;
+        z-index: 1002;
         margin: 0;
+        border: none;
+        box-shadow: none;
+        /* Altura: 1rem (16px) + 48px logo + 1rem (16px) = 80px */
     }
     
+    /* Main Navigation - Orden 2 (MEDIO) - PEGADO AL BANNER */
+    .main-nav {
+        order: 2;
+        position: sticky;
+        top: 80px; /* Altura exacta del banner */
+        z-index: 1001;
+        background: #1e40af;
+        border: none;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        /* Altura aprox: 52px */
+    }
+    
+    /* Header - Orden 3 (DEBAJO DEL NAV) - PEGADO */
+    .header-fixed {
+        order: 3;
+        position: sticky;
+        top: 132px; /* Banner 80px + Nav 52px */
+        z-index: 1000;
+        height: var(--header-height-mobile);
+        margin: 0;
+        border: none;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    /* Header content con fondo sólido para tapar contenido */
     .header-content {
         padding: 0.75rem var(--spacing-md);
         gap: 0.75rem;
+        background: var(--bg-elevated);
+        position: relative;
+        z-index: 1000;
+    }
+    
+    /* Main Layout - Orden 4 (CONTENIDO) */
+    .main-layout {
+        order: 4;
+        margin: 0;
+    }
+    
+    /* Footer - Orden 5 (ABAJO) */
+    footer {
+        order: 5;
+        margin: 0;
+    }
+    
+    /* Overlay - Mantener arriba de todo */
+    .overlay {
+        position: fixed;
+        z-index: 1500;
     }
     
     /* Ocultar logo en tablet/móvil (irá en el banner separado) */
@@ -525,19 +586,13 @@
         height: 40px;
     }
     
-    /* Main Navigation - Asegurar fondo sólido */
-    .main-nav {
-        background: #1e40af;
-        border-top: none;
-        border-bottom: none;
-        margin: 0;
-        padding: 0;
-    }
-    
     /* Sidebar Mobile/Tablet Overlay */
     .filters-sidebar-bristol {
         position: fixed;
         left: -100%;
+        top: 0;
+        height: 100vh;
+        z-index: 2000;
     }
     
     .filters-sidebar-bristol.active {
@@ -552,21 +607,7 @@
         display: flex;
     }
     
-    /* Main Navigation - Sticky debajo del banner sin espacios */
-    .main-nav {
-        position: sticky;
-        top: 140px; /* Header 60px + Banner (1rem padding-top + 48px logo + 1rem padding-bottom) = 140px */
-        z-index: 998;
-        margin-top: 0;
-        margin-bottom: 0;
-        border-top: none; /* Sin borde superior */
-    }
-    
     /* Main Content */
-    .main-layout {
-        margin-top: 0;
-    }
-    
     .main-content-bristol {
         width: 100%;
         padding: 1.5rem var(--spacing-md);
@@ -617,9 +658,12 @@
    MÓVIL GRANDE (640px - 767px)
    =========================================== */
 @media (max-width: 767px) {
-    /* Banner móvil ajustado */
+    /* Banner móvil ajustado - sin espacios */
     .mobile-logo-banner {
-        padding: 0.875rem 1rem;
+        padding: 0.875rem 1rem; /* 14px top + 14px bottom = 28px padding */
+        margin: 0;
+        border: none;
+        /* Altura total: 14px + 42px logo + 14px = 70px */
     }
     
     .mobile-banner-logo,
@@ -637,6 +681,7 @@
         grid-template-columns: auto 1fr auto auto auto auto;
         gap: 0.5rem;
         padding: 0.625rem var(--spacing-md);
+        background: var(--bg-elevated);
     }
     
     /* Logo oculto (está en banner separado) */
@@ -668,19 +713,20 @@
         font-size: 1rem;
     }
     
-    /* Navigation - Sticky sin espacios */
+    /* Navigation - Sticky debajo del banner */
     .main-nav {
-        position: sticky;
-        top: 124px; /* Header 60px + Banner (0.875rem*2 + 42px logo) ≈ 64px = 124px total */
-        z-index: 998;
-        margin: 0;
-        border: none;
+        top: 70px; /* Altura exacta del banner: 14 + 42 + 14 = 70px */
     }
     
     .main-nav .container {
         flex-wrap: wrap;
         gap: 0.75rem;
         padding: 0.75rem var(--spacing-md);
+    }
+    
+    /* Header ajustado */
+    .header-fixed {
+        top: 122px; /* Banner 70px + Nav 52px = 122px */
     }
     
     .nav-link {
@@ -732,9 +778,12 @@
    MÓVIL (480px - 639px)
    =========================================== */
 @media (max-width: 639px) {
-    /* Banner móvil compacto */
+    /* Banner móvil compacto - sin espacios */
     .mobile-logo-banner {
-        padding: 0.75rem 0.875rem;
+        padding: 0.75rem 0.875rem; /* 12px top + 12px bottom = 24px padding */
+        margin: 0;
+        border: none;
+        /* Altura total: 12px + 38px logo + 12px = 62px */
     }
     
     .mobile-banner-logo,
@@ -751,6 +800,7 @@
     .header-content {
         gap: 0.375rem;
         padding: 0.5rem 0.75rem;
+        background: var(--bg-elevated);
     }
     
     /* Logo oculto (está en banner separado) */
@@ -795,13 +845,9 @@
         right: 3px;
     }
     
-    /* Navigation Móvil - Sticky sin espacios */
+    /* Navigation Móvil - Sticky debajo del banner */
     .main-nav {
-        position: sticky;
-        top: 120px; /* Header 60px + Banner (0.75rem*2 + 38px logo) ≈ 60px = 120px total */
-        z-index: 998;
-        margin: 0;
-        border: none;
+        top: 62px; /* Altura exacta del banner: 12 + 38 + 12 = 62px */
     }
     
     .main-nav .container {
@@ -811,6 +857,11 @@
         padding: 0.625rem var(--spacing-sm);
         scrollbar-width: none;
         -ms-overflow-style: none;
+    }
+    
+    /* Header ajustado */
+    .header-fixed {
+        top: 114px; /* Banner 62px + Nav 52px = 114px */
     }
     
     .main-nav .container::-webkit-scrollbar {
@@ -920,9 +971,11 @@
    MÓVIL PEQUEÑO (360px - 479px)
    =========================================== */
 @media (max-width: 479px) {
-    /* Banner móvil pequeño */
+    /* Banner móvil pequeño - sin espacios */
     .mobile-logo-banner {
         padding: 0.625rem 0.75rem;
+        margin: 0;
+        border: none;
     }
     
     .mobile-banner-logo,
@@ -1012,9 +1065,11 @@
    MÓVIL EXTRA PEQUEÑO (< 360px)
    =========================================== */
 @media (max-width: 359px) {
-    /* Banner móvil extra pequeño */
+    /* Banner móvil extra pequeño - sin espacios */
     .mobile-logo-banner {
         padding: 0.5rem 0.625rem;
+        margin: 0;
+        border: none;
     }
     
     .mobile-banner-logo,
