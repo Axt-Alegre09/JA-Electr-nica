@@ -359,13 +359,13 @@ wishlistBtns.forEach(btn => {
 // ADD TO CART FUNCTIONALITY
 // ==========================================
 const addCartBtns = document.querySelectorAll('.btn-add-cart-bristol');
-const cartBadge = document.querySelector('.cart-btn .badge');
 
 addCartBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.stopPropagation();
         
         // Actualizar badge del carrito
+        const cartBadge = document.querySelector('.cart-btn .badge');
         if (cartBadge) {
             let currentCount = parseInt(cartBadge.textContent) || 0;
             cartBadge.textContent = currentCount + 1;
@@ -512,7 +512,167 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Hamburger Button:', hamburgerBtn ? '✓' : '✗');
     console.log('Sidebar:', filtersSidebar ? '✓' : '✗');
     console.log('Overlay:', overlay ? '✓' : '✗');
+    
+    // Inicializar Newsletter Popup
+    initNewsletterPopup();
 });
+
+// ==========================================
+// NEWSLETTER POPUP
+// ==========================================
+function initNewsletterPopup() {
+    const STORAGE_KEY = 'ja_newsletter_shown';
+    const DELAY_MS = 2000;
+    
+    const popup = document.getElementById('newsletterPopup');
+    const closeBtn = document.getElementById('closeNewsletterPopup');
+    const form = document.getElementById('newsletterForm');
+    const emailInput = document.getElementById('newsletterEmail');
+    const whatsappInput = document.getElementById('newsletterWhatsapp');
+    
+    if (!popup || !form) return;
+    
+    function hasBeenShown() {
+        return localStorage.getItem(STORAGE_KEY) === 'true';
+    }
+    
+    function markAsShown() {
+        localStorage.setItem(STORAGE_KEY, 'true');
+    }
+    
+    function showPopup() {
+        popup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closePopup() {
+        popup.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        markAsShown();
+    }
+    
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closePopup);
+    }
+    
+    popup.addEventListener('click', function(e) {
+        if (e.target === popup) closePopup();
+    });
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && popup.classList.contains('active')) {
+            closePopup();
+        }
+    });
+    
+    if (whatsappInput) {
+        whatsappInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 15) value = value.substring(0, 15);
+            e.target.value = value;
+        });
+    }
+    
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const email = emailInput.value.trim();
+        const whatsapp = whatsappInput.value.trim();
+        
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            showNotification('Por favor, ingresa un email válido', 'error');
+            emailInput.focus();
+            return;
+        }
+        
+        if (whatsapp && whatsapp.length < 8) {
+            showNotification('Por favor, ingresa un número de WhatsApp válido', 'error');
+            whatsappInput.focus();
+            return;
+        }
+        
+        const submitBtn = form.querySelector('.newsletter-submit-btn');
+        const originalHTML = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Enviando...</span>';
+        
+        try {
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            console.log('Suscripción:', { email, whatsapp });
+            
+            const content = popup.querySelector('.newsletter-popup-content');
+            content.innerHTML = `
+                <div class="newsletter-popup-success active">
+                    <div class="newsletter-success-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h3 class="newsletter-success-title">¡Suscripción Exitosa!</h3>
+                    <p class="newsletter-success-message">
+                        Gracias por suscribirte. Recibirás nuestras mejores ofertas en <strong>${email}</strong>
+                    </p>
+                </div>
+            `;
+            
+            setTimeout(closePopup, 3000);
+        } catch (error) {
+            console.error('Error:', error);
+            showNotification('Hubo un error. Por favor, intenta nuevamente.', 'error');
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalHTML;
+        }
+    });
+    
+    function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: ${type === 'error' ? '#ef4444' : '#3b82f6'};
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            z-index: 10000;
+            animation: slideInRight 0.3s ease;
+            font-size: 0.9375rem;
+            font-weight: 500;
+        `;
+        notification.innerHTML = `
+            <i class="fas fa-${type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+            <span>${message}</span>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideOutRight 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+    
+    // Mostrar popup si no se ha mostrado antes
+    if (!hasBeenShown()) {
+        setTimeout(showPopup, DELAY_MS);
+    }
+}
+
+// Agregar animaciones CSS para notificaciones
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideInRight {
+        from { transform: translateX(400px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOutRight {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(400px); opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
 
 // ==========================================
 // PERFORMANCE MONITORING

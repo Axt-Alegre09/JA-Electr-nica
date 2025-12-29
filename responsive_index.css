@@ -17,6 +17,74 @@
 /* ===========================================
    SIDEBAR MENU HAMBURGUESA - ESTILO BRISTOL
    =========================================== */
+
+/* Ocultar texto del logo en desktop por defecto */
+.header-logo-text {
+    display: none;
+}
+
+/* Estilo normal del logo en desktop (sin banner) */
+.header-brand {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* ===========================================
+   LOGO BANNER MÓVIL - NUEVA SECCIÓN
+   Solo visible en responsive
+   =========================================== */
+.mobile-logo-banner {
+    display: none; /* Oculto por defecto en desktop */
+    width: 100%;
+    background: #082a57;
+    padding: 1rem;
+    text-align: center;
+    border-bottom: none; /* Sin borde inferior para evitar líneas */
+    position: sticky; /* Sticky para quedarse fijo al hacer scroll */
+    top: 60px; /* Debajo del header */
+    z-index: 999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    margin: 0; /* Sin márgenes */
+}
+
+.mobile-logo-container,
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.mobile-banner-logo,
+.mobile-logo-banner img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 8px; /* Esquinas redondeadas */
+    background: white;
+    padding: 0.25rem;
+}
+
+.mobile-banner-text,
+.logo-text {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+}
+
+.mobile-banner-text {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
 .filters-sidebar-bristol {
     width: var(--sidebar-width-desktop);
     background: var(--bg-elevated);
@@ -275,6 +343,42 @@
 }
 
 /* ===========================================
+   BANNER LOGO MÓVIL - SECCIÓN SEPARADA
+   =========================================== */
+.mobile-logo-banner {
+    display: none;
+    background: #082a57;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    position: sticky;
+    top: var(--header-height-mobile);
+    z-index: 98;
+    box-shadow: 0 2px 8px rgba(8, 42, 87, 0.3);
+}
+
+.mobile-logo-banner .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.mobile-logo-banner img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+}
+
+.mobile-logo-banner .logo-text {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* ===========================================
    RESPONSIVE BREAKPOINTS
    =========================================== */
 
@@ -391,21 +495,43 @@
    TABLET (768px - 991px)
    =========================================== */
 @media (max-width: 991px) {
+    /* Mostrar banner de logo móvil */
+    .mobile-logo-banner {
+        display: block;
+    }
+    
     /* Header Ajustes */
     .header-fixed {
         height: var(--header-height-mobile);
+        margin-bottom: 0; /* Sin margen inferior */
     }
     
     body {
-        padding-top: var(--header-height-mobile);
+        padding-top: var(--header-height-mobile); /* Solo el header fixed */
+        margin: 0;
     }
     
     .header-content {
         padding: 0.75rem var(--spacing-md);
+        gap: 0.75rem;
+    }
+    
+    /* Ocultar logo en tablet/móvil (irá en el banner separado) */
+    .header-brand {
+        display: none !important;
     }
     
     .header-logo {
-        height: 42px;
+        height: 40px;
+    }
+    
+    /* Main Navigation - Asegurar fondo sólido */
+    .main-nav {
+        background: #1e40af;
+        border-top: none;
+        border-bottom: none;
+        margin: 0;
+        padding: 0;
     }
     
     /* Sidebar Mobile/Tablet Overlay */
@@ -424,6 +550,16 @@
     
     .hamburger-btn {
         display: flex;
+    }
+    
+    /* Main Navigation - Sticky debajo del banner sin espacios */
+    .main-nav {
+        position: sticky;
+        top: 140px; /* Header 60px + Banner (1rem padding-top + 48px logo + 1rem padding-bottom) = 140px */
+        z-index: 998;
+        margin-top: 0;
+        margin-bottom: 0;
+        border-top: none; /* Sin borde superior */
     }
     
     /* Main Content */
@@ -481,6 +617,21 @@
    MÓVIL GRANDE (640px - 767px)
    =========================================== */
 @media (max-width: 767px) {
+    /* Banner móvil ajustado */
+    .mobile-logo-banner {
+        padding: 0.875rem 1rem;
+    }
+    
+    .mobile-banner-logo,
+    .mobile-logo-banner img {
+        height: 42px;
+    }
+    
+    .mobile-banner-text,
+    .logo-text {
+        font-size: 1.375rem;
+    }
+    
     /* Header Compacto */
     .header-content {
         grid-template-columns: auto 1fr auto auto auto auto;
@@ -488,8 +639,13 @@
         padding: 0.625rem var(--spacing-md);
     }
     
+    /* Logo oculto (está en banner separado) */
     .header-brand {
-        display: none;
+        display: none !important;
+    }
+    
+    .header-logo {
+        height: 32px;
     }
     
     .search-container {
@@ -512,7 +668,15 @@
         font-size: 1rem;
     }
     
-    /* Navigation */
+    /* Navigation - Sticky sin espacios */
+    .main-nav {
+        position: sticky;
+        top: 124px; /* Header 60px + Banner (0.875rem*2 + 42px logo) ≈ 64px = 124px total */
+        z-index: 998;
+        margin: 0;
+        border: none;
+    }
+    
     .main-nav .container {
         flex-wrap: wrap;
         gap: 0.75rem;
@@ -568,10 +732,34 @@
    MÓVIL (480px - 639px)
    =========================================== */
 @media (max-width: 639px) {
+    /* Banner móvil compacto */
+    .mobile-logo-banner {
+        padding: 0.75rem 0.875rem;
+    }
+    
+    .mobile-banner-logo,
+    .mobile-logo-banner img {
+        height: 38px;
+    }
+    
+    .mobile-banner-text,
+    .logo-text {
+        font-size: 1.25rem;
+    }
+    
     /* Header Ultra Compacto */
     .header-content {
         gap: 0.375rem;
         padding: 0.5rem 0.75rem;
+    }
+    
+    /* Logo oculto (está en banner separado) */
+    .header-brand {
+        display: none !important;
+    }
+    
+    .header-logo {
+        height: 28px;
     }
     
     .hamburger-btn {
@@ -607,11 +795,13 @@
         right: 3px;
     }
     
-    /* Navigation Móvil */
+    /* Navigation Móvil - Sticky sin espacios */
     .main-nav {
         position: sticky;
-        top: var(--header-height-mobile);
-        z-index: 99;
+        top: 120px; /* Header 60px + Banner (0.75rem*2 + 38px logo) ≈ 60px = 120px total */
+        z-index: 998;
+        margin: 0;
+        border: none;
     }
     
     .main-nav .container {
@@ -730,9 +920,41 @@
    MÓVIL PEQUEÑO (360px - 479px)
    =========================================== */
 @media (max-width: 479px) {
+    /* Banner móvil pequeño */
+    .mobile-logo-banner {
+        padding: 0.625rem 0.75rem;
+    }
+    
+    .mobile-banner-logo,
+    .mobile-logo-banner img {
+        height: 34px;
+    }
+    
+    .mobile-banner-text,
+    .logo-text {
+        font-size: 1.125rem;
+    }
+    
     .header-content {
         gap: 0.25rem;
         padding: 0.5rem;
+    }
+    
+    /* Logo oculto (está en banner separado) */
+    .header-brand {
+        display: none !important;
+    }
+    
+    .header-logo {
+        height: 26px;
+    }
+    
+    .mobile-logo-banner img {
+        height: 42px;
+    }
+    
+    .mobile-logo-banner .logo-text {
+        font-size: 1.25rem;
     }
     
     .hamburger-btn,
@@ -790,10 +1012,34 @@
    MÓVIL EXTRA PEQUEÑO (< 360px)
    =========================================== */
 @media (max-width: 359px) {
+    /* Banner móvil extra pequeño */
+    .mobile-logo-banner {
+        padding: 0.5rem 0.625rem;
+    }
+    
+    .mobile-banner-logo,
+    .mobile-logo-banner img {
+        height: 30px;
+    }
+    
+    .mobile-banner-text,
+    .logo-text {
+        font-size: 1rem;
+    }
+    
     .header-content {
         grid-template-columns: auto 1fr auto auto auto;
         gap: 0.25rem;
         padding: 0.375rem 0.5rem;
+    }
+    
+    /* Logo oculto (está en banner separado) */
+    .header-brand {
+        display: none !important;
+    }
+    
+    .header-logo {
+        height: 24px;
     }
     
     /* Ocultar icono de home en pantallas muy pequeñas */
