@@ -1,529 +1,530 @@
-<!DOCTYPE html>
-<html lang="es">
+// ==========================================
+// SCRIPT.JS - JA ELECTRÓNICA
+// Sistema de Menú Hamburguesa Mejorado
+// ==========================================
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JA Electrónica - Relojes y Tecnología</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="icon" type="image" href="logo.png" />
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="responsive_index.css">
-    <link rel="stylesheet" href="cart-styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+// Theme Toggle
+const themeToggle = document.getElementById('themeToggle');
+const htmlElement = document.documentElement;
+const themeIcon = themeToggle.querySelector('i');
 
-<body>
-    <!-- Header Fixed -->
-    <header class="header-fixed">
-        <div class="header-content">
-            <button class="hamburger-btn" id="hamburgerBtn">
-                <i class="fas fa-bars"></i>
-            </button>
+const currentTheme = localStorage.getItem('theme') || 'light';
+htmlElement.setAttribute('data-theme', currentTheme);
 
-            <a href="index.html" class="header-brand">
-                <img src="logo.png" alt="JA Electrónica" class="header-logo"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span class="header-logo-text" style="display: none;">JA Electrónica</span>
-            </a>
+if (currentTheme === 'dark') {
+    themeIcon.classList.remove('fa-moon');
+    themeIcon.classList.add('fa-sun');
+}
 
-            <div class="search-container">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" placeholder="Buscar productos..." id="mainSearch">
-            </div>
+themeToggle.addEventListener('click', () => {
+    themeToggle.classList.add('rotating');
+    
+    const currentTheme = htmlElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    htmlElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    
+    if (newTheme === 'dark') {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+    } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+    }
+    
+    setTimeout(() => {
+        themeToggle.classList.remove('rotating');
+    }, 500);
+});
 
-            <div class="header-icons">
-                <a href="index.html" class="icon-btn" title="Inicio">
-                    <i class="fas fa-home"></i>
-                </a>
-                <button class="icon-btn theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
+// ==========================================
+// SIDEBAR HAMBURGUESA - CONTROLES
+// ==========================================
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const filtersSidebar = document.getElementById('filtersSidebar');
+const overlay = document.getElementById('overlay');
 
-                <div class="user-menu-container">
-                    <button class="icon-btn user-btn" id="userBtn">
-                        <i class="fas fa-user"></i>
-                    </button>
+// Abrir sidebar
+function openSidebar() {
+    filtersSidebar.classList.add('active');
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
 
-                    <div class="user-dropdown" id="userDropdown">
-                        <div class="user-info">
-                            <i class="fas fa-user-circle"></i>
-                            <span>Marcos Alegre</span>
-                        </div>
-                        <ul class="user-menu">
-                            <li><a href="#"><i class="fas fa-cog"></i> Actualizar datos</a></li>
-                            <li><a href="#"><i class="fas fa-heart"></i> Mis favoritos</a></li>
-                            <li><a href="#"><i class="fab fa-whatsapp"></i> Soporte WhatsApp</a></li>
-                            <li><a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
-                        </ul>
-                    </div>
-                </div>
+// Cerrar sidebar
+function closeSidebar() {
+    filtersSidebar.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
 
-                <button class="icon-btn cart-btn" id="cartBtn">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="badge">0</span>
-                </button>
-            </div>
-        </div>
-    </header>
+// Event listeners para abrir/cerrar
+if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openSidebar();
+    });
+}
 
-    <!-- Navigation Bar -->
-    <nav class="main-nav">
-        <div class="container">
-            <a href="#" class="nav-link">Categorías</a>
-            <a href="#" class="nav-link">Marcas</a>
-            <a href="#" class="nav-link">Ubicacion</a>
-            <a href="#" class="nav-link">Contacto</a>
-        </div>
-    </nav>
+// Cerrar al hacer click en overlay
+if (overlay) {
+    overlay.addEventListener('click', closeSidebar);
+}
 
-    <!-- Overlay -->
-    <div class="overlay" id="overlay"></div>
+// Cerrar al presionar ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && filtersSidebar.classList.contains('active')) {
+        closeSidebar();
+    }
+});
 
-    <!-- Main Layout -->
-    <div class="main-layout">
-        <!-- Sidebar Filtros -->
-        <aside class="filters-sidebar-bristol" id="filtersSidebar">
-            <div class="sidebar-header">
-                <div class="sidebar-logo-container">
-                    <img src="logo.png" alt="JA Electrónica" class="sidebar-logo"
-                        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="sidebar-brand-text" style="display: none;">JA</span>
-                </div>
-            </div>
-            <div class="filters-scrollable">
-                <!-- Marcas -->
-                <div class="filter-section">
-                    <h3 class="filter-section-title"><i class="fas fa-tags"></i> Marcas</h3>
-                    <ul class="filter-list">
-                        <li><a href="#" class="filter-link" data-brand="casio">Casio <span class="filter-count">12</span></a></li>
-                        <li><a href="#" class="filter-link" data-brand="qyq">QyQ <span class="filter-count">8</span></a></li>
-                        <li><a href="#" class="filter-link" data-brand="skmei">Skmei <span class="filter-count">10</span></a></li>
-                        <li><a href="#" class="filter-link" data-brand="aqua">Aqua <span class="filter-count">6</span></a></li>
-                        <li><a href="#" class="filter-link" data-brand="genericos">Genéricos <span class="filter-count">12</span></a></li>
-                    </ul>
-                </div>
+// Prevenir cierre al hacer click dentro del sidebar
+if (filtersSidebar) {
+    filtersSidebar.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+}
 
-                <!-- Especiales -->
-                <div class="filter-section">
-                    <h3 class="filter-section-title"><i class="fas fa-star"></i> Especiales</h3>
-                    <ul class="filter-list">
-                        <li><a href="#" class="filter-link" data-special="sale">Sale <span class="filter-count">18</span></a></li>
-                        <li><a href="#" class="filter-link" data-special="new">Nuevos <span class="filter-count">5</span></a></li>
-                        <li><a href="#" class="filter-link" data-special="outlet">Outlet <span class="filter-count">12</span></a></li>
-                    </ul>
-                </div>
+// ==========================================
+// FILTROS DEL SIDEBAR
+// ==========================================
+const filterLinks = document.querySelectorAll('.filter-link');
+const filterCheckbox = document.getElementById('withDiscount');
 
-                <!-- Género -->
-                <div class="filter-section">
-                    <h3 class="filter-section-title"><i class="fas fa-users"></i> Género</h3>
-                    <ul class="filter-list">
-                        <li><a href="#" class="filter-link" data-gender="caballeros">Caballeros <span class="filter-count">24</span></a></li>
-                        <li><a href="#" class="filter-link" data-gender="damas">Damas <span class="filter-count">16</span></a></li>
-                        <li><a href="#" class="filter-link" data-gender="ninos">Niños <span class="filter-count">8</span></a></li>
-                    </ul>
-                </div>
+// Filtros por marca
+filterLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Toggle active state
+        filterLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        
+        // Obtener tipo de filtro
+        const brand = link.getAttribute('data-brand');
+        const special = link.getAttribute('data-special');
+        const gender = link.getAttribute('data-gender');
+        
+        if (brand) {
+            filterByBrand(brand);
+        } else if (special) {
+            filterBySpecial(special);
+        } else if (gender) {
+            filterByGender(gender);
+        }
+        
+        // En móvil, cerrar sidebar después de seleccionar
+        if (window.innerWidth < 992) {
+            setTimeout(closeSidebar, 300);
+        }
+    });
+});
 
-                <!-- Con Descuento -->
-                <div class="filter-section">
-                    <label class="filter-checkbox-label">
-                        <input type="checkbox" class="filter-checkbox" id="withDiscount">
-                        <span>Con Descuento</span>
-                        <span class="filter-count">18</span>
-                    </label>
-                </div>
-            </div>
-        </aside>
+function filterByBrand(brand) {
+    const products = document.querySelectorAll('.product-card-bristol');
+    
+    products.forEach(product => {
+        const productBrand = product.getAttribute('data-brand');
+        
+        if (productBrand === brand) {
+            product.style.display = 'flex';
+        } else {
+            product.style.display = 'none';
+        }
+    });
+    
+    updateProductCount();
+}
 
-        <!-- Main Content -->
-        <main class="main-content-bristol">
-            <!-- Section Header -->
-            <div class="section-header-bristol">
-                <h1 class="section-title-bristol">RELOJES Y TECNOLOGÍA</h1>
-                <div class="section-info">
-                    <span class="product-count">48 artículos</span>
-                    <select class="sort-select-bristol" id="sortSelect">
-                        <option value="">Ordenar: Recomendado</option>
-                        <option value="price-asc">Precio: Menor a Mayor</option>
-                        <option value="price-desc">Precio: Mayor a Menor</option>
-                        <option value="popular">Más Populares</option>
-                        <option value="rating">Mejor Valorados</option>
-                    </select>
-                </div>
-            </div>
+function filterBySpecial(special) {
+    const products = document.querySelectorAll('.product-card-bristol');
+    
+    products.forEach(product => {
+        const badge = product.querySelector('.product-badge-bristol');
+        let showProduct = false;
+        
+        if (special === 'sale' && badge && badge.classList.contains('sale')) {
+            showProduct = true;
+        } else if (special === 'new' && badge && badge.classList.contains('new')) {
+            showProduct = true;
+        }
+        
+        product.style.display = showProduct ? 'flex' : 'none';
+    });
+    
+    updateProductCount();
+}
 
-            <!-- Products Grid -->
-            <div class="products-grid-bristol" id="productsGrid">
-                <!-- Product Card 1 -->
-                <div class="product-card-bristol" data-id="casio-efr539" data-brand="casio" data-gender="caballeros"
-                    data-material="metal" data-price="890000">
-                    <div class="product-badge-bristol sale">-25%</div>
-                    <button class="wishlist-btn-bristol">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400" alt="Reloj Casio">
-                    </div>
-                    <div class="product-info-bristol">
-                        <span class="product-brand-bristol">CASIO</span>
-                        <h3 class="product-title-bristol">Reloj Casio Edifice EFR-539</h3>
-                        <div class="product-specs-bristol">
-                            <span><i class="fas fa-male"></i> Caballeros</span>
-                            <span><i class="fas fa-link"></i> Metal</span>
-                        </div>
-                        <div class="product-rating-bristol">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>(124)</span>
-                        </div>
-                        <div class="product-price-bristol">
-                            <span class="price-current-bristol">₲ 890.000</span>
-                            <span class="price-original-bristol">₲ 1.190.000</span>
-                        </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
-                        </button>
-                    </div>
-                </div>
+function filterByGender(gender) {
+    const products = document.querySelectorAll('.product-card-bristol');
+    
+    products.forEach(product => {
+        const productGender = product.getAttribute('data-gender');
+        
+        if (productGender === gender) {
+            product.style.display = 'flex';
+        } else {
+            product.style.display = 'none';
+        }
+    });
+    
+    updateProductCount();
+}
 
-                <!-- Product Card 2 -->
-                <div class="product-card-bristol" data-id="qyq-elegant" data-brand="qyq" data-gender="damas"
-                    data-material="cuero" data-price="450000">
-                    <div class="product-badge-bristol new">NUEVO</div>
-                    <button class="wishlist-btn-bristol">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400" alt="Reloj QyQ">
-                    </div>
-                    <div class="product-info-bristol">
-                        <span class="product-brand-bristol">QYQ</span>
-                        <h3 class="product-title-bristol">Reloj QyQ Elegant Damas</h3>
-                        <div class="product-specs-bristol">
-                            <span><i class="fas fa-female"></i> Damas</span>
-                            <span><i class="fas fa-shoe-prints"></i> Cuero</span>
-                        </div>
-                        <div class="product-rating-bristol">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>(89)</span>
-                        </div>
-                        <div class="product-price-bristol">
-                            <span class="price-current-bristol">₲ 450.000</span>
-                        </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
-                        </button>
-                    </div>
-                </div>
+// Filtro con descuento
+if (filterCheckbox) {
+    filterCheckbox.addEventListener('change', () => {
+        const products = document.querySelectorAll('.product-card-bristol');
+        
+        products.forEach(product => {
+            const hasDiscount = product.querySelector('.product-badge-bristol.sale') !== null;
+            
+            if (filterCheckbox.checked) {
+                product.style.display = hasDiscount ? 'flex' : 'none';
+            } else {
+                product.style.display = 'flex';
+            }
+        });
+        
+        updateProductCount();
+    });
+}
 
-                <!-- Product Card 3 -->
-                <div class="product-card-bristol" data-id="skmei-deportivo" data-brand="skmei" data-gender="caballeros"
-                    data-material="goma" data-price="180000">
-                    <button class="wishlist-btn-bristol">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=400" alt="Reloj Skmei">
-                    </div>
-                    <div class="product-info-bristol">
-                        <span class="product-brand-bristol">SKMEI</span>
-                        <h3 class="product-title-bristol">Reloj Skmei Deportivo Digital</h3>
-                        <div class="product-specs-bristol">
-                            <span><i class="fas fa-male"></i> Caballeros</span>
-                            <span><i class="fas fa-circle"></i> Goma</span>
-                        </div>
-                        <div class="product-rating-bristol">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <span>(256)</span>
-                        </div>
-                        <div class="product-price-bristol">
-                            <span class="price-current-bristol">₲ 180.000</span>
-                        </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
-                        </button>
-                    </div>
-                </div>
+// Actualizar contador de productos
+function updateProductCount() {
+    const visibleProducts = document.querySelectorAll('.product-card-bristol[style*="display: flex"]').length;
+    const productCountEl = document.querySelector('.product-count');
+    if (productCountEl) {
+        productCountEl.textContent = `${visibleProducts} artículos`;
+    }
+}
 
-                <!-- Product Card 4 -->
-                <div class="product-card-bristol" data-id="aqua-infantil" data-brand="aqua" data-gender="ninos"
-                    data-material="goma" data-price="120000">
-                    <div class="product-badge-bristol sale">-15%</div>
-                    <button class="wishlist-btn-bristol">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1594534475808-b18fc33b045e?w=400" alt="Reloj Aqua">
-                    </div>
-                    <div class="product-info-bristol">
-                        <span class="product-brand-bristol">AQUA</span>
-                        <h3 class="product-title-bristol">Reloj Aqua Infantil Resistente</h3>
-                        <div class="product-specs-bristol">
-                            <span><i class="fas fa-child"></i> Niños</span>
-                            <span><i class="fas fa-circle"></i> Goma</span>
-                        </div>
-                        <div class="product-rating-bristol">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>(178)</span>
-                        </div>
-                        <div class="product-price-bristol">
-                            <span class="price-current-bristol">₲ 120.000</span>
-                            <span class="price-original-bristol">₲ 140.000</span>
-                        </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
-                        </button>
-                    </div>
-                </div>
+// Limpiar todos los filtros
+function clearAllFilters() {
+    // Remover active de todos los links
+    filterLinks.forEach(link => link.classList.remove('active'));
+    
+    // Desmarcar checkbox
+    if (filterCheckbox) {
+        filterCheckbox.checked = false;
+    }
+    
+    // Mostrar todos los productos
+    const products = document.querySelectorAll('.product-card-bristol');
+    products.forEach(product => {
+        product.style.display = 'flex';
+    });
+    
+    updateProductCount();
+}
 
-                <!-- Product Card 5 -->
-                <div class="product-card-bristol" data-id="casio-she3059" data-brand="casio" data-gender="damas"
-                    data-material="metal" data-price="780000">
-                    <button class="wishlist-btn-bristol">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1539874754764-5a96559165b0?w=400" alt="Reloj Casio">
-                    </div>
-                    <div class="product-info-bristol">
-                        <span class="product-brand-bristol">CASIO</span>
-                        <h3 class="product-title-bristol">Reloj Casio Sheen SHE-3059</h3>
-                        <div class="product-specs-bristol">
-                            <span><i class="fas fa-female"></i> Damas</span>
-                            <span><i class="fas fa-link"></i> Metal</span>
-                        </div>
-                        <div class="product-rating-bristol">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>(312)</span>
-                        </div>
-                        <div class="product-price-bristol">
-                            <span class="price-current-bristol">₲ 780.000</span>
-                        </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
-                        </button>
-                    </div>
-                </div>
+// ==========================================
+// USER DROPDOWN MENU
+// ==========================================
+const userBtn = document.getElementById('userBtn');
+const userDropdown = document.getElementById('userDropdown');
 
-                <!-- Product Card 6 -->
-                <div class="product-card-bristol" data-id="generico-minimalista" data-brand="genericos"
-                    data-gender="caballeros" data-material="cuero" data-price="85000">
-                    <div class="product-badge-bristol new">NUEVO</div>
-                    <button class="wishlist-btn-bristol">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400"
-                            alt="Reloj Genérico">
-                    </div>
-                    <div class="product-info-bristol">
-                        <span class="product-brand-bristol">GENÉRICOS</span>
-                        <h3 class="product-title-bristol">Reloj Clásico Minimalista</h3>
-                        <div class="product-specs-bristol">
-                            <span><i class="fas fa-male"></i> Caballeros</span>
-                            <span><i class="fas fa-shoe-prints"></i> Cuero</span>
-                        </div>
-                        <div class="product-rating-bristol">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <span>(92)</span>
-                        </div>
-                        <div class="product-price-bristol">
-                            <span class="price-current-bristol">₲ 85.000</span>
-                        </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
-                        </button>
-                    </div>
-                </div>
+if (userBtn && userDropdown) {
+    userBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        userDropdown.classList.toggle('active');
+    });
+    
+    document.addEventListener('click', (e) => {
+        if (!userDropdown.contains(e.target) && !userBtn.contains(e.target)) {
+            userDropdown.classList.remove('active');
+        }
+    });
+}
 
-                <!-- Product Card 7 -->
-                <div class="product-card-bristol" data-id="skmei-elegante-damas" data-brand="skmei" data-gender="damas"
-                    data-material="metal" data-price="220000">
-                    <button class="wishlist-btn-bristol">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400" alt="Reloj Skmei">
-                    </div>
-                    <div class="product-info-bristol">
-                        <span class="product-brand-bristol">SKMEI</span>
-                        <h3 class="product-title-bristol">Reloj Skmei Elegante Damas</h3>
-                        <div class="product-specs-bristol">
-                            <span><i class="fas fa-female"></i> Damas</span>
-                            <span><i class="fas fa-link"></i> Metal</span>
-                        </div>
-                        <div class="product-rating-bristol">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>(203)</span>
-                        </div>
-                        <div class="product-price-bristol">
-                            <span class="price-current-bristol">₲ 220.000</span>
-                        </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
-                        </button>
-                    </div>
-                </div>
+// ==========================================
+// SEARCH FUNCTIONALITY
+// ==========================================
+const mainSearch = document.getElementById('mainSearch');
 
-                <!-- Product Card 8 -->
-                <div class="product-card-bristol" data-id="qyq-sport" data-brand="qyq" data-gender="caballeros"
-                    data-material="goma" data-price="320000">
-                    <div class="product-badge-bristol sale">-20%</div>
-                    <button class="wishlist-btn-bristol">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=400" alt="Reloj QyQ">
-                    </div>
-                    <div class="product-info-bristol">
-                        <span class="product-brand-bristol">QYQ</span>
-                        <h3 class="product-title-bristol">Reloj QyQ Sport Cronógrafo</h3>
-                        <div class="product-specs-bristol">
-                            <span><i class="fas fa-male"></i> Caballeros</span>
-                            <span><i class="fas fa-circle"></i> Goma</span>
-                        </div>
-                        <div class="product-rating-bristol">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>(445)</span>
-                        </div>
-                        <div class="product-price-bristol">
-                            <span class="price-current-bristol">₲ 320.000</span>
-                            <span class="price-original-bristol">₲ 400.000</span>
-                        </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
-                        </button>
-                    </div>
-                </div>
-            </div>
+if (mainSearch) {
+    let searchTimeout;
+    
+    mainSearch.addEventListener('input', () => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(performSearch, 300);
+    });
+    
+    mainSearch.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+}
 
-            <div class="load-more-bristol">
-                <button class="btn-load-more-bristol" id="loadMore">
-                    Ver Más Productos <i class="fas fa-chevron-down"></i>
-                </button>
-            </div>
-        </main>
-    </div>
+function performSearch() {
+    const searchTerm = mainSearch.value.toLowerCase().trim();
+    const products = document.querySelectorAll('.product-card-bristol');
+    
+    products.forEach(product => {
+        const brandAttr = product.getAttribute('data-brand');
+        const titleEl = product.querySelector('.product-title-bristol');
+        const categoryEl = product.querySelector('.product-brand-bristol');
+        
+        if (!brandAttr || !titleEl || !categoryEl) return;
+        
+        const brand = brandAttr.toLowerCase();
+        const title = titleEl.textContent.toLowerCase();
+        const category = categoryEl.textContent.toLowerCase();
+        
+        if (!searchTerm || brand.includes(searchTerm) || title.includes(searchTerm) || category.includes(searchTerm)) {
+            product.style.display = 'flex';
+        } else {
+            product.style.display = 'none';
+        }
+    });
+    
+    updateProductCount();
+}
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>JA Electrónica</h4>
-                    <p>Tu tienda de confianza para relojes y electrónica premium. Calidad garantizada en cada producto.
-                    </p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
+// ==========================================
+// SORT FUNCTIONALITY
+// ==========================================
+const sortSelect = document.getElementById('sortSelect');
 
-                <div class="footer-section">
-                    <h4>Productos</h4>
-                    <ul>
-                        <li><a href="#">Relojes Casio</a></li>
-                        <li><a href="#">Relojes QyQ</a></li>
-                        <li><a href="#">Relojes Skmei</a></li>
-                        <li><a href="#">Relojes Aqua</a></li>
-                        <li><a href="#">Ver Todos</a></li>
-                    </ul>
-                </div>
+if (sortSelect) {
+    sortSelect.addEventListener('change', () => {
+        const sortValue = sortSelect.value;
+        sortProducts(sortValue);
+    });
+}
 
-                <div class="footer-section">
-                    <h4>Ayuda</h4>
-                    <ul>
-                        <li><a href="#">Sobre Nosotros</a></li>
-                        <li><a href="#">Envíos y Entrega</a></li>
-                        <li><a href="#">Garantía</a></li>
-                        <li><a href="#">Devoluciones</a></li>
-                        <li><a href="#">Contacto</a></li>
-                    </ul>
-                </div>
+function sortProducts(sortType) {
+    const grid = document.getElementById('productsGrid');
+    const products = Array.from(document.querySelectorAll('.product-card-bristol'));
+    
+    products.sort((a, b) => {
+        const priceA = parseInt(a.getAttribute('data-price')) || 0;
+        const priceB = parseInt(b.getAttribute('data-price')) || 0;
+        const ratingA = a.querySelectorAll('.product-rating-bristol .fas.fa-star').length;
+        const ratingB = b.querySelectorAll('.product-rating-bristol .fas.fa-star').length;
+        
+        switch(sortType) {
+            case 'price-asc':
+                return priceA - priceB;
+            case 'price-desc':
+                return priceB - priceA;
+            case 'rating':
+                return ratingB - ratingA;
+            case 'popular':
+                const ratingElA = a.querySelector('.product-rating-bristol span');
+                const ratingElB = b.querySelector('.product-rating-bristol span');
+                if (!ratingElA || !ratingElB) return 0;
+                const reviewsA = parseInt(ratingElA.textContent.match(/\d+/)?.[0] || '0');
+                const reviewsB = parseInt(ratingElB.textContent.match(/\d+/)?.[0] || '0');
+                return reviewsB - reviewsA;
+            default:
+                return 0;
+        }
+    });
+    
+    products.forEach(product => grid.appendChild(product));
+}
 
-                <div class="footer-section">
-                    <h4>Información</h4>
-                    <ul>
-                        <li><a href="#">Términos y Condiciones</a></li>
-                        <li><a href="#">Política de Privacidad</a></li>
-                        <li><a href="#">Preguntas Frecuentes</a></li>
-                        <li><a href="#">Seguimiento de Pedidos</a></li>
-                        <li><a href="#">Soporte WhatsApp</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 JA Electrónica. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
+// ==========================================
+// WISHLIST FUNCTIONALITY
+// ==========================================
+const wishlistBtns = document.querySelectorAll('.wishlist-btn-bristol');
 
-    <!-- Carrito Modal -->
-    <div class="cart-modal" id="cartModal">
-        <div class="cart-modal-content">
-            <div class="cart-modal-header">
-                <h2>Mi Carrito <span class="cart-count-badge" id="cartCountBadge">0</span></h2>
-                <button class="cart-close-btn" id="cartCloseBtn">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="cart-modal-body" id="cartModalBody">
-                <div class="cart-empty">
-                    <i class="fas fa-shopping-cart"></i>
-                    <p>Tu carrito está vacío</p>
-                    <a href="index.html" class="btn-primary btn-block">Seguir Comprando</a>
-                </div>
-            </div>
-            <div class="cart-modal-footer" id="cartModalFooter" style="display: none;">
-                <div class="cart-subtotal">
-                    <span>Subtotal:</span>
-                    <span class="cart-total-price" id="cartTotalPrice">₲ 0</span>
-                </div>
-                <div class="cart-actions">
-                    <a href="checkout.html" class="btn-primary btn-block">Finalizar Pedido</a>
-                    <a href="index.html" class="btn-secondary btn-block">Seguir Comprando</a>
-                </div>
-            </div>
-        </div>
-    </div>
+wishlistBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const icon = btn.querySelector('i');
+        
+        if (icon.classList.contains('far')) {
+            icon.classList.remove('far');
+            icon.classList.add('fas');
+            btn.classList.add('active');
+            
+            // Animación
+            btn.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                btn.style.transform = 'scale(1)';
+            }, 200);
+        } else {
+            icon.classList.remove('fas');
+            icon.classList.add('far');
+            btn.classList.remove('active');
+        }
+    });
+});
 
-    <script src="script.js"></script>
-    <script src="cart.js"></script>
-</body>
+// ==========================================
+// ADD TO CART FUNCTIONALITY
+// ==========================================
+const addCartBtns = document.querySelectorAll('.btn-add-cart-bristol');
+const cartBadge = document.querySelector('.cart-btn .badge');
 
-</html>
+addCartBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        
+        // Actualizar badge del carrito
+        if (cartBadge) {
+            let currentCount = parseInt(cartBadge.textContent) || 0;
+            cartBadge.textContent = currentCount + 1;
+            
+            // Animación del badge
+            cartBadge.style.transform = 'scale(1.3)';
+            setTimeout(() => {
+                cartBadge.style.transform = 'scale(1)';
+            }, 200);
+        }
+        
+        // Cambiar estado del botón
+        const originalHTML = btn.innerHTML;
+        const originalBg = btn.style.background;
+        
+        btn.innerHTML = '<i class="fas fa-check"></i> Agregado';
+        btn.style.background = 'var(--success)';
+        btn.disabled = true;
+        
+        setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.style.background = originalBg;
+            btn.disabled = false;
+        }, 2000);
+    });
+});
+
+// ==========================================
+// LOAD MORE FUNCTIONALITY
+// ==========================================
+const loadMoreBtn = document.getElementById('loadMore');
+
+if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', () => {
+        loadMoreBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cargando...';
+        loadMoreBtn.disabled = true;
+        
+        setTimeout(() => {
+            loadMoreBtn.innerHTML = 'Ver Más Productos <i class="fas fa-chevron-down"></i>';
+            loadMoreBtn.disabled = false;
+            alert('Aquí cargarías más productos desde tu backend');
+        }, 1500);
+    });
+}
+
+// ==========================================
+// RESPONSIVE HANDLERS
+// ==========================================
+
+// Cerrar sidebar al cambiar de tamaño de ventana
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        if (window.innerWidth >= 992) {
+            closeSidebar();
+        }
+    }, 250);
+});
+
+// Prevenir scroll en body cuando sidebar está abierto
+function updateBodyScroll() {
+    if (filtersSidebar && filtersSidebar.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Observer para cambios en el sidebar
+if (filtersSidebar) {
+    const observer = new MutationObserver(updateBodyScroll);
+    observer.observe(filtersSidebar, { 
+        attributes: true, 
+        attributeFilter: ['class'] 
+    });
+}
+
+// ==========================================
+// TOUCH GESTURES PARA MÓVIL
+// ==========================================
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+document.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+    const swipeThreshold = 100;
+    const diff = touchEndX - touchStartX;
+    
+    // Swipe desde la izquierda para abrir
+    if (diff > swipeThreshold && touchStartX < 50 && !filtersSidebar.classList.contains('active')) {
+        openSidebar();
+    }
+    
+    // Swipe hacia la izquierda para cerrar
+    if (diff < -swipeThreshold && filtersSidebar.classList.contains('active')) {
+        closeSidebar();
+    }
+}
+
+// ==========================================
+// SCROLL TO TOP
+// ==========================================
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Mostrar botón de scroll to top cuando se hace scroll
+let scrollTopBtn;
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 500) {
+        if (!scrollTopBtn) {
+            scrollTopBtn = document.createElement('button');
+            scrollTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+            scrollTopBtn.className = 'scroll-top-btn';
+            scrollTopBtn.onclick = scrollToTop;
+            document.body.appendChild(scrollTopBtn);
+        }
+        scrollTopBtn.style.display = 'flex';
+    } else if (scrollTopBtn) {
+        scrollTopBtn.style.display = 'none';
+    }
+});
+
+// ==========================================
+// INITIALIZE
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('JA Electrónica - Sistema cargado correctamente');
+    updateProductCount();
+    
+    // Verificar que todos los elementos existen
+    console.log('Hamburger Button:', hamburgerBtn ? '✓' : '✗');
+    console.log('Sidebar:', filtersSidebar ? '✓' : '✗');
+    console.log('Overlay:', overlay ? '✓' : '✗');
+});
+
+// ==========================================
+// PERFORMANCE MONITORING
+// ==========================================
+if ('PerformanceObserver' in window) {
+    const observer = new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+            if (entry.duration > 50) {
+                console.warn(`Operación lenta detectada: ${entry.name} (${entry.duration.toFixed(2)}ms)`);
+            }
+        }
+    });
+    
+    observer.observe({ entryTypes: ['measure'] });
+}
