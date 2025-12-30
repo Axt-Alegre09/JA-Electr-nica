@@ -1,50 +1,74 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JA Electrónica - Relojes y Tecnología</title>
+    <meta name="description" content="JA Electrónica - Tu tienda de confianza para relojes y tecnología. Casio, QyQ, Skmei y Aqua. Calidad garantizada.">
+    <meta name="keywords" content="relojes, Casio, QyQ, Skmei, Aqua, tecnología, electrónica, Paraguay">
+    <meta name="author" content="JA Electrónica">
+    
+    <title>JA Electrónica - Relojes y Tecnología Premium</title>
+    
+    <!-- Preconnect para optimización -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="icon" type="image" href="logo.png" />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <!-- Estilos CSS -->
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="responsive_index.css">
     <link rel="stylesheet" href="cart-styles.css">
+    <link rel="stylesheet" href="brands-showcase.css">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-    <!-- Header Fixed -->
+    <!-- ============================================
+         HEADER FIXED - NAVEGACIÓN PRINCIPAL
+         ============================================ -->
     <header class="header-fixed">
         <div class="header-content">
-            <button class="hamburger-btn" id="hamburgerBtn">
+            <!-- Botón Hamburguesa -->
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Abrir menú">
                 <i class="fas fa-bars"></i>
             </button>
 
+            <!-- Logo y Marca -->
             <a href="index.html" class="header-brand">
                 <img src="logo.png" alt="JA Electrónica" class="header-logo"
                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <span class="header-logo-text">Electrónica</span>
             </a>
 
+            <!-- Buscador -->
             <div class="search-container">
                 <i class="fas fa-search search-icon"></i>
-                <input type="text" placeholder="Buscar productos..." id="mainSearch">
+                <input type="text" placeholder="Buscar productos..." id="mainSearch" aria-label="Buscar productos">
             </div>
 
+            <!-- Iconos de Navegación -->
             <div class="header-icons">
-                <a href="index.html" class="icon-btn" title="Inicio">
+                <!-- Inicio -->
+                <a href="index.html" class="icon-btn" title="Inicio" aria-label="Ir a inicio">
                     <i class="fas fa-home"></i>
                 </a>
-                <button class="icon-btn theme-toggle" id="themeToggle">
+                
+                <!-- Toggle Tema Claro/Oscuro -->
+                <button class="icon-btn theme-toggle" id="themeToggle" title="Cambiar tema" aria-label="Cambiar tema">
                     <i class="fas fa-moon"></i>
                 </button>
 
+                <!-- Menú de Usuario -->
                 <div class="user-menu-container">
-                    <button class="icon-btn user-btn" id="userBtn">
+                    <button class="icon-btn user-btn" id="userBtn" aria-label="Menú de usuario">
                         <i class="fas fa-user"></i>
                     </button>
 
@@ -62,7 +86,8 @@
                     </div>
                 </div>
 
-                <button class="icon-btn cart-btn" id="cartBtn">
+                <!-- Carrito de Compras -->
+                <button class="icon-btn cart-btn" id="cartBtn" aria-label="Ver carrito">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="badge">0</span>
                 </button>
@@ -70,7 +95,9 @@
         </div>
     </header>
 
-    <!-- Banner Logo Móvil/Tablet - Solo visible en responsive -->
+    <!-- ============================================
+         BANNER LOGO MÓVIL - Solo visible en responsive
+         ============================================ -->
     <div class="mobile-logo-banner">
         <div class="logo-container">
             <img src="logo.png" alt="JA Electrónica" class="mobile-banner-logo"
@@ -79,23 +106,88 @@
         </div>
     </div>
 
-    <!-- Navigation Bar -->
+    <!-- ============================================
+         NAVIGATION BAR - Enlaces principales
+         ============================================ -->
     <nav class="main-nav">
         <div class="container">
             <a href="#" class="nav-link">Categorías</a>
-            <a href="#" class="nav-link">Marcas</a>
-            <a href="#" class="nav-link">Ubicacion</a>
+            <a href="#brands" class="nav-link">Marcas</a>
+            <a href="#" class="nav-link">Ubicación</a>
             <a href="#" class="nav-link">Contacto</a>
         </div>
+
+        <!-- ============================================
+             BRANDS SHOWCASE - DROPDOWN MEGA MENU
+             ============================================ -->
+        <section class="brands-showcase" id="brands">            
+            <!-- Grid de Marcas -->
+            <div class="brands-grid">
+                    <!-- Casio -->
+                    <div class="brand-card" data-brand="casio" tabindex="0" role="button" aria-label="Filtrar productos Casio">
+                        <div class="brand-logo-wrapper">
+                            <img src="img/casio.jpg" alt="Logo Casio" class="brand-logo">
+                        </div>
+                        <h3 class="brand-name">Casio</h3>
+                        <p class="brand-count">12 productos</p>
+                        <div class="brand-overlay">
+                            <span class="brand-cta">Ver productos </span>
+                        </div>
+                    </div>
+
+                    <!-- QyQ -->
+                    <div class="brand-card" data-brand="qyq" tabindex="0" role="button" aria-label="Filtrar productos QyQ">
+                        <div class="brand-logo-wrapper">
+                            <img src="img/qyq.jpg" alt="Logo QyQ" class="brand-logo">
+                        </div>
+                        <h3 class="brand-name">QyQ</h3>
+                        <p class="brand-count">8 productos</p>
+                        <div class="brand-overlay">
+                            <span class="brand-cta">Ver productos</span>
+                        </div>
+                    </div>
+
+                    <!-- Skmei -->
+                    <div class="brand-card" data-brand="skmei" tabindex="0" role="button" aria-label="Filtrar productos Skmei">
+                        <div class="brand-logo-wrapper">
+                            <img src="img/skmei.jpg" alt="Logo Skmei" class="brand-logo">
+                        </div>
+                        <h3 class="brand-name">Skmei</h3>
+                        <p class="brand-count">10 productos</p>
+                        <div class="brand-overlay">
+                            <span class="brand-cta">Ver productos</span>
+                        </div>
+                    </div>
+
+                    <!-- Aqua -->
+                    <div class="brand-card" data-brand="aqua" tabindex="0" role="button" aria-label="Filtrar productos Aqua">
+                        <div class="brand-logo-wrapper">
+                            <img src="img/aqua.jpg" alt="Logo Aqua" class="brand-logo">
+                        </div>
+                        <h3 class="brand-name">Aqua</h3>
+                        <p class="brand-count">6 productos</p>
+                        <div class="brand-overlay">
+                            <span class="brand-cta">Ver productos</span>
+                        </div>
+                    </div>
+                </div>
+        </section>
     </nav>
 
-    <!-- Overlay -->
+    <!-- ============================================
+         OVERLAY - Para menús y modales
+         ============================================ -->
     <div class="overlay" id="overlay"></div>
 
-    <!-- Main Layout -->
+    <!-- ============================================
+         MAIN LAYOUT - Sidebar + Contenido
+         ============================================ -->
     <div class="main-layout">
-        <!-- Sidebar Filtros -->
-        <aside class="filters-sidebar-bristol" id="filtersSidebar">
+        <!-- ============================================
+             SIDEBAR - Filtros
+             ============================================ -->
+        <aside class="filters-sidebar-bristol" id="filtersSidebar" role="complementary" aria-label="Filtros de productos">
+            <!-- Header del Sidebar -->
             <div class="sidebar-header">
                 <div class="sidebar-logo-container">
                     <img src="logo.png" alt="JA Electrónica" class="sidebar-logo"
@@ -103,10 +195,14 @@
                     <span class="sidebar-brand-text" style="display: none;">JA</span>
                 </div>
             </div>
+            
+            <!-- Contenido Scrollable -->
             <div class="filters-scrollable">
-                <!-- Marcas -->
+                <!-- Filtro: Marcas -->
                 <div class="filter-section">
-                    <h3 class="filter-section-title"><i class="fas fa-tags"></i> Marcas</h3>
+                    <h3 class="filter-section-title">
+                        <i class="fas fa-tags"></i> Marcas
+                    </h3>
                     <ul class="filter-list">
                         <li><a href="#" class="filter-link" data-brand="casio">Casio <span class="filter-count">12</span></a></li>
                         <li><a href="#" class="filter-link" data-brand="qyq">QyQ <span class="filter-count">8</span></a></li>
@@ -116,9 +212,11 @@
                     </ul>
                 </div>
 
-                <!-- Especiales -->
+                <!-- Filtro: Especiales -->
                 <div class="filter-section">
-                    <h3 class="filter-section-title"><i class="fas fa-star"></i> Especiales</h3>
+                    <h3 class="filter-section-title">
+                        <i class="fas fa-star"></i> Especiales
+                    </h3>
                     <ul class="filter-list">
                         <li><a href="#" class="filter-link" data-special="sale">Sale <span class="filter-count">18</span></a></li>
                         <li><a href="#" class="filter-link" data-special="new">Nuevos <span class="filter-count">5</span></a></li>
@@ -126,9 +224,11 @@
                     </ul>
                 </div>
 
-                <!-- Género -->
+                <!-- Filtro: Género -->
                 <div class="filter-section">
-                    <h3 class="filter-section-title"><i class="fas fa-users"></i> Género</h3>
+                    <h3 class="filter-section-title">
+                        <i class="fas fa-users"></i> Género
+                    </h3>
                     <ul class="filter-list">
                         <li><a href="#" class="filter-link" data-gender="caballeros">Caballeros <span class="filter-count">24</span></a></li>
                         <li><a href="#" class="filter-link" data-gender="damas">Damas <span class="filter-count">16</span></a></li>
@@ -136,7 +236,7 @@
                     </ul>
                 </div>
 
-                <!-- Con Descuento -->
+                <!-- Filtro: Con Descuento -->
                 <div class="filter-section">
                     <label class="filter-checkbox-label">
                         <input type="checkbox" class="filter-checkbox" id="withDiscount">
@@ -147,14 +247,16 @@
             </div>
         </aside>
 
-        <!-- Main Content -->
-        <main class="main-content-bristol">
-            <!-- Section Header -->
+        <!-- ============================================
+             MAIN CONTENT - Productos
+             ============================================ -->
+        <main class="main-content-bristol" role="main">
+            <!-- Header de Sección -->
             <div class="section-header-bristol">
                 <h1 class="section-title-bristol">RELOJES Y TECNOLOGÍA</h1>
                 <div class="section-info">
                     <span class="product-count">48 artículos</span>
-                    <select class="sort-select-bristol" id="sortSelect">
+                    <select class="sort-select-bristol" id="sortSelect" aria-label="Ordenar productos">
                         <option value="">Ordenar: Recomendado</option>
                         <option value="price-asc">Precio: Menor a Mayor</option>
                         <option value="price-desc">Precio: Mayor a Menor</option>
@@ -164,17 +266,16 @@
                 </div>
             </div>
 
-            <!-- Products Grid -->
+            <!-- Grid de Productos -->
             <div class="products-grid-bristol" id="productsGrid">
-                <!-- Product Card 1 -->
-                <div class="product-card-bristol" data-id="casio-efr539" data-brand="casio" data-gender="caballeros"
-                    data-material="metal" data-price="890000">
+                <!-- Producto 1: Casio Edifice -->
+                <div class="product-card-bristol" data-id="casio-efr539" data-brand="casio" data-gender="caballeros" data-material="metal" data-price="890000">
                     <div class="product-badge-bristol sale">-25%</div>
-                    <button class="wishlist-btn-bristol">
+                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
                         <i class="far fa-heart"></i>
                     </button>
                     <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400" alt="Reloj Casio">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400" alt="Reloj Casio Edifice EFR-539" loading="lazy">
                     </div>
                     <div class="product-info-bristol">
                         <span class="product-brand-bristol">CASIO</span>
@@ -183,7 +284,7 @@
                             <span><i class="fas fa-male"></i> Caballeros</span>
                             <span><i class="fas fa-link"></i> Metal</span>
                         </div>
-                        <div class="product-rating-bristol">
+                        <div class="product-rating-bristol" aria-label="Calificación: 4.5 de 5 estrellas">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -201,15 +302,14 @@
                     </div>
                 </div>
 
-                <!-- Product Card 2 -->
-                <div class="product-card-bristol" data-id="qyq-elegant" data-brand="qyq" data-gender="damas"
-                    data-material="cuero" data-price="450000">
+                <!-- Producto 2: QyQ Elegant -->
+                <div class="product-card-bristol" data-id="qyq-elegant" data-brand="qyq" data-gender="damas" data-material="cuero" data-price="450000">
                     <div class="product-badge-bristol new">NUEVO</div>
-                    <button class="wishlist-btn-bristol">
+                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
                         <i class="far fa-heart"></i>
                     </button>
                     <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400" alt="Reloj QyQ">
+                        <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400" alt="Reloj QyQ Elegant Damas" loading="lazy">
                     </div>
                     <div class="product-info-bristol">
                         <span class="product-brand-bristol">QYQ</span>
@@ -218,7 +318,7 @@
                             <span><i class="fas fa-female"></i> Damas</span>
                             <span><i class="fas fa-shoe-prints"></i> Cuero</span>
                         </div>
-                        <div class="product-rating-bristol">
+                        <div class="product-rating-bristol" aria-label="Calificación: 5 de 5 estrellas">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -235,14 +335,13 @@
                     </div>
                 </div>
 
-                <!-- Product Card 3 -->
-                <div class="product-card-bristol" data-id="skmei-deportivo" data-brand="skmei" data-gender="caballeros"
-                    data-material="goma" data-price="180000">
-                    <button class="wishlist-btn-bristol">
+                <!-- Producto 3: Skmei Deportivo -->
+                <div class="product-card-bristol" data-id="skmei-deportivo" data-brand="skmei" data-gender="caballeros" data-material="goma" data-price="180000">
+                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
                         <i class="far fa-heart"></i>
                     </button>
                     <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=400" alt="Reloj Skmei">
+                        <img src="https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=400" alt="Reloj Skmei Deportivo Digital" loading="lazy">
                     </div>
                     <div class="product-info-bristol">
                         <span class="product-brand-bristol">SKMEI</span>
@@ -251,7 +350,7 @@
                             <span><i class="fas fa-male"></i> Caballeros</span>
                             <span><i class="fas fa-circle"></i> Goma</span>
                         </div>
-                        <div class="product-rating-bristol">
+                        <div class="product-rating-bristol" aria-label="Calificación: 4 de 5 estrellas">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -268,15 +367,14 @@
                     </div>
                 </div>
 
-                <!-- Product Card 4 -->
-                <div class="product-card-bristol" data-id="aqua-infantil" data-brand="aqua" data-gender="ninos"
-                    data-material="goma" data-price="120000">
+                <!-- Producto 4: Aqua Infantil -->
+                <div class="product-card-bristol" data-id="aqua-infantil" data-brand="aqua" data-gender="ninos" data-material="goma" data-price="120000">
                     <div class="product-badge-bristol sale">-15%</div>
-                    <button class="wishlist-btn-bristol">
+                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
                         <i class="far fa-heart"></i>
                     </button>
                     <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1594534475808-b18fc33b045e?w=400" alt="Reloj Aqua">
+                        <img src="https://images.unsplash.com/photo-1594534475808-b18fc33b045e?w=400" alt="Reloj Aqua Infantil Resistente" loading="lazy">
                     </div>
                     <div class="product-info-bristol">
                         <span class="product-brand-bristol">AQUA</span>
@@ -285,7 +383,7 @@
                             <span><i class="fas fa-child"></i> Niños</span>
                             <span><i class="fas fa-circle"></i> Goma</span>
                         </div>
-                        <div class="product-rating-bristol">
+                        <div class="product-rating-bristol" aria-label="Calificación: 4.5 de 5 estrellas">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -303,14 +401,13 @@
                     </div>
                 </div>
 
-                <!-- Product Card 5 -->
-                <div class="product-card-bristol" data-id="casio-she3059" data-brand="casio" data-gender="damas"
-                    data-material="metal" data-price="780000">
-                    <button class="wishlist-btn-bristol">
+                <!-- Producto 5: Casio Sheen -->
+                <div class="product-card-bristol" data-id="casio-she3059" data-brand="casio" data-gender="damas" data-material="metal" data-price="780000">
+                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
                         <i class="far fa-heart"></i>
                     </button>
                     <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1539874754764-5a96559165b0?w=400" alt="Reloj Casio">
+                        <img src="https://images.unsplash.com/photo-1539874754764-5a96559165b0?w=400" alt="Reloj Casio Sheen SHE-3059" loading="lazy">
                     </div>
                     <div class="product-info-bristol">
                         <span class="product-brand-bristol">CASIO</span>
@@ -319,7 +416,7 @@
                             <span><i class="fas fa-female"></i> Damas</span>
                             <span><i class="fas fa-link"></i> Metal</span>
                         </div>
-                        <div class="product-rating-bristol">
+                        <div class="product-rating-bristol" aria-label="Calificación: 5 de 5 estrellas">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -336,16 +433,14 @@
                     </div>
                 </div>
 
-                <!-- Product Card 6 -->
-                <div class="product-card-bristol" data-id="generico-minimalista" data-brand="genericos"
-                    data-gender="caballeros" data-material="cuero" data-price="85000">
+                <!-- Producto 6: Genérico Minimalista -->
+                <div class="product-card-bristol" data-id="generico-minimalista" data-brand="genericos" data-gender="caballeros" data-material="cuero" data-price="85000">
                     <div class="product-badge-bristol new">NUEVO</div>
-                    <button class="wishlist-btn-bristol">
+                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
                         <i class="far fa-heart"></i>
                     </button>
                     <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400"
-                            alt="Reloj Genérico">
+                        <img src="https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400" alt="Reloj Clásico Minimalista" loading="lazy">
                     </div>
                     <div class="product-info-bristol">
                         <span class="product-brand-bristol">GENÉRICOS</span>
@@ -354,7 +449,7 @@
                             <span><i class="fas fa-male"></i> Caballeros</span>
                             <span><i class="fas fa-shoe-prints"></i> Cuero</span>
                         </div>
-                        <div class="product-rating-bristol">
+                        <div class="product-rating-bristol" aria-label="Calificación: 4 de 5 estrellas">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -371,14 +466,13 @@
                     </div>
                 </div>
 
-                <!-- Product Card 7 -->
-                <div class="product-card-bristol" data-id="skmei-elegante-damas" data-brand="skmei" data-gender="damas"
-                    data-material="metal" data-price="220000">
-                    <button class="wishlist-btn-bristol">
+                <!-- Producto 7: Skmei Elegante -->
+                <div class="product-card-bristol" data-id="skmei-elegante-damas" data-brand="skmei" data-gender="damas" data-material="metal" data-price="220000">
+                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
                         <i class="far fa-heart"></i>
                     </button>
                     <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400" alt="Reloj Skmei">
+                        <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400" alt="Reloj Skmei Elegante Damas" loading="lazy">
                     </div>
                     <div class="product-info-bristol">
                         <span class="product-brand-bristol">SKMEI</span>
@@ -387,7 +481,7 @@
                             <span><i class="fas fa-female"></i> Damas</span>
                             <span><i class="fas fa-link"></i> Metal</span>
                         </div>
-                        <div class="product-rating-bristol">
+                        <div class="product-rating-bristol" aria-label="Calificación: 5 de 5 estrellas">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -404,15 +498,14 @@
                     </div>
                 </div>
 
-                <!-- Product Card 8 -->
-                <div class="product-card-bristol" data-id="qyq-sport" data-brand="qyq" data-gender="caballeros"
-                    data-material="goma" data-price="320000">
+                <!-- Producto 8: QyQ Sport -->
+                <div class="product-card-bristol" data-id="qyq-sport" data-brand="qyq" data-gender="caballeros" data-material="goma" data-price="320000">
                     <div class="product-badge-bristol sale">-20%</div>
-                    <button class="wishlist-btn-bristol">
+                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
                         <i class="far fa-heart"></i>
                     </button>
                     <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=400" alt="Reloj QyQ">
+                        <img src="https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=400" alt="Reloj QyQ Sport Cronógrafo" loading="lazy">
                     </div>
                     <div class="product-info-bristol">
                         <span class="product-brand-bristol">QYQ</span>
@@ -421,7 +514,7 @@
                             <span><i class="fas fa-male"></i> Caballeros</span>
                             <span><i class="fas fa-circle"></i> Goma</span>
                         </div>
-                        <div class="product-rating-bristol">
+                        <div class="product-rating-bristol" aria-label="Calificación: 4.5 de 5 estrellas">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -440,6 +533,7 @@
                 </div>
             </div>
 
+            <!-- Botón Ver Más -->
             <div class="load-more-bristol">
                 <button class="btn-load-more-bristol" id="loadMore">
                     Ver Más Productos <i class="fas fa-chevron-down"></i>
@@ -448,21 +542,30 @@
         </main>
     </div>
 
-    <!-- Footer -->
+    <!-- ============================================
+         FOOTER - Información y Enlaces
+         ============================================ -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
+                <!-- Sección: Sobre Nosotros -->
                 <div class="footer-section">
                     <h4>JA Electrónica</h4>
-                    <p>Tu tienda de confianza para relojes y electrónica premium. Calidad garantizada en cada producto.
-                    </p>
+                    <p>Tu tienda de confianza para relojes y electrónica premium. Calidad garantizada en cada producto.</p>
                     <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="Síguenos en Facebook" title="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" aria-label="Síguenos en Instagram" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" aria-label="Contáctanos por WhatsApp" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
                     </div>
                 </div>
 
+                <!-- Sección: Productos -->
                 <div class="footer-section">
                     <h4>Productos</h4>
                     <ul>
@@ -474,6 +577,7 @@
                     </ul>
                 </div>
 
+                <!-- Sección: Ayuda -->
                 <div class="footer-section">
                     <h4>Ayuda</h4>
                     <ul>
@@ -485,6 +589,7 @@
                     </ul>
                 </div>
 
+                <!-- Sección: Información -->
                 <div class="footer-section">
                     <h4>Información</h4>
                     <ul>
@@ -496,21 +601,31 @@
                     </ul>
                 </div>
             </div>
+            
+            <!-- Footer Bottom -->
             <div class="footer-bottom">
                 <p>&copy; 2026 JA Electrónica. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Carrito Modal -->
-    <div class="cart-modal" id="cartModal">
+    <!-- ============================================
+         CARRITO MODAL - Modal de compras
+         ============================================ -->
+    <div class="cart-modal" id="cartModal" role="dialog" aria-labelledby="cartModalTitle" aria-hidden="true">
         <div class="cart-modal-content">
+            <!-- Header del Modal -->
             <div class="cart-modal-header">
-                <h2>Mi Carrito <span class="cart-count-badge" id="cartCountBadge">0</span></h2>
-                <button class="cart-close-btn" id="cartCloseBtn">
+                <h2 id="cartModalTitle">
+                    Mi Carrito 
+                    <span class="cart-count-badge" id="cartCountBadge">0</span>
+                </h2>
+                <button class="cart-close-btn" id="cartCloseBtn" aria-label="Cerrar carrito">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
+            
+            <!-- Cuerpo del Modal -->
             <div class="cart-modal-body" id="cartModalBody">
                 <div class="cart-empty">
                     <i class="fas fa-shopping-cart"></i>
@@ -518,6 +633,8 @@
                     <a href="index.html" class="btn-primary btn-block">Seguir Comprando</a>
                 </div>
             </div>
+            
+            <!-- Footer del Modal -->
             <div class="cart-modal-footer" id="cartModalFooter" style="display: none;">
                 <div class="cart-subtotal">
                     <span>Subtotal:</span>
@@ -531,8 +648,12 @@
         </div>
     </div>
 
+    <!-- ============================================
+         SCRIPTS - JavaScript
+         ============================================ -->
     <script src="script.js"></script>
     <script src="cart.js"></script>
+    <script src="brands-showcase.js"></script>
 </body>
 
 </html>
