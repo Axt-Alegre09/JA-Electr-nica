@@ -1,115 +1,112 @@
 <!DOCTYPE html>
 <html lang="es" data-theme="light">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="JA Electrónica - Tu tienda de confianza para relojes y tecnología. Casio, QyQ, Skmei y Aqua. Calidad garantizada.">
+    <meta name="description" content="JA Electrónica - Tu tienda de confianza para relojes y tecnología. Casio, QyQ, Skmei y Aqua. Calidad garantizada en Paraguay.">
     <meta name="keywords" content="relojes, Casio, QyQ, Skmei, Aqua, tecnología, electrónica, Paraguay">
     <meta name="author" content="JA Electrónica">
+    <meta name="theme-color" content="#2563eb">
     
     <title>JA Electrónica - Relojes y Tecnología Premium</title>
     
-    <!-- Preconnect para optimización -->
+    <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="logo.png">
     
-    <!-- Estilos CSS -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="responsive_index.css">
-    <link rel="stylesheet" href="cart-styles.css">
-    <link rel="stylesheet" href="brands-showcase.css">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
-    <!-- ============================================
-         HEADER FIXED - NAVEGACIÓN PRINCIPAL
-         ============================================ -->
-    <header class="header-fixed">
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="sr-only">Saltar al contenido principal</a>
+
+    <!-- ========== HEADER ========== -->
+    <header class="header-fixed" role="banner">
         <div class="header-content">
-            <!-- Botón Hamburguesa -->
-            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Abrir menú">
-                <i class="fas fa-bars"></i>
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Abrir menú de navegación" aria-expanded="false">
+                <i class="fas fa-bars" aria-hidden="true"></i>
             </button>
 
-            <!-- Logo y Marca -->
-            <a href="index.html" class="header-brand">
-                <img src="logo.png" alt="JA Electrónica" class="header-logo"
+            <!-- Logo/Brand -->
+            <a href="index.html" class="header-brand" aria-label="JA Electrónica - Inicio">
+                <img src="logo.png" alt="" class="header-logo" width="40" height="40"
                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span class="header-logo-text">Electrónica</span>
+                <span class="header-logo-text" style="display:none;">JA Electrónica</span>
             </a>
 
-            <!-- Buscador -->
-            <div class="search-container">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" placeholder="Buscar productos..." id="mainSearch" aria-label="Buscar productos">
+            <!-- Search -->
+            <div class="search-container" role="search">
+                <i class="fas fa-search search-icon" aria-hidden="true"></i>
+                <input type="search" 
+                       placeholder="Buscar productos..." 
+                       id="mainSearch" 
+                       aria-label="Buscar productos"
+                       autocomplete="off">
             </div>
 
-            <!-- Iconos de Navegación -->
+            <!-- Header Icons -->
             <div class="header-icons">
-                <!-- Inicio -->
+                <!-- Home -->
                 <a href="index.html" class="icon-btn" title="Inicio" aria-label="Ir a inicio">
-                    <i class="fas fa-home"></i>
+                    <i class="fas fa-home" aria-hidden="true"></i>
                 </a>
                 
-                <!-- Toggle Tema Claro/Oscuro -->
-                <button class="icon-btn theme-toggle" id="themeToggle" title="Cambiar tema" aria-label="Cambiar tema">
-                    <i class="fas fa-moon"></i>
+                <!-- Theme Toggle -->
+                <button class="icon-btn theme-toggle" id="themeToggle" title="Cambiar tema" aria-label="Cambiar tema claro/oscuro">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
                 </button>
 
-                <!-- Menú de Usuario -->
+                <!-- User Menu -->
                 <div class="user-menu-container">
-                    <button class="icon-btn user-btn" id="userBtn" aria-label="Menú de usuario">
-                        <i class="fas fa-user"></i>
+                    <button class="icon-btn user-btn" id="userBtn" aria-label="Menú de usuario" aria-expanded="false" aria-haspopup="true">
+                        <i class="fas fa-user" aria-hidden="true"></i>
                     </button>
-
-                    <div class="user-dropdown" id="userDropdown">
+                    <div class="user-dropdown" id="userDropdown" role="menu" aria-hidden="true">
                         <div class="user-info">
-                            <i class="fas fa-user-circle"></i>
-                            <span>Marcos Alegre</span>
+                            <i class="fas fa-user-circle" aria-hidden="true"></i>
+                            <span>Mi Cuenta</span>
                         </div>
                         <ul class="user-menu">
-                            <li><a href="#"><i class="fas fa-cog"></i> Actualizar datos</a></li>
-                            <li><a href="#"><i class="fas fa-heart"></i> Mis favoritos</a></li>
-                            <li><a href="#"><i class="fab fa-whatsapp"></i> Soporte WhatsApp</a></li>
-                            <li><a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
+                            <li><a href="#" role="menuitem"><i class="fas fa-cog" aria-hidden="true"></i> Actualizar datos</a></li>
+                            <li><a href="#" role="menuitem"><i class="fas fa-heart" aria-hidden="true"></i> Mis favoritos</a></li>
+                            <li><a href="#" role="menuitem"><i class="fab fa-whatsapp" aria-hidden="true"></i> Soporte WhatsApp</a></li>
+                            <li><a href="#" class="logout" role="menuitem"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Cerrar sesión</a></li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Carrito de Compras -->
-                <button class="icon-btn cart-btn" id="cartBtn" aria-label="Ver carrito">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="badge">0</span>
+                <!-- Cart -->
+                <button class="icon-btn cart-btn" id="cartBtn" aria-label="Ver carrito de compras">
+                    <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                    <span class="badge" aria-label="0 productos en el carrito">0</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- ============================================
-         BANNER LOGO MÓVIL - Solo visible en responsive
-         ============================================ -->
-    <div class="mobile-logo-banner">
+    <!-- ========== MOBILE LOGO BANNER ========== -->
+    <div class="mobile-logo-banner" aria-hidden="true">
         <div class="logo-container">
-            <img src="logo.png" alt="JA Electrónica" class="mobile-banner-logo"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <img src="logo.png" alt="JA Electrónica" width="42" height="42"
+                onerror="this.style.display='none';">
             <span class="logo-text">Electrónica</span>
         </div>
     </div>
 
-    <!-- ============================================
-         NAVIGATION BAR - Enlaces principales
-         ============================================ -->
-    <nav class="main-nav">
+    <!-- ========== MAIN NAVIGATION ========== -->
+    <nav class="main-nav" role="navigation" aria-label="Navegación principal">
         <div class="container">
             <a href="#" class="nav-link">Categorías</a>
             <a href="#brands" class="nav-link">Marcas</a>
@@ -117,146 +114,135 @@
             <a href="#" class="nav-link">Contacto</a>
         </div>
 
-        <!-- ============================================
-             BRANDS SHOWCASE - DROPDOWN MEGA MENU
-             ============================================ -->
-        <section class="brands-showcase" id="brands">            
-            <!-- Grid de Marcas -->
+        <!-- Brands Mega Menu -->
+        <section class="brands-showcase" id="brands" aria-label="Marcas disponibles">
             <div class="brands-grid">
-                    <!-- Casio -->
-                    <div class="brand-card" data-brand="casio" tabindex="0" role="button" aria-label="Filtrar productos Casio">
-                        <div class="brand-logo-wrapper">
-                            <img src="img/casio.jpg" alt="Logo Casio" class="brand-logo">
-                        </div>
-                        <h3 class="brand-name">Casio</h3>
-                        <p class="brand-count">12 productos</p>
-                        <div class="brand-overlay">
-                            <span class="brand-cta">Ver productos </span>
-                        </div>
+                <article class="brand-card" data-brand="casio" tabindex="0" role="button" aria-label="Ver productos Casio">
+                    <div class="brand-logo-wrapper">
+                        <img src="img/casio.jpg" alt="" class="brand-logo" loading="lazy">
                     </div>
+                    <h3 class="brand-name">Casio</h3>
+                    <p class="brand-count">12 productos</p>
+                    <div class="brand-overlay">
+                        <span class="brand-cta">Ver productos</span>
+                    </div>
+                </article>
 
-                    <!-- QyQ -->
-                    <div class="brand-card" data-brand="qyq" tabindex="0" role="button" aria-label="Filtrar productos QyQ">
-                        <div class="brand-logo-wrapper">
-                            <img src="img/qyq.jpg" alt="Logo QyQ" class="brand-logo">
-                        </div>
-                        <h3 class="brand-name">QyQ</h3>
-                        <p class="brand-count">8 productos</p>
-                        <div class="brand-overlay">
-                            <span class="brand-cta">Ver productos</span>
-                        </div>
+                <article class="brand-card" data-brand="qyq" tabindex="0" role="button" aria-label="Ver productos QyQ">
+                    <div class="brand-logo-wrapper">
+                        <img src="img/qyq.jpg" alt="" class="brand-logo" loading="lazy">
                     </div>
+                    <h3 class="brand-name">QyQ</h3>
+                    <p class="brand-count">8 productos</p>
+                    <div class="brand-overlay">
+                        <span class="brand-cta">Ver productos</span>
+                    </div>
+                </article>
 
-                    <!-- Skmei -->
-                    <div class="brand-card" data-brand="skmei" tabindex="0" role="button" aria-label="Filtrar productos Skmei">
-                        <div class="brand-logo-wrapper">
-                            <img src="img/skmei.jpg" alt="Logo Skmei" class="brand-logo">
-                        </div>
-                        <h3 class="brand-name">Skmei</h3>
-                        <p class="brand-count">10 productos</p>
-                        <div class="brand-overlay">
-                            <span class="brand-cta">Ver productos</span>
-                        </div>
+                <article class="brand-card" data-brand="skmei" tabindex="0" role="button" aria-label="Ver productos Skmei">
+                    <div class="brand-logo-wrapper">
+                        <img src="img/skmei.jpg" alt="" class="brand-logo" loading="lazy">
                     </div>
+                    <h3 class="brand-name">Skmei</h3>
+                    <p class="brand-count">10 productos</p>
+                    <div class="brand-overlay">
+                        <span class="brand-cta">Ver productos</span>
+                    </div>
+                </article>
 
-                    <!-- Aqua -->
-                    <div class="brand-card" data-brand="aqua" tabindex="0" role="button" aria-label="Filtrar productos Aqua">
-                        <div class="brand-logo-wrapper">
-                            <img src="img/aqua.jpg" alt="Logo Aqua" class="brand-logo">
-                        </div>
-                        <h3 class="brand-name">Aqua</h3>
-                        <p class="brand-count">6 productos</p>
-                        <div class="brand-overlay">
-                            <span class="brand-cta">Ver productos</span>
-                        </div>
+                <article class="brand-card" data-brand="aqua" tabindex="0" role="button" aria-label="Ver productos Aqua">
+                    <div class="brand-logo-wrapper">
+                        <img src="img/aqua.jpg" alt="" class="brand-logo" loading="lazy">
                     </div>
-                </div>
+                    <h3 class="brand-name">Aqua</h3>
+                    <p class="brand-count">6 productos</p>
+                    <div class="brand-overlay">
+                        <span class="brand-cta">Ver productos</span>
+                    </div>
+                </article>
+            </div>
         </section>
     </nav>
 
-    <!-- ============================================
-         OVERLAY - Para menús y modales
-         ============================================ -->
-    <div class="overlay" id="overlay"></div>
+    <!-- ========== OVERLAY ========== -->
+    <div class="overlay" id="overlay" aria-hidden="true"></div>
 
-    <!-- ============================================
-         MAIN LAYOUT - Sidebar + Contenido
-         ============================================ -->
+    <!-- ========== MAIN LAYOUT ========== -->
     <div class="main-layout">
-        <!-- ============================================
-             SIDEBAR - Filtros
-             ============================================ -->
+        <!-- ========== SIDEBAR FILTERS ========== -->
         <aside class="filters-sidebar-bristol" id="filtersSidebar" role="complementary" aria-label="Filtros de productos">
-            <!-- Header del Sidebar -->
+            <!-- Sidebar Header (Mobile) -->
             <div class="sidebar-header">
                 <div class="sidebar-logo-container">
                     <img src="logo.png" alt="JA Electrónica" class="sidebar-logo"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="sidebar-brand-text" style="display: none;">JA</span>
+                    <span class="sidebar-brand-text" style="display:none;">JA</span>
                 </div>
             </div>
             
-            <!-- Contenido Scrollable -->
+            <!-- Filters Content -->
             <div class="filters-scrollable">
-                <!-- Filtro: Marcas -->
+                <!-- Brands Filter -->
                 <div class="filter-section">
                     <h3 class="filter-section-title">
-                        <i class="fas fa-tags"></i> Marcas
+                        <i class="fas fa-tags" aria-hidden="true"></i> Marcas
                     </h3>
-                    <ul class="filter-list">
-                        <li><a href="#" class="filter-link" data-brand="casio">Casio <span class="filter-count">12</span></a></li>
-                        <li><a href="#" class="filter-link" data-brand="qyq">QyQ <span class="filter-count">8</span></a></li>
-                        <li><a href="#" class="filter-link" data-brand="skmei">Skmei <span class="filter-count">10</span></a></li>
-                        <li><a href="#" class="filter-link" data-brand="aqua">Aqua <span class="filter-count">6</span></a></li>
-                        <li><a href="#" class="filter-link" data-brand="genericos">Genéricos <span class="filter-count">12</span></a></li>
+                    <ul class="filter-list" role="listbox" aria-label="Filtrar por marca">
+                        <li><a href="#" class="filter-link" data-brand="casio" role="option">Casio <span class="filter-count">12</span></a></li>
+                        <li><a href="#" class="filter-link" data-brand="qyq" role="option">QyQ <span class="filter-count">8</span></a></li>
+                        <li><a href="#" class="filter-link" data-brand="skmei" role="option">Skmei <span class="filter-count">10</span></a></li>
+                        <li><a href="#" class="filter-link" data-brand="aqua" role="option">Aqua <span class="filter-count">6</span></a></li>
+                        <li><a href="#" class="filter-link" data-brand="genericos" role="option">Genéricos <span class="filter-count">12</span></a></li>
                     </ul>
                 </div>
 
-                <!-- Filtro: Especiales -->
+                <!-- Specials Filter -->
                 <div class="filter-section">
                     <h3 class="filter-section-title">
-                        <i class="fas fa-star"></i> Especiales
+                        <i class="fas fa-star" aria-hidden="true"></i> Especiales
                     </h3>
-                    <ul class="filter-list">
-                        <li><a href="#" class="filter-link" data-special="sale">Sale <span class="filter-count">18</span></a></li>
-                        <li><a href="#" class="filter-link" data-special="new">Nuevos <span class="filter-count">5</span></a></li>
-                        <li><a href="#" class="filter-link" data-special="outlet">Outlet <span class="filter-count">12</span></a></li>
+                    <ul class="filter-list" role="listbox" aria-label="Filtrar por especiales">
+                        <li><a href="#" class="filter-link" data-special="sale" role="option">Sale <span class="filter-count">18</span></a></li>
+                        <li><a href="#" class="filter-link" data-special="new" role="option">Nuevos <span class="filter-count">5</span></a></li>
+                        <li><a href="#" class="filter-link" data-special="outlet" role="option">Outlet <span class="filter-count">12</span></a></li>
                     </ul>
                 </div>
 
-                <!-- Filtro: Género -->
+                <!-- Gender Filter -->
                 <div class="filter-section">
                     <h3 class="filter-section-title">
-                        <i class="fas fa-users"></i> Género
+                        <i class="fas fa-users" aria-hidden="true"></i> Género
                     </h3>
-                    <ul class="filter-list">
-                        <li><a href="#" class="filter-link" data-gender="caballeros">Caballeros <span class="filter-count">24</span></a></li>
-                        <li><a href="#" class="filter-link" data-gender="damas">Damas <span class="filter-count">16</span></a></li>
-                        <li><a href="#" class="filter-link" data-gender="ninos">Niños <span class="filter-count">8</span></a></li>
+                    <ul class="filter-list" role="listbox" aria-label="Filtrar por género">
+                        <li><a href="#" class="filter-link" data-gender="caballeros" role="option">Caballeros <span class="filter-count">24</span></a></li>
+                        <li><a href="#" class="filter-link" data-gender="damas" role="option">Damas <span class="filter-count">16</span></a></li>
+                        <li><a href="#" class="filter-link" data-gender="ninos" role="option">Niños <span class="filter-count">8</span></a></li>
                     </ul>
                 </div>
 
-                <!-- Filtro: Con Descuento -->
+                <!-- Discount Checkbox -->
                 <div class="filter-section">
                     <label class="filter-checkbox-label">
-                        <input type="checkbox" class="filter-checkbox" id="withDiscount">
+                        <input type="checkbox" id="withDiscount" aria-describedby="discount-count">
                         <span>Con Descuento</span>
-                        <span class="filter-count">18</span>
+                        <span class="filter-count" id="discount-count">18</span>
                     </label>
                 </div>
             </div>
         </aside>
 
-        <!-- ============================================
-             MAIN CONTENT - Productos
-             ============================================ -->
-        <main class="main-content-bristol" role="main">
-            <!-- Header de Sección -->
+        <!-- ========== MAIN CONTENT ========== -->
+        <main class="main-content-bristol" id="main-content" role="main">
+            <!-- Section Header -->
             <div class="section-header-bristol">
-                <h1 class="section-title-bristol">RELOJES Y TECNOLOGÍA</h1>
+                <h1 class="section-title-bristol">
+                    <i class="fas fa-watch" aria-hidden="true"></i>
+                    Relojes y Tecnología
+                </h1>
                 <div class="section-info">
-                    <span class="product-count">48 artículos</span>
-                    <select class="sort-select-bristol" id="sortSelect" aria-label="Ordenar productos">
+                    <span class="product-count" aria-live="polite">48 artículos</span>
+                    <label for="sortSelect" class="sr-only">Ordenar productos</label>
+                    <select class="sort-select-bristol" id="sortSelect">
                         <option value="">Ordenar: Recomendado</option>
                         <option value="price-asc">Precio: Menor a Mayor</option>
                         <option value="price-desc">Precio: Mayor a Menor</option>
@@ -266,375 +252,690 @@
                 </div>
             </div>
 
-            <!-- Grid de Productos -->
-            <div class="products-grid-bristol" id="productsGrid">
-                <!-- Producto 1: Casio Edifice -->
-                <div class="product-card-bristol" data-id="casio-efr539" data-brand="casio" data-gender="caballeros" data-material="metal" data-price="890000">
-                    <div class="product-badge-bristol sale">-25%</div>
+            <!-- Products Scroll Container -->
+            <div class="products-scroll-container">
+                <!-- Products Grid -->
+                <div class="products-grid-bristol" id="productsGrid" role="list" aria-label="Lista de productos">
+                
+                <!-- Product 1 -->
+                <article class="product-card-bristol" data-id="casio-efr539" data-brand="casio" data-gender="caballeros" data-price="890000" role="listitem">
+                    <span class="product-badge-bristol sale">-25%</span>
                     <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
-                        <i class="far fa-heart"></i>
+                        <i class="far fa-heart" aria-hidden="true"></i>
                     </button>
                     <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400" alt="Reloj Casio Edifice EFR-539" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400" 
+                             alt="Reloj Casio Edifice EFR-539 color plateado con fondo negro"
+                             loading="lazy"
+                             width="400"
+                             height="400">
                     </div>
                     <div class="product-info-bristol">
-                        <span class="product-brand-bristol">CASIO</span>
-                        <h3 class="product-title-bristol">Reloj Casio Edifice EFR-539</h3>
+                        <span class="product-brand-bristol">Casio</span>
+                        <h2 class="product-title-bristol">Reloj Casio Edifice EFR-539</h2>
                         <div class="product-specs-bristol">
-                            <span><i class="fas fa-male"></i> Caballeros</span>
-                            <span><i class="fas fa-link"></i> Metal</span>
+                            <span><i class="fas fa-male" aria-hidden="true"></i> Caballeros</span>
+                            <span><i class="fas fa-link" aria-hidden="true"></i> Metal</span>
                         </div>
-                        <div class="product-rating-bristol" aria-label="Calificación: 4.5 de 5 estrellas">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
+                        <div class="product-rating-bristol" aria-label="Calificación: 4.5 de 5 estrellas, 124 reseñas">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star-half-alt" aria-hidden="true"></i>
                             <span>(124)</span>
                         </div>
                         <div class="product-price-bristol">
                             <span class="price-current-bristol">₲ 890.000</span>
                             <span class="price-original-bristol">₲ 1.190.000</span>
                         </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                        <button class="btn-add-cart-bristol" aria-label="Agregar Casio Edifice EFR-539 al carrito">
+                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
                         </button>
                     </div>
-                </div>
+                </article>
 
-                <!-- Producto 2: QyQ Elegant -->
-                <div class="product-card-bristol" data-id="qyq-elegant" data-brand="qyq" data-gender="damas" data-material="cuero" data-price="450000">
-                    <div class="product-badge-bristol new">NUEVO</div>
+                <!-- Product 2 -->
+                <article class="product-card-bristol" data-id="qyq-elegant" data-brand="qyq" data-gender="damas" data-price="450000" role="listitem">
+                    <span class="product-badge-bristol new">Nuevo</span>
                     <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
-                        <i class="far fa-heart"></i>
+                        <i class="far fa-heart" aria-hidden="true"></i>
                     </button>
                     <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400" alt="Reloj QyQ Elegant Damas" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400" 
+                             alt="Reloj QyQ Elegant para damas color dorado"
+                             loading="lazy"
+                             width="400"
+                             height="400">
                     </div>
                     <div class="product-info-bristol">
-                        <span class="product-brand-bristol">QYQ</span>
-                        <h3 class="product-title-bristol">Reloj QyQ Elegant Damas</h3>
+                        <span class="product-brand-bristol">QyQ</span>
+                        <h2 class="product-title-bristol">Reloj QyQ Elegant Damas</h2>
                         <div class="product-specs-bristol">
-                            <span><i class="fas fa-female"></i> Damas</span>
-                            <span><i class="fas fa-shoe-prints"></i> Cuero</span>
+                            <span><i class="fas fa-female" aria-hidden="true"></i> Damas</span>
+                            <span><i class="fas fa-shoe-prints" aria-hidden="true"></i> Cuero</span>
                         </div>
-                        <div class="product-rating-bristol" aria-label="Calificación: 5 de 5 estrellas">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                        <div class="product-rating-bristol" aria-label="Calificación: 5 de 5 estrellas, 89 reseñas">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
                             <span>(89)</span>
                         </div>
                         <div class="product-price-bristol">
                             <span class="price-current-bristol">₲ 450.000</span>
                         </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                        <button class="btn-add-cart-bristol" aria-label="Agregar QyQ Elegant al carrito">
+                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
                         </button>
                     </div>
-                </div>
+                </article>
 
-                <!-- Producto 3: Skmei Deportivo -->
-                <div class="product-card-bristol" data-id="skmei-deportivo" data-brand="skmei" data-gender="caballeros" data-material="goma" data-price="180000">
+                <!-- Product 3 -->
+                <article class="product-card-bristol" data-id="skmei-deportivo" data-brand="skmei" data-gender="caballeros" data-price="180000" role="listitem">
                     <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
-                        <i class="far fa-heart"></i>
+                        <i class="far fa-heart" aria-hidden="true"></i>
                     </button>
                     <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=400" alt="Reloj Skmei Deportivo Digital" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=400" 
+                             alt="Reloj Skmei Deportivo Digital negro"
+                             loading="lazy"
+                             width="400"
+                             height="400">
                     </div>
                     <div class="product-info-bristol">
-                        <span class="product-brand-bristol">SKMEI</span>
-                        <h3 class="product-title-bristol">Reloj Skmei Deportivo Digital</h3>
+                        <span class="product-brand-bristol">Skmei</span>
+                        <h2 class="product-title-bristol">Reloj Skmei Deportivo Digital</h2>
                         <div class="product-specs-bristol">
-                            <span><i class="fas fa-male"></i> Caballeros</span>
-                            <span><i class="fas fa-circle"></i> Goma</span>
+                            <span><i class="fas fa-male" aria-hidden="true"></i> Caballeros</span>
+                            <span><i class="fas fa-circle" aria-hidden="true"></i> Goma</span>
                         </div>
-                        <div class="product-rating-bristol" aria-label="Calificación: 4 de 5 estrellas">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
+                        <div class="product-rating-bristol" aria-label="Calificación: 4 de 5 estrellas, 256 reseñas">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="far fa-star" aria-hidden="true"></i>
                             <span>(256)</span>
                         </div>
                         <div class="product-price-bristol">
                             <span class="price-current-bristol">₲ 180.000</span>
                         </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                        <button class="btn-add-cart-bristol" aria-label="Agregar Skmei Deportivo al carrito">
+                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
                         </button>
                     </div>
-                </div>
+                </article>
 
-                <!-- Producto 4: Aqua Infantil -->
-                <div class="product-card-bristol" data-id="aqua-infantil" data-brand="aqua" data-gender="ninos" data-material="goma" data-price="120000">
-                    <div class="product-badge-bristol sale">-15%</div>
+                <!-- Product 4 -->
+                <article class="product-card-bristol" data-id="aqua-infantil" data-brand="aqua" data-gender="ninos" data-price="120000" role="listitem">
+                    <span class="product-badge-bristol sale">-15%</span>
                     <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
-                        <i class="far fa-heart"></i>
+                        <i class="far fa-heart" aria-hidden="true"></i>
                     </button>
                     <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1594534475808-b18fc33b045e?w=400" alt="Reloj Aqua Infantil Resistente" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1594534475808-b18fc33b045e?w=400" 
+                             alt="Reloj Aqua Infantil colorido resistente al agua"
+                             loading="lazy"
+                             width="400"
+                             height="400">
                     </div>
                     <div class="product-info-bristol">
-                        <span class="product-brand-bristol">AQUA</span>
-                        <h3 class="product-title-bristol">Reloj Aqua Infantil Resistente</h3>
+                        <span class="product-brand-bristol">Aqua</span>
+                        <h2 class="product-title-bristol">Reloj Aqua Infantil Resistente</h2>
                         <div class="product-specs-bristol">
-                            <span><i class="fas fa-child"></i> Niños</span>
-                            <span><i class="fas fa-circle"></i> Goma</span>
+                            <span><i class="fas fa-child" aria-hidden="true"></i> Niños</span>
+                            <span><i class="fas fa-circle" aria-hidden="true"></i> Goma</span>
                         </div>
-                        <div class="product-rating-bristol" aria-label="Calificación: 4.5 de 5 estrellas">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
+                        <div class="product-rating-bristol" aria-label="Calificación: 4.5 de 5 estrellas, 178 reseñas">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star-half-alt" aria-hidden="true"></i>
                             <span>(178)</span>
                         </div>
                         <div class="product-price-bristol">
                             <span class="price-current-bristol">₲ 120.000</span>
                             <span class="price-original-bristol">₲ 140.000</span>
                         </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                        <button class="btn-add-cart-bristol" aria-label="Agregar Aqua Infantil al carrito">
+                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
                         </button>
                     </div>
-                </div>
+                </article>
 
-                <!-- Producto 5: Casio Sheen -->
-                <div class="product-card-bristol" data-id="casio-she3059" data-brand="casio" data-gender="damas" data-material="metal" data-price="780000">
+                <!-- Product 5 -->
+                <article class="product-card-bristol" data-id="casio-she3059" data-brand="casio" data-gender="damas" data-price="780000" role="listitem">
                     <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
-                        <i class="far fa-heart"></i>
+                        <i class="far fa-heart" aria-hidden="true"></i>
                     </button>
                     <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1539874754764-5a96559165b0?w=400" alt="Reloj Casio Sheen SHE-3059" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1539874754764-5a96559165b0?w=400" 
+                             alt="Reloj Casio Sheen SHE-3059 para damas"
+                             loading="lazy"
+                             width="400"
+                             height="400">
                     </div>
                     <div class="product-info-bristol">
-                        <span class="product-brand-bristol">CASIO</span>
-                        <h3 class="product-title-bristol">Reloj Casio Sheen SHE-3059</h3>
+                        <span class="product-brand-bristol">Casio</span>
+                        <h2 class="product-title-bristol">Reloj Casio Sheen SHE-3059</h2>
                         <div class="product-specs-bristol">
-                            <span><i class="fas fa-female"></i> Damas</span>
-                            <span><i class="fas fa-link"></i> Metal</span>
+                            <span><i class="fas fa-female" aria-hidden="true"></i> Damas</span>
+                            <span><i class="fas fa-link" aria-hidden="true"></i> Metal</span>
                         </div>
-                        <div class="product-rating-bristol" aria-label="Calificación: 5 de 5 estrellas">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                        <div class="product-rating-bristol" aria-label="Calificación: 5 de 5 estrellas, 312 reseñas">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
                             <span>(312)</span>
                         </div>
                         <div class="product-price-bristol">
                             <span class="price-current-bristol">₲ 780.000</span>
                         </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                        <button class="btn-add-cart-bristol" aria-label="Agregar Casio Sheen al carrito">
+                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
                         </button>
                     </div>
-                </div>
+                </article>
 
-                <!-- Producto 6: Genérico Minimalista -->
-                <div class="product-card-bristol" data-id="generico-minimalista" data-brand="genericos" data-gender="caballeros" data-material="cuero" data-price="85000">
-                    <div class="product-badge-bristol new">NUEVO</div>
+                <!-- Product 6 -->
+                <article class="product-card-bristol" data-id="generico-minimalista" data-brand="genericos" data-gender="caballeros" data-price="85000" role="listitem">
+                    <span class="product-badge-bristol new">Nuevo</span>
                     <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
-                        <i class="far fa-heart"></i>
+                        <i class="far fa-heart" aria-hidden="true"></i>
                     </button>
                     <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400" alt="Reloj Clásico Minimalista" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400" 
+                             alt="Reloj Clásico Minimalista con correa de cuero"
+                             loading="lazy"
+                             width="400"
+                             height="400">
                     </div>
                     <div class="product-info-bristol">
-                        <span class="product-brand-bristol">GENÉRICOS</span>
-                        <h3 class="product-title-bristol">Reloj Clásico Minimalista</h3>
+                        <span class="product-brand-bristol">Genéricos</span>
+                        <h2 class="product-title-bristol">Reloj Clásico Minimalista</h2>
                         <div class="product-specs-bristol">
-                            <span><i class="fas fa-male"></i> Caballeros</span>
-                            <span><i class="fas fa-shoe-prints"></i> Cuero</span>
+                            <span><i class="fas fa-male" aria-hidden="true"></i> Caballeros</span>
+                            <span><i class="fas fa-shoe-prints" aria-hidden="true"></i> Cuero</span>
                         </div>
-                        <div class="product-rating-bristol" aria-label="Calificación: 4 de 5 estrellas">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
+                        <div class="product-rating-bristol" aria-label="Calificación: 4 de 5 estrellas, 92 reseñas">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="far fa-star" aria-hidden="true"></i>
                             <span>(92)</span>
                         </div>
                         <div class="product-price-bristol">
                             <span class="price-current-bristol">₲ 85.000</span>
                         </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                        <button class="btn-add-cart-bristol" aria-label="Agregar Reloj Minimalista al carrito">
+                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
                         </button>
                     </div>
-                </div>
+                </article>
 
-                <!-- Producto 7: Skmei Elegante -->
-                <div class="product-card-bristol" data-id="skmei-elegante-damas" data-brand="skmei" data-gender="damas" data-material="metal" data-price="220000">
+                <!-- Product 7 -->
+                <article class="product-card-bristol" data-id="skmei-elegante" data-brand="skmei" data-gender="damas" data-price="220000" role="listitem">
                     <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
-                        <i class="far fa-heart"></i>
+                        <i class="far fa-heart" aria-hidden="true"></i>
                     </button>
                     <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400" alt="Reloj Skmei Elegante Damas" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400" 
+                             alt="Reloj Skmei Elegante para damas"
+                             loading="lazy"
+                             width="400"
+                             height="400">
                     </div>
                     <div class="product-info-bristol">
-                        <span class="product-brand-bristol">SKMEI</span>
-                        <h3 class="product-title-bristol">Reloj Skmei Elegante Damas</h3>
+                        <span class="product-brand-bristol">Skmei</span>
+                        <h2 class="product-title-bristol">Reloj Skmei Elegante Damas</h2>
                         <div class="product-specs-bristol">
-                            <span><i class="fas fa-female"></i> Damas</span>
-                            <span><i class="fas fa-link"></i> Metal</span>
+                            <span><i class="fas fa-female" aria-hidden="true"></i> Damas</span>
+                            <span><i class="fas fa-link" aria-hidden="true"></i> Metal</span>
                         </div>
-                        <div class="product-rating-bristol" aria-label="Calificación: 5 de 5 estrellas">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                        <div class="product-rating-bristol" aria-label="Calificación: 5 de 5 estrellas, 203 reseñas">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
                             <span>(203)</span>
                         </div>
                         <div class="product-price-bristol">
                             <span class="price-current-bristol">₲ 220.000</span>
                         </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                        <button class="btn-add-cart-bristol" aria-label="Agregar Skmei Elegante al carrito">
+                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
                         </button>
                     </div>
-                </div>
+                </article>
 
-                <!-- Producto 8: QyQ Sport -->
-                <div class="product-card-bristol" data-id="qyq-sport" data-brand="qyq" data-gender="caballeros" data-material="goma" data-price="320000">
-                    <div class="product-badge-bristol sale">-20%</div>
+                <!-- Product 8 -->
+                <article class="product-card-bristol" data-id="qyq-sport" data-brand="qyq" data-gender="caballeros" data-price="320000" role="listitem">
+                    <span class="product-badge-bristol sale">-20%</span>
                     <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
-                        <i class="far fa-heart"></i>
+                        <i class="far fa-heart" aria-hidden="true"></i>
                     </button>
                     <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=400" alt="Reloj QyQ Sport Cronógrafo" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=400" 
+                             alt="Reloj QyQ Sport Cronógrafo"
+                             loading="lazy"
+                             width="400"
+                             height="400">
                     </div>
                     <div class="product-info-bristol">
-                        <span class="product-brand-bristol">QYQ</span>
-                        <h3 class="product-title-bristol">Reloj QyQ Sport Cronógrafo</h3>
+                        <span class="product-brand-bristol">QyQ</span>
+                        <h2 class="product-title-bristol">Reloj QyQ Sport Cronógrafo</h2>
                         <div class="product-specs-bristol">
-                            <span><i class="fas fa-male"></i> Caballeros</span>
-                            <span><i class="fas fa-circle"></i> Goma</span>
+                            <span><i class="fas fa-male" aria-hidden="true"></i> Caballeros</span>
+                            <span><i class="fas fa-circle" aria-hidden="true"></i> Goma</span>
                         </div>
-                        <div class="product-rating-bristol" aria-label="Calificación: 4.5 de 5 estrellas">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
+                        <div class="product-rating-bristol" aria-label="Calificación: 4.5 de 5 estrellas, 445 reseñas">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star-half-alt" aria-hidden="true"></i>
                             <span>(445)</span>
                         </div>
                         <div class="product-price-bristol">
                             <span class="price-current-bristol">₲ 320.000</span>
                             <span class="price-original-bristol">₲ 400.000</span>
                         </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                        <button class="btn-add-cart-bristol" aria-label="Agregar QyQ Sport al carrito">
+                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
                         </button>
                     </div>
-                </div>
-            </div>
+                </article>
 
-            <!-- Botón Ver Más -->
-            <div class="load-more-bristol">
-                <button class="btn-load-more-bristol" id="loadMore">
-                    Ver Más Productos <i class="fas fa-chevron-down"></i>
-                </button>
+                <!-- Product 9: LTP 1165A-4C -->
+                <article class="product-card-bristol" data-id="casio-ltp1165a4c" data-brand="casio" data-gender="damas" data-price="185000" role="listitem">
+                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
+                        <i class="far fa-heart" aria-hidden="true"></i>
+                    </button>
+                    <div class="product-image-bristol">
+                        <img src="https://images.unsplash.com/photo-1619134778706-7015533a6150?w=400" 
+                             alt="Reloj Casio LTP 1165A-4C para damas color rosa"
+                             loading="lazy"
+                             width="400"
+                             height="400">
+                    </div>
+                    <div class="product-info-bristol">
+                        <span class="product-brand-bristol">Casio</span>
+                        <h2 class="product-title-bristol">Reloj Casio LTP 1165A-4C</h2>
+                        <div class="product-specs-bristol">
+                            <span><i class="fas fa-female" aria-hidden="true"></i> Damas</span>
+                            <span><i class="fas fa-link" aria-hidden="true"></i> Metal</span>
+                        </div>
+                        <div class="product-rating-bristol" aria-label="Calificación: 4.5 de 5 estrellas, 67 reseñas">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star-half-alt" aria-hidden="true"></i>
+                            <span>(67)</span>
+                        </div>
+                        <div class="product-price-bristol">
+                            <span class="price-current-bristol">₲ 185.000</span>
+                        </div>
+                        <button class="btn-add-cart-bristol" aria-label="Agregar Casio LTP 1165A-4C al carrito">
+                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Product 10: LTP V005D-4B2 -->
+                <article class="product-card-bristol" data-id="casio-ltpv005d4b2" data-brand="casio" data-gender="damas" data-price="210000" role="listitem">
+                    <span class="product-badge-bristol new">Nuevo</span>
+                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
+                        <i class="far fa-heart" aria-hidden="true"></i>
+                    </button>
+                    <div class="product-image-bristol">
+                        <img src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?w=400" 
+                             alt="Reloj Casio LTP V005D-4B2 para damas"
+                             loading="lazy"
+                             width="400"
+                             height="400">
+                    </div>
+                    <div class="product-info-bristol">
+                        <span class="product-brand-bristol">Casio</span>
+                        <h2 class="product-title-bristol">Reloj Casio LTP V005D-4B2</h2>
+                        <div class="product-specs-bristol">
+                            <span><i class="fas fa-female" aria-hidden="true"></i> Damas</span>
+                            <span><i class="fas fa-link" aria-hidden="true"></i> Metal</span>
+                        </div>
+                        <div class="product-rating-bristol" aria-label="Calificación: 5 de 5 estrellas, 42 reseñas">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <span>(42)</span>
+                        </div>
+                        <div class="product-price-bristol">
+                            <span class="price-current-bristol">₲ 210.000</span>
+                        </div>
+                        <button class="btn-add-cart-bristol" aria-label="Agregar Casio LTP V005D-4B2 al carrito">
+                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Product 11: LTP V005D-7B -->
+                <article class="product-card-bristol" data-id="casio-ltpv005d7b" data-brand="casio" data-gender="damas" data-price="210000" role="listitem">
+                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
+                        <i class="far fa-heart" aria-hidden="true"></i>
+                    </button>
+                    <div class="product-image-bristol">
+                        <img src="https://images.unsplash.com/photo-1549972574-8e3e1ed6a347?w=400" 
+                             alt="Reloj Casio LTP V005D-7B para damas color plateado"
+                             loading="lazy"
+                             width="400"
+                             height="400">
+                    </div>
+                    <div class="product-info-bristol">
+                        <span class="product-brand-bristol">Casio</span>
+                        <h2 class="product-title-bristol">Reloj Casio LTP V005D-7B</h2>
+                        <div class="product-specs-bristol">
+                            <span><i class="fas fa-female" aria-hidden="true"></i> Damas</span>
+                            <span><i class="fas fa-link" aria-hidden="true"></i> Metal</span>
+                        </div>
+                        <div class="product-rating-bristol" aria-label="Calificación: 4 de 5 estrellas, 89 reseñas">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="far fa-star" aria-hidden="true"></i>
+                            <span>(89)</span>
+                        </div>
+                        <div class="product-price-bristol">
+                            <span class="price-current-bristol">₲ 210.000</span>
+                        </div>
+                        <button class="btn-add-cart-bristol" aria-label="Agregar Casio LTP V005D-7B al carrito">
+                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Product 12: LTP V004D-7B -->
+                <article class="product-card-bristol" data-id="casio-ltpv004d7b" data-brand="casio" data-gender="damas" data-price="195000" role="listitem">
+                    <span class="product-badge-bristol sale">-10%</span>
+                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
+                        <i class="far fa-heart" aria-hidden="true"></i>
+                    </button>
+                    <div class="product-image-bristol">
+                        <img src="https://images.unsplash.com/photo-1518131672697-613becd4fab5?w=400" 
+                             alt="Reloj Casio LTP V004D-7B para damas elegante"
+                             loading="lazy"
+                             width="400"
+                             height="400">
+                    </div>
+                    <div class="product-info-bristol">
+                        <span class="product-brand-bristol">Casio</span>
+                        <h2 class="product-title-bristol">Reloj Casio LTP V004D-7B</h2>
+                        <div class="product-specs-bristol">
+                            <span><i class="fas fa-female" aria-hidden="true"></i> Damas</span>
+                            <span><i class="fas fa-link" aria-hidden="true"></i> Metal</span>
+                        </div>
+                        <div class="product-rating-bristol" aria-label="Calificación: 4.5 de 5 estrellas, 156 reseñas">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star-half-alt" aria-hidden="true"></i>
+                            <span>(156)</span>
+                        </div>
+                        <div class="product-price-bristol">
+                            <span class="price-current-bristol">₲ 195.000</span>
+                            <span class="price-original-bristol">₲ 217.000</span>
+                        </div>
+                        <button class="btn-add-cart-bristol" aria-label="Agregar Casio LTP V004D-7B al carrito">
+                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Product 13: LTP 1169N-7A -->
+                <article class="product-card-bristol" data-id="casio-ltp1169n7a" data-brand="casio" data-gender="damas" data-price="245000" role="listitem">
+                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
+                        <i class="far fa-heart" aria-hidden="true"></i>
+                    </button>
+                    <div class="product-image-bristol">
+                        <img src="https://images.unsplash.com/photo-1585123334904-845d60e97b29?w=400" 
+                             alt="Reloj Casio LTP 1169N-7A dorado elegante"
+                             loading="lazy"
+                             width="400"
+                             height="400">
+                    </div>
+                    <div class="product-info-bristol">
+                        <span class="product-brand-bristol">Casio</span>
+                        <h2 class="product-title-bristol">Reloj Casio LTP 1169N-7A</h2>
+                        <div class="product-specs-bristol">
+                            <span><i class="fas fa-female" aria-hidden="true"></i> Damas</span>
+                            <span><i class="fas fa-link" aria-hidden="true"></i> Metal Dorado</span>
+                        </div>
+                        <div class="product-rating-bristol" aria-label="Calificación: 5 de 5 estrellas, 203 reseñas">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <span>(203)</span>
+                        </div>
+                        <div class="product-price-bristol">
+                            <span class="price-current-bristol">₲ 245.000</span>
+                        </div>
+                        <button class="btn-add-cart-bristol" aria-label="Agregar Casio LTP 1169N-7A al carrito">
+                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Product 14: LTP 1165N-9C -->
+                <article class="product-card-bristol" data-id="casio-ltp1165n9c" data-brand="casio" data-gender="damas" data-price="235000" role="listitem">
+                    <span class="product-badge-bristol new">Nuevo</span>
+                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
+                        <i class="far fa-heart" aria-hidden="true"></i>
+                    </button>
+                    <div class="product-image-bristol">
+                        <img src="https://images.unsplash.com/photo-1544117519-31a4b719223d?w=400" 
+                             alt="Reloj Casio LTP 1165N-9C dorado clásico"
+                             loading="lazy"
+                             width="400"
+                             height="400">
+                    </div>
+                    <div class="product-info-bristol">
+                        <span class="product-brand-bristol">Casio</span>
+                        <h2 class="product-title-bristol">Reloj Casio LTP 1165N-9C</h2>
+                        <div class="product-specs-bristol">
+                            <span><i class="fas fa-female" aria-hidden="true"></i> Damas</span>
+                            <span><i class="fas fa-link" aria-hidden="true"></i> Metal Dorado</span>
+                        </div>
+                        <div class="product-rating-bristol" aria-label="Calificación: 4.5 de 5 estrellas, 78 reseñas">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star-half-alt" aria-hidden="true"></i>
+                            <span>(78)</span>
+                        </div>
+                        <div class="product-price-bristol">
+                            <span class="price-current-bristol">₲ 235.000</span>
+                        </div>
+                        <button class="btn-add-cart-bristol" aria-label="Agregar Casio LTP 1165N-9C al carrito">
+                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Product 15: LTP 1128A-7B -->
+                <article class="product-card-bristol" data-id="casio-ltp1128a7b" data-brand="casio" data-gender="damas" data-price="175000" role="listitem">
+                    <span class="product-badge-bristol sale">-15%</span>
+                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
+                        <i class="far fa-heart" aria-hidden="true"></i>
+                    </button>
+                    <div class="product-image-bristol">
+                        <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400" 
+                             alt="Reloj Casio LTP 1128A-7B plateado clásico"
+                             loading="lazy"
+                             width="400"
+                             height="400">
+                    </div>
+                    <div class="product-info-bristol">
+                        <span class="product-brand-bristol">Casio</span>
+                        <h2 class="product-title-bristol">Reloj Casio LTP 1128A-7B</h2>
+                        <div class="product-specs-bristol">
+                            <span><i class="fas fa-female" aria-hidden="true"></i> Damas</span>
+                            <span><i class="fas fa-link" aria-hidden="true"></i> Metal</span>
+                        </div>
+                        <div class="product-rating-bristol" aria-label="Calificación: 4 de 5 estrellas, 134 reseñas">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="far fa-star" aria-hidden="true"></i>
+                            <span>(134)</span>
+                        </div>
+                        <div class="product-price-bristol">
+                            <span class="price-current-bristol">₲ 175.000</span>
+                            <span class="price-original-bristol">₲ 206.000</span>
+                        </div>
+                        <button class="btn-add-cart-bristol" aria-label="Agregar Casio LTP 1128A-7B al carrito">
+                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Product 16: LTP V005D-4B -->
+                <article class="product-card-bristol" data-id="casio-ltpv005d4b" data-brand="casio" data-gender="damas" data-price="205000" role="listitem">
+                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
+                        <i class="far fa-heart" aria-hidden="true"></i>
+                    </button>
+                    <div class="product-image-bristol">
+                        <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=400" 
+                             alt="Reloj Casio LTP V005D-4B rosa elegante"
+                             loading="lazy"
+                             width="400"
+                             height="400">
+                    </div>
+                    <div class="product-info-bristol">
+                        <span class="product-brand-bristol">Casio</span>
+                        <h2 class="product-title-bristol">Reloj Casio LTP V005D-4B</h2>
+                        <div class="product-specs-bristol">
+                            <span><i class="fas fa-female" aria-hidden="true"></i> Damas</span>
+                            <span><i class="fas fa-link" aria-hidden="true"></i> Metal</span>
+                        </div>
+                        <div class="product-rating-bristol" aria-label="Calificación: 4.5 de 5 estrellas, 91 reseñas">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star-half-alt" aria-hidden="true"></i>
+                            <span>(91)</span>
+                        </div>
+                        <div class="product-price-bristol">
+                            <span class="price-current-bristol">₲ 205.000</span>
+                        </div>
+                        <button class="btn-add-cart-bristol" aria-label="Agregar Casio LTP V005D-4B al carrito">
+                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
+                        </button>
+                    </div>
+                </article>
+                </div>
+
+                <!-- ========== FOOTER (INSIDE SCROLL) ========== -->
+                <footer class="footer" role="contentinfo">
+                    <div class="container">
+                        <div class="footer-content">
+                            <!-- About Section -->
+                            <div class="footer-section">
+                                <h4>JA Electrónica</h4>
+                                <p>Tu tienda de confianza para relojes y electrónica premium. Calidad garantizada en cada producto.</p>
+                                <div class="social-links">
+                                    <a href="#" aria-label="Síguenos en Facebook" title="Facebook">
+                                        <i class="fab fa-facebook" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="#" aria-label="Síguenos en Instagram" title="Instagram">
+                                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="#" aria-label="Contáctanos por WhatsApp" title="WhatsApp">
+                                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Products -->
+                            <div class="footer-section">
+                                <h4>Productos</h4>
+                                <ul>
+                                    <li><a href="#">Relojes Casio</a></li>
+                                    <li><a href="#">Relojes QyQ</a></li>
+                                    <li><a href="#">Relojes Skmei</a></li>
+                                    <li><a href="#">Relojes Aqua</a></li>
+                                    <li><a href="#">Ver Todos</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- Help -->
+                            <div class="footer-section">
+                                <h4>Ayuda</h4>
+                                <ul>
+                                    <li><a href="#">Sobre Nosotros</a></li>
+                                    <li><a href="#">Envíos y Entrega</a></li>
+                                    <li><a href="#">Garantía</a></li>
+                                    <li><a href="#">Devoluciones</a></li>
+                                    <li><a href="#">Contacto</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- Info -->
+                            <div class="footer-section">
+                                <h4>Información</h4>
+                                <ul>
+                                    <li><a href="#">Términos y Condiciones</a></li>
+                                    <li><a href="#">Política de Privacidad</a></li>
+                                    <li><a href="#">Preguntas Frecuentes</a></li>
+                                    <li><a href="#">Seguimiento de Pedidos</a></li>
+                                    <li><a href="#">Soporte WhatsApp</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="footer-bottom">
+                            <p>&copy; 2025 JA Electrónica. Todos los derechos reservados.</p>
+                        </div>
+                    </div>
+                </footer>
             </div>
         </main>
     </div>
 
-    <!-- ============================================
-         FOOTER - Información y Enlaces
-         ============================================ -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <!-- Sección: Sobre Nosotros -->
-                <div class="footer-section">
-                    <h4>JA Electrónica</h4>
-                    <p>Tu tienda de confianza para relojes y electrónica premium. Calidad garantizada en cada producto.</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Síguenos en Facebook" title="Facebook">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="#" aria-label="Síguenos en Instagram" title="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" aria-label="Contáctanos por WhatsApp" title="WhatsApp">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Sección: Productos -->
-                <div class="footer-section">
-                    <h4>Productos</h4>
-                    <ul>
-                        <li><a href="#">Relojes Casio</a></li>
-                        <li><a href="#">Relojes QyQ</a></li>
-                        <li><a href="#">Relojes Skmei</a></li>
-                        <li><a href="#">Relojes Aqua</a></li>
-                        <li><a href="#">Ver Todos</a></li>
-                    </ul>
-                </div>
-
-                <!-- Sección: Ayuda -->
-                <div class="footer-section">
-                    <h4>Ayuda</h4>
-                    <ul>
-                        <li><a href="#">Sobre Nosotros</a></li>
-                        <li><a href="#">Envíos y Entrega</a></li>
-                        <li><a href="#">Garantía</a></li>
-                        <li><a href="#">Devoluciones</a></li>
-                        <li><a href="#">Contacto</a></li>
-                    </ul>
-                </div>
-
-                <!-- Sección: Información -->
-                <div class="footer-section">
-                    <h4>Información</h4>
-                    <ul>
-                        <li><a href="#">Términos y Condiciones</a></li>
-                        <li><a href="#">Política de Privacidad</a></li>
-                        <li><a href="#">Preguntas Frecuentes</a></li>
-                        <li><a href="#">Seguimiento de Pedidos</a></li>
-                        <li><a href="#">Soporte WhatsApp</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <!-- Footer Bottom -->
-            <div class="footer-bottom">
-                <p>&copy; 2026 JA Electrónica. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- ============================================
-         CARRITO MODAL - Modal de compras
-         ============================================ -->
-    <div class="cart-modal" id="cartModal" role="dialog" aria-labelledby="cartModalTitle" aria-hidden="true">
+    <!-- ========== CART MODAL ========== -->
+    <div class="cart-modal" id="cartModal" role="dialog" aria-labelledby="cartModalTitle" aria-modal="true" aria-hidden="true">
         <div class="cart-modal-content">
-            <!-- Header del Modal -->
             <div class="cart-modal-header">
                 <h2 id="cartModalTitle">
                     Mi Carrito 
                     <span class="cart-count-badge" id="cartCountBadge">0</span>
                 </h2>
                 <button class="cart-close-btn" id="cartCloseBtn" aria-label="Cerrar carrito">
-                    <i class="fas fa-times"></i>
+                    <i class="fas fa-times" aria-hidden="true"></i>
                 </button>
             </div>
             
-            <!-- Cuerpo del Modal -->
             <div class="cart-modal-body" id="cartModalBody">
                 <div class="cart-empty">
-                    <i class="fas fa-shopping-cart"></i>
+                    <i class="fas fa-shopping-cart" aria-hidden="true"></i>
                     <p>Tu carrito está vacío</p>
                     <a href="index.html" class="btn-primary btn-block">Seguir Comprando</a>
                 </div>
             </div>
             
-            <!-- Footer del Modal -->
             <div class="cart-modal-footer" id="cartModalFooter" style="display: none;">
                 <div class="cart-subtotal">
                     <span>Subtotal:</span>
@@ -648,12 +949,52 @@
         </div>
     </div>
 
-    <!-- ============================================
-         SCRIPTS - JavaScript
-         ============================================ -->
-    <script src="script.js"></script>
-    <script src="cart.js"></script>
-    <script src="brands-showcase.js"></script>
-</body>
+    <!-- ========== NEWSLETTER POPUP ========== -->
+    <div class="newsletter-popup-overlay" id="newsletterPopup" role="dialog" aria-labelledby="newsletterTitle" aria-modal="true" aria-hidden="true">
+        <div class="newsletter-popup-container">
+            <button class="newsletter-close-btn" id="closeNewsletterPopup" aria-label="Cerrar">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+            <div class="newsletter-popup-content">
+                <div class="newsletter-popup-icon">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                </div>
+                <h3 class="newsletter-popup-title" id="newsletterTitle">¡Recibe Ofertas Exclusivas!</h3>
+                <p class="newsletter-popup-description">
+                    Suscríbete a nuestro newsletter y obtén un <strong>10% de descuento</strong> en tu primera compra.
+                </p>
+                <form class="newsletter-popup-form" id="newsletterForm" novalidate>
+                    <div class="newsletter-input-group">
+                        <i class="fas fa-envelope newsletter-input-icon" aria-hidden="true"></i>
+                        <input type="email" 
+                               class="newsletter-input" 
+                               id="newsletterEmail" 
+                               placeholder="Tu correo electrónico"
+                               required
+                               aria-required="true"
+                               autocomplete="email">
+                    </div>
+                    <div class="newsletter-input-group">
+                        <i class="fab fa-whatsapp newsletter-input-icon" style="color:#25D366" aria-hidden="true"></i>
+                        <input type="tel" 
+                               class="newsletter-input" 
+                               id="newsletterWhatsapp" 
+                               placeholder="WhatsApp (opcional)"
+                               autocomplete="tel">
+                    </div>
+                    <button type="submit" class="newsletter-submit-btn">
+                        <span>Suscribirme</span>
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </form>
+                <p class="newsletter-privacy-text">
+                    Al suscribirte, aceptas nuestra política de privacidad. No enviamos spam.
+                </p>
+            </div>
+        </div>
+    </div>
 
+    <!-- ========== SCRIPTS ========== -->
+    <script src="script.js" defer></script>
+</body>
 </html>
