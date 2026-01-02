@@ -1,6 +1,6 @@
 /**
- * extensions.js - Extensiones para JA Electrónica - OPTIMIZADO v3.0
- * Manejo profesional de mega menus para Categories y Brands
+ * extensions.js - Extensiones para JA Electrónica - OPTIMIZADO v3.1 CORREGIDO
+ * Manejo profesional de mega menus para Categories y Brands + Swipe to Close en Location Modal
  */
 (function() {
     'use strict';
@@ -365,42 +365,100 @@
         }
     }
 
-    // ========== LOCATION MODAL ==========
+    // ========== LOCATION MODAL CON SWIPE TO CLOSE ==========
     const Location = {
+        modal: null,
+        content: null,
+        startY: 0,
+        currentY: 0,
+        isDragging: false,
+
         init() {
             const link = Utils.$('#locationLink');
-            const modal = Utils.$('#locationModal');
+            this.modal = Utils.$('#locationModal');
+            this.content = Utils.$('.location-modal-content');
             const closeBtn = Utils.$('#locationCloseBtn');
-            if (!link || !modal) return;
+            
+            if (!link || !this.modal) return;
 
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                this.open(modal);
+                this.open();
             });
 
             if (closeBtn) {
-                closeBtn.addEventListener('click', () => this.close(modal));
+                closeBtn.addEventListener('click', () => this.close());
             }
 
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) this.close(modal);
+            this.modal.addEventListener('click', (e) => {
+                if (e.target === this.modal) this.close();
             });
 
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && modal.classList.contains('active')) {
-                    this.close(modal);
+                if (e.key === 'Escape' && this.modal.classList.contains('active')) {
+                    this.close();
+                }
+            });
+
+            // Touch gestures para cerrar deslizando hacia abajo
+            this.initSwipeToClose();
+        },
+
+        initSwipeToClose() {
+            if (!this.content) return;
+
+            const header = Utils.$('.location-header', this.content);
+
+            this.content.addEventListener('touchstart', (e) => {
+                // Solo permitir drag desde el header
+                if (!header?.contains(e.target)) return;
+                
+                this.isDragging = true;
+                this.startY = e.touches[0].clientY;
+                this.content.style.transition = 'none';
+            }, { passive: true });
+
+            this.content.addEventListener('touchmove', (e) => {
+                if (!this.isDragging) return;
+                
+                this.currentY = e.touches[0].clientY;
+                const deltaY = this.currentY - this.startY;
+                
+                // Solo permitir deslizar hacia abajo
+                if (deltaY > 0) {
+                    this.content.style.transform = `translateY(${deltaY}px)`;
+                }
+            }, { passive: true });
+
+            this.content.addEventListener('touchend', () => {
+                if (!this.isDragging) return;
+                
+                this.isDragging = false;
+                const deltaY = this.currentY - this.startY;
+                
+                this.content.style.transition = '';
+                
+                // Si se deslizó más de 150px, cerrar el modal
+                if (deltaY > 150) {
+                    this.close();
+                } else {
+                    this.content.style.transform = '';
                 }
             });
         },
 
-        open(modal) {
-            modal.classList.add('active');
+        open() {
+            this.modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         },
 
-        close(modal) {
-            modal.classList.remove('active');
+        close() {
+            this.modal.classList.remove('active');
             document.body.style.overflow = '';
+            // Resetear transformación
+            if (this.content) {
+                this.content.style.transform = '';
+            }
         }
     };
 
@@ -410,7 +468,7 @@
         new CategoriesMenu();
         new BrandsMenu();
         Location.init();
-        console.log('✅ Extensions v3.0 - Mega menus optimizados');
+        console.log('✅ Extensions v3.1 - Mega menus optimizados + Swipe to Close');
     }
 
     // Run on DOM ready
