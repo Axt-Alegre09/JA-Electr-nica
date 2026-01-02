@@ -1,4 +1,3 @@
-<!-- index-extended.html - VERSIÓN CORREGIDA -->
 <!DOCTYPE html>
 <html lang="es" data-theme="light">
 <head>
@@ -42,7 +41,7 @@
             </button>
 
             <!-- Logo CSS Profesional -->
-            <a href="index-extended.html" class="header-brand" aria-label="JA Electrónica - Inicio">
+            <a href="index.html" class="header-brand" aria-label="JA Electrónica - Inicio">
                 <div class="logo-badge">
                     <div class="logo-icon">
                         <span class="logo-icon-text">JA</span>
@@ -64,7 +63,7 @@
             <!-- Header Icons -->
             <div class="header-icons">
                 <!-- Home -->
-                <a href="index-extended.html" class="icon-btn" title="Inicio" aria-label="Ir a inicio">
+                <a href="index.html" class="icon-btn" title="Inicio" aria-label="Ir a inicio">
                     <i class="fas fa-home" aria-hidden="true"></i>
                 </a>
                 
@@ -96,9 +95,7 @@
         <div class="container">
             <a href="#categories" class="nav-link" id="categoriesLink">Categorías</a>
             <a href="#brands" class="nav-link" id="brandsLink">Marcas</a>
-            <a href="https://wa.me/595992544305?text=Hola!%20Quiero%20saber%20la%20ubicación%20de%20JA%20Electrónica" target="_blank" class="nav-link">
-                <i class="fas fa-map-marker-alt"></i> Ubicación
-            </a>
+            <a href="#location" class="nav-link" id="locationLink">Ubicación</a>
             <a href="https://wa.me/595992544305?text=Hola!%20Tengo%20una%20consulta" target="_blank" class="nav-link">
                 <i class="fab fa-whatsapp"></i> Contacto
             </a>
@@ -106,17 +103,8 @@
 
         <!-- Categories Showcase -->
         <section class="categories-showcase" id="categories" aria-label="Categorías de productos">
-            <div class="categories-showcase-header">
-                <h3 class="categories-showcase-title">
-                    <i class="fas fa-list"></i>
-                    Categorías
-                </h3>
-                <button class="categories-close-btn" aria-label="Cerrar">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
             <div class="categories-grid">
-                <article class="category-card" data-category="deportivos" tabindex="0" role="button" aria-label="Ver relojes deportivos">
+                <article class="category-card" data-category="deportivos" tabindex="0" role="button">
                     <div class="category-icon-wrapper">
                         <i class="fas fa-running"></i>
                     </div>
@@ -124,7 +112,7 @@
                     <p class="category-description">Resistentes y funcionales</p>
                 </article>
 
-                <article class="category-card" data-category="elegantes" tabindex="0" role="button" aria-label="Ver relojes elegantes">
+                <article class="category-card" data-category="elegantes" tabindex="0" role="button">
                     <div class="category-icon-wrapper">
                         <i class="fas fa-gem"></i>
                     </div>
@@ -132,7 +120,7 @@
                     <p class="category-description">Para ocasiones especiales</p>
                 </article>
 
-                <article class="category-card" data-category="digitales" tabindex="0" role="button" aria-label="Ver relojes digitales">
+                <article class="category-card" data-category="digitales" tabindex="0" role="button">
                     <div class="category-icon-wrapper">
                         <i class="fas fa-digital-tachograph"></i>
                     </div>
@@ -140,7 +128,7 @@
                     <p class="category-description">Tecnología avanzada</p>
                 </article>
 
-                <article class="category-card" data-category="clasicos" tabindex="0" role="button" aria-label="Ver relojes clásicos">
+                <article class="category-card" data-category="clasicos" tabindex="0" role="button">
                     <div class="category-icon-wrapper">
                         <i class="fas fa-clock"></i>
                     </div>
@@ -152,17 +140,8 @@
 
         <!-- Brands Mega Menu -->
         <section class="brands-showcase" id="brands" aria-label="Marcas disponibles">
-            <div class="brands-showcase-header">
-                <h3 class="brands-showcase-title">
-                    <i class="fas fa-tags"></i>
-                    Marcas
-                </h3>
-                <button class="brands-close-btn" aria-label="Cerrar">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
             <div class="brands-grid">
-                <article class="brand-card" data-brand="casio" tabindex="0" role="button" aria-label="Ver productos Casio">
+                <article class="brand-card" data-brand="casio" tabindex="0" role="button">
                     <div class="brand-logo-wrapper">
                         <img src="img/casio.jpg" alt="" class="brand-logo" loading="lazy">
                     </div>
@@ -170,7 +149,7 @@
                     <p class="brand-count">12 productos</p>
                 </article>
 
-                <article class="brand-card" data-brand="qyq" tabindex="0" role="button" aria-label="Ver productos QyQ">
+                <article class="brand-card" data-brand="qyq" tabindex="0" role="button">
                     <div class="brand-logo-wrapper">
                         <img src="img/qyq.jpg" alt="" class="brand-logo" loading="lazy">
                     </div>
@@ -178,7 +157,7 @@
                     <p class="brand-count">8 productos</p>
                 </article>
 
-                <article class="brand-card" data-brand="skmei" tabindex="0" role="button" aria-label="Ver productos Skmei">
+                <article class="brand-card" data-brand="skmei" tabindex="0" role="button">
                     <div class="brand-logo-wrapper">
                         <img src="img/skmei.jpg" alt="" class="brand-logo" loading="lazy">
                     </div>
@@ -186,7 +165,7 @@
                     <p class="brand-count">10 productos</p>
                 </article>
 
-                <article class="brand-card" data-brand="aqua" tabindex="0" role="button" aria-label="Ver productos Aqua">
+                <article class="brand-card" data-brand="aqua" tabindex="0" role="button">
                     <div class="brand-logo-wrapper">
                         <img src="img/aqua.jpg" alt="" class="brand-logo" loading="lazy">
                     </div>
@@ -215,27 +194,12 @@
             
             <!-- Filters Content -->
             <div class="filters-scrollable">
-                <!-- User Section -->
-                <div class="filter-section user-section">
-                    <div class="user-info-sidebar">
-                        <i class="fas fa-user-circle"></i>
-                        <span>Mi Cuenta</span>
-                    </div>
-                    <ul class="filter-list">
-                        <li><a href="#" class="filter-link"><i class="fas fa-cog"></i> Actualizar datos</a></li>
-                        <li><a href="#" class="filter-link"><i class="fas fa-heart"></i> Mis favoritos</a></li>
-                        <li><a href="https://wa.me/595992544305" target="_blank" class="filter-link"><i class="fab fa-whatsapp"></i> Soporte WhatsApp</a></li>
-                        <li><a href="https://www.instagram.com/axt_alegre09" target="_blank" class="filter-link"><i class="fab fa-instagram"></i> Instagram</a></li>
-                        <li><a href="#" class="filter-link logout-link"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
-                    </ul>
-                </div>
-
                 <!-- Specials Filter -->
                 <div class="filter-section">
                     <h3 class="filter-section-title">
                         <i class="fas fa-star" aria-hidden="true"></i> Especiales
                     </h3>
-                    <ul class="filter-list" role="listbox" aria-label="Filtrar por especiales">
+                    <ul class="filter-list" role="listbox">
                         <li><a href="#" class="filter-link" data-special="sale" role="option">Sale <span class="filter-count">18</span></a></li>
                         <li><a href="#" class="filter-link" data-special="new" role="option">Nuevos <span class="filter-count">5</span></a></li>
                         <li><a href="#" class="filter-link" data-special="outlet" role="option">Outlet <span class="filter-count">12</span></a></li>
@@ -247,7 +211,7 @@
                     <h3 class="filter-section-title">
                         <i class="fas fa-users" aria-hidden="true"></i> Género
                     </h3>
-                    <ul class="filter-list" role="listbox" aria-label="Filtrar por género">
+                    <ul class="filter-list" role="listbox">
                         <li><a href="#" class="filter-link" data-gender="caballeros" role="option">Caballeros <span class="filter-count">24</span></a></li>
                         <li><a href="#" class="filter-link" data-gender="damas" role="option">Damas <span class="filter-count">16</span></a></li>
                         <li><a href="#" class="filter-link" data-gender="ninos" role="option">Niños <span class="filter-count">8</span></a></li>
@@ -257,10 +221,55 @@
                 <!-- Discount Checkbox -->
                 <div class="filter-section">
                     <label class="filter-checkbox-label">
-                        <input type="checkbox" id="withDiscount" aria-describedby="discount-count">
+                        <input type="checkbox" id="withDiscount">
                         <span>Con Descuento</span>
-                        <span class="filter-count" id="discount-count">18</span>
+                        <span class="filter-count">18</span>
                     </label>
+                </div>
+
+                <!-- User Section (Accordion) - AL FINAL -->
+                <div class="filter-section user-section-accordion">
+                    <button class="user-accordion-toggle" id="userAccordionToggle" aria-expanded="false">
+                        <div class="user-accordion-header">
+                            <i class="fas fa-user-circle"></i>
+                            <span>Mi Cuenta</span>
+                        </div>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </button>
+                    <div class="user-accordion-content" id="userAccordionContent">
+                        <ul class="user-menu-list">
+                            <li>
+                                <a href="#" class="user-menu-link">
+                                    <i class="fas fa-cog"></i>
+                                    <span>Actualizar datos</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="user-menu-link">
+                                    <i class="fas fa-heart"></i>
+                                    <span>Mis favoritos</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://wa.me/595992544305" target="_blank" class="user-menu-link">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <span>Soporte WhatsApp</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/axt_alegre09" target="_blank" class="user-menu-link">
+                                    <i class="fab fa-instagram"></i>
+                                    <span>Instagram</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="user-menu-link logout-link">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>Cerrar sesión</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </aside>
@@ -289,20 +298,18 @@
             <!-- Products Scroll Container -->
             <div class="products-scroll-container">
                 <!-- Products Grid -->
-                <div class="products-grid-bristol" id="productsGrid" role="list" aria-label="Lista de productos">
+                <div class="products-grid-bristol" id="productsGrid" role="list">
                 
-                <!-- Product 1 - Deportivo -->
+                <!-- Product 1 -->
                 <article class="product-card-bristol" data-id="casio-efr539" data-brand="casio" data-gender="caballeros" data-category="deportivos" data-price="890000" role="listitem">
                     <span class="product-badge-bristol sale">-25%</span>
-                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
-                        <i class="far fa-heart" aria-hidden="true"></i>
+                    <button class="wishlist-btn-bristol">
+                        <i class="far fa-heart"></i>
                     </button>
                     <div class="product-image-bristol">
                         <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400" 
                              alt="Reloj Casio Edifice EFR-539"
-                             loading="lazy"
-                             width="400"
-                             height="400">
+                             loading="lazy">
                     </div>
                     <div class="product-info-bristol">
                         <span class="product-brand-bristol">Casio</span>
@@ -311,24 +318,22 @@
                             <span class="price-current-bristol">₲ 890.000</span>
                             <span class="price-original-bristol">₲ 1.190.000</span>
                         </div>
-                        <button class="btn-add-cart-bristol" aria-label="Agregar al carrito">
-                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
+                        <button class="btn-add-cart-bristol">
+                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
                         </button>
                     </div>
                 </article>
 
-                <!-- Product 2 - Elegante -->
+                <!-- Product 2 -->
                 <article class="product-card-bristol" data-id="qyq-elegant" data-brand="qyq" data-gender="damas" data-category="elegantes" data-price="450000" role="listitem">
                     <span class="product-badge-bristol new">Nuevo</span>
-                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
-                        <i class="far fa-heart" aria-hidden="true"></i>
+                    <button class="wishlist-btn-bristol">
+                        <i class="far fa-heart"></i>
                     </button>
                     <div class="product-image-bristol">
                         <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400" 
                              alt="Reloj QyQ Elegant"
-                             loading="lazy"
-                             width="400"
-                             height="400">
+                             loading="lazy">
                     </div>
                     <div class="product-info-bristol">
                         <span class="product-brand-bristol">QyQ</span>
@@ -336,23 +341,21 @@
                         <div class="product-price-bristol">
                             <span class="price-current-bristol">₲ 450.000</span>
                         </div>
-                        <button class="btn-add-cart-bristol" aria-label="Agregar al carrito">
-                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
+                        <button class="btn-add-cart-bristol">
+                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
                         </button>
                     </div>
                 </article>
 
-                <!-- Product 3 - Digital -->
+                <!-- Product 3 -->
                 <article class="product-card-bristol" data-id="skmei-deportivo" data-brand="skmei" data-gender="caballeros" data-category="digitales" data-price="180000" role="listitem">
-                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
-                        <i class="far fa-heart" aria-hidden="true"></i>
+                    <button class="wishlist-btn-bristol">
+                        <i class="far fa-heart"></i>
                     </button>
                     <div class="product-image-bristol">
                         <img src="https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=400" 
                              alt="Reloj Skmei Digital"
-                             loading="lazy"
-                             width="400"
-                             height="400">
+                             loading="lazy">
                     </div>
                     <div class="product-info-bristol">
                         <span class="product-brand-bristol">Skmei</span>
@@ -360,24 +363,22 @@
                         <div class="product-price-bristol">
                             <span class="price-current-bristol">₲ 180.000</span>
                         </div>
-                        <button class="btn-add-cart-bristol" aria-label="Agregar al carrito">
-                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
+                        <button class="btn-add-cart-bristol">
+                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
                         </button>
                     </div>
                 </article>
 
-                <!-- Product 4 - Infantil -->
+                <!-- Product 4 -->
                 <article class="product-card-bristol" data-id="aqua-infantil" data-brand="aqua" data-gender="ninos" data-category="deportivos" data-price="120000" role="listitem">
                     <span class="product-badge-bristol sale">-15%</span>
-                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
-                        <i class="far fa-heart" aria-hidden="true"></i>
+                    <button class="wishlist-btn-bristol">
+                        <i class="far fa-heart"></i>
                     </button>
                     <div class="product-image-bristol">
                         <img src="https://images.unsplash.com/photo-1594534475808-b18fc33b045e?w=400" 
                              alt="Reloj Aqua Infantil"
-                             loading="lazy"
-                             width="400"
-                             height="400">
+                             loading="lazy">
                     </div>
                     <div class="product-info-bristol">
                         <span class="product-brand-bristol">Aqua</span>
@@ -386,23 +387,21 @@
                             <span class="price-current-bristol">₲ 120.000</span>
                             <span class="price-original-bristol">₲ 140.000</span>
                         </div>
-                        <button class="btn-add-cart-bristol" aria-label="Agregar al carrito">
-                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
+                        <button class="btn-add-cart-bristol">
+                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
                         </button>
                     </div>
                 </article>
 
-                <!-- Product 5 - Clásico -->
+                <!-- Product 5 -->
                 <article class="product-card-bristol" data-id="casio-she3059" data-brand="casio" data-gender="damas" data-category="clasicos" data-price="780000" role="listitem">
-                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
-                        <i class="far fa-heart" aria-hidden="true"></i>
+                    <button class="wishlist-btn-bristol">
+                        <i class="far fa-heart"></i>
                     </button>
                     <div class="product-image-bristol">
                         <img src="https://images.unsplash.com/photo-1539874754764-5a96559165b0?w=400" 
                              alt="Reloj Casio Sheen"
-                             loading="lazy"
-                             width="400"
-                             height="400">
+                             loading="lazy">
                     </div>
                     <div class="product-info-bristol">
                         <span class="product-brand-bristol">Casio</span>
@@ -410,24 +409,22 @@
                         <div class="product-price-bristol">
                             <span class="price-current-bristol">₲ 780.000</span>
                         </div>
-                        <button class="btn-add-cart-bristol" aria-label="Agregar al carrito">
-                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
+                        <button class="btn-add-cart-bristol">
+                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
                         </button>
                     </div>
                 </article>
 
-                <!-- Product 6 - Clásico Minimalista -->
+                <!-- Product 6 -->
                 <article class="product-card-bristol" data-id="generico-minimalista" data-brand="genericos" data-gender="caballeros" data-category="clasicos" data-price="85000" role="listitem">
                     <span class="product-badge-bristol new">Nuevo</span>
-                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
-                        <i class="far fa-heart" aria-hidden="true"></i>
+                    <button class="wishlist-btn-bristol">
+                        <i class="far fa-heart"></i>
                     </button>
                     <div class="product-image-bristol">
                         <img src="https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400" 
                              alt="Reloj Clásico Minimalista"
-                             loading="lazy"
-                             width="400"
-                             height="400">
+                             loading="lazy">
                     </div>
                     <div class="product-info-bristol">
                         <span class="product-brand-bristol">Genéricos</span>
@@ -435,23 +432,21 @@
                         <div class="product-price-bristol">
                             <span class="price-current-bristol">₲ 85.000</span>
                         </div>
-                        <button class="btn-add-cart-bristol" aria-label="Agregar al carrito">
-                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
+                        <button class="btn-add-cart-bristol">
+                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
                         </button>
                     </div>
                 </article>
 
-                <!-- Product 7 - Elegante Damas -->
+                <!-- Product 7 -->
                 <article class="product-card-bristol" data-id="skmei-elegante" data-brand="skmei" data-gender="damas" data-category="elegantes" data-price="220000" role="listitem">
-                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
-                        <i class="far fa-heart" aria-hidden="true"></i>
+                    <button class="wishlist-btn-bristol">
+                        <i class="far fa-heart"></i>
                     </button>
                     <div class="product-image-bristol">
                         <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400" 
                              alt="Reloj Skmei Elegante"
-                             loading="lazy"
-                             width="400"
-                             height="400">
+                             loading="lazy">
                     </div>
                     <div class="product-info-bristol">
                         <span class="product-brand-bristol">Skmei</span>
@@ -459,24 +454,22 @@
                         <div class="product-price-bristol">
                             <span class="price-current-bristol">₲ 220.000</span>
                         </div>
-                        <button class="btn-add-cart-bristol" aria-label="Agregar al carrito">
-                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
+                        <button class="btn-add-cart-bristol">
+                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
                         </button>
                     </div>
                 </article>
 
-                <!-- Product 8 - Deportivo QyQ -->
+                <!-- Product 8 -->
                 <article class="product-card-bristol" data-id="qyq-sport" data-brand="qyq" data-gender="caballeros" data-category="deportivos" data-price="320000" role="listitem">
                     <span class="product-badge-bristol sale">-20%</span>
-                    <button class="wishlist-btn-bristol" aria-label="Agregar a favoritos">
-                        <i class="far fa-heart" aria-hidden="true"></i>
+                    <button class="wishlist-btn-bristol">
+                        <i class="far fa-heart"></i>
                     </button>
                     <div class="product-image-bristol">
                         <img src="https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=400" 
                              alt="Reloj QyQ Sport"
-                             loading="lazy"
-                             width="400"
-                             height="400">
+                             loading="lazy">
                     </div>
                     <div class="product-info-bristol">
                         <span class="product-brand-bristol">QyQ</span>
@@ -485,8 +478,8 @@
                             <span class="price-current-bristol">₲ 320.000</span>
                             <span class="price-original-bristol">₲ 400.000</span>
                         </div>
-                        <button class="btn-add-cart-bristol" aria-label="Agregar al carrito">
-                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito
+                        <button class="btn-add-cart-bristol">
+                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
                         </button>
                     </div>
                 </article>
@@ -497,50 +490,37 @@
                 <footer class="footer" role="contentinfo">
                     <div class="container">
                         <div class="footer-content">
-                            <!-- About Section -->
                             <div class="footer-section">
                                 <h4>JA Electrónica</h4>
-                                <p>Tu tienda de confianza para relojes y electrónica premium. Calidad garantizada en cada producto.</p>
+                                <p>Tu tienda de confianza para relojes y electrónica premium.</p>
                                 <div class="social-links">
-                                    <a href="#" aria-label="Facebook" title="Facebook">
-                                        <i class="fab fa-facebook"></i>
-                                    </a>
-                                    <a href="https://www.instagram.com/axt_alegre09" target="_blank" aria-label="Instagram" title="Instagram">
-                                        <i class="fab fa-instagram"></i>
-                                    </a>
-                                    <a href="https://wa.me/595992544305" target="_blank" aria-label="WhatsApp" title="WhatsApp">
-                                        <i class="fab fa-whatsapp"></i>
-                                    </a>
+                                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                                    <a href="https://www.instagram.com/axt_alegre09" target="_blank"><i class="fab fa-instagram"></i></a>
+                                    <a href="https://wa.me/595992544305" target="_blank"><i class="fab fa-whatsapp"></i></a>
                                 </div>
                             </div>
 
-                            <!-- Products -->
                             <div class="footer-section">
                                 <h4>Información</h4>
                                 <ul>
                                     <li><a href="#">Sobre Nosotros</a></li>
-                                    <li><a href="#">Envíos y Entrega</a></li>
+                                    <li><a href="#">Envíos</a></li>
                                     <li><a href="#">Garantía</a></li>
-                                    <li><a href="#">Devoluciones</a></li>
                                 </ul>
                             </div>
 
-                            <!-- Location -->
                             <div class="footer-section">
                                 <h4>Ubicación</h4>
-                                <p><i class="fas fa-map-marker-alt"></i> Galería San Miguel, 9 De Marzo<br>Asunción, Paraguay</p>
-                                <p><i class="fas fa-phone"></i> <a href="https://wa.me/595992544305" style="color: inherit; text-decoration: none;">+595 992 544 305</a></p>
-                                <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/axt_alegre09" target="_blank" style="color: inherit; text-decoration: none;">@axt_alegre09</a></p>
+                                <p><i class="fas fa-map-marker-alt"></i> Galería San Miguel, 9 De Marzo<br>Asunción 001224, Paraguay</p>
+                                <p><i class="fas fa-phone"></i> +595 992 544 305</p>
                             </div>
 
-                            <!-- Help -->
                             <div class="footer-section">
                                 <h4>Ayuda</h4>
                                 <ul>
-                                    <li><a href="#">Términos y Condiciones</a></li>
-                                    <li><a href="#">Política de Privacidad</a></li>
-                                    <li><a href="#">Preguntas Frecuentes</a></li>
-                                    <li><a href="https://wa.me/595992544305" target="_blank">Soporte WhatsApp</a></li>
+                                    <li><a href="#">Términos</a></li>
+                                    <li><a href="#">Privacidad</a></li>
+                                    <li><a href="https://wa.me/595992544305" target="_blank">Soporte</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -554,15 +534,102 @@
         </main>
     </div>
 
+    <!-- ========== LOCATION MODAL ========== -->
+    <div class="location-modal" id="locationModal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="location-modal-content">
+            <button class="location-close-btn" id="locationCloseBtn">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="location-header">
+                <div class="location-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h2>Nuestra Ubicación</h2>
+                <p>Visítanos en Asunción</p>
+            </div>
+            
+            <div class="location-body">
+                <div class="location-map">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d921.3727453722994!2d-57.58528243044434!3d-25.296282999102952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x945da5cfe7f6d88b%3A0x9e8c1b2d4e5f6c7a!2sGaleria%20San%20Miguel!5e0!3m2!1ses!2spy!4v1234567890"
+                        width="100%" 
+                        height="300" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                
+                <div class="location-details">
+                    <div class="location-item">
+                        <div class="location-item-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="location-item-content">
+                            <h4>Dirección</h4>
+                            <p>Galería San Miguel, 9 De Marzo</p>
+                            <p>Asunción 001224, Paraguay</p>
+                        </div>
+                    </div>
+                    
+                    <div class="location-item">
+                        <div class="location-item-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="location-item-content">
+                            <h4>Horario</h4>
+                            <p>Lunes a Sábado: 8:00 - 18:00</p>
+                            <p class="text-muted">Domingos: Cerrado</p>
+                        </div>
+                    </div>
+                    
+                    <div class="location-item">
+                        <div class="location-item-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="location-item-content">
+                            <h4>WhatsApp</h4>
+                            <a href="https://wa.me/595992544305" target="_blank" class="location-link">
+                                +595 992 544 305
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="location-item">
+                        <div class="location-item-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="location-item-content">
+                            <h4>Instagram</h4>
+                            <a href="https://www.instagram.com/axt_alegre09" target="_blank" class="location-link">
+                                @axt_alegre09
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="location-actions">
+                    <a href="https://wa.me/595992544305?text=Hola!%20Quiero%20saber%20la%20ubicación" target="_blank" class="btn-primary btn-block">
+                        <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Galeria+San+Miguel+9+De+Marzo+Asuncion" target="_blank" class="btn-secondary btn-block">
+                        <i class="fas fa-directions"></i> Ver en Google Maps
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ========== CART MODAL ========== -->
-    <div class="cart-modal" id="cartModal" role="dialog" aria-labelledby="cartModalTitle" aria-modal="true" aria-hidden="true">
+    <div class="cart-modal" id="cartModal" role="dialog" aria-modal="true" aria-hidden="true">
         <div class="cart-modal-content">
             <div class="cart-modal-header">
                 <h2 id="cartModalTitle">
                     Mi Carrito 
                     <span class="cart-count-badge" id="cartCountBadge">0</span>
                 </h2>
-                <button class="cart-close-btn" id="cartCloseBtn" aria-label="Cerrar carrito">
+                <button class="cart-close-btn" id="cartCloseBtn">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -571,7 +638,7 @@
                 <div class="cart-empty">
                     <i class="fas fa-shopping-cart"></i>
                     <p>Tu carrito está vacío</p>
-                    <a href="index-extended.html" class="btn-primary btn-block">Seguir Comprando</a>
+                    <a href="index.html" class="btn-primary btn-block">Seguir Comprando</a>
                 </div>
             </div>
             
@@ -582,23 +649,23 @@
                 </div>
                 <div class="cart-actions">
                     <a href="checkout.html" class="btn-primary btn-block">Finalizar Pedido</a>
-                    <a href="index-extended.html" class="btn-secondary btn-block">Seguir Comprando</a>
+                    <a href="index.html" class="btn-secondary btn-block">Seguir Comprando</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- ========== NEWSLETTER POPUP ========== -->
-    <div class="newsletter-popup-overlay" id="newsletterPopup" role="dialog" aria-labelledby="newsletterTitle" aria-modal="true" aria-hidden="true">
+    <div class="newsletter-popup-overlay" id="newsletterPopup" role="dialog" aria-modal="true" aria-hidden="true">
         <div class="newsletter-popup-container">
-            <button class="newsletter-close-btn" id="closeNewsletterPopup" aria-label="Cerrar">
+            <button class="newsletter-close-btn" id="closeNewsletterPopup">
                 <i class="fas fa-times"></i>
             </button>
             <div class="newsletter-popup-content">
                 <div class="newsletter-popup-icon">
                     <i class="fas fa-envelope"></i>
                 </div>
-                <h3 class="newsletter-popup-title" id="newsletterTitle">¡Recibe Ofertas Exclusivas!</h3>
+                <h3 class="newsletter-popup-title">¡Recibe Ofertas Exclusivas!</h3>
                 <p class="newsletter-popup-description">
                     Suscríbete y obtén un <strong>10% de descuento</strong> en tu primera compra.
                 </p>
@@ -609,16 +676,14 @@
                                class="newsletter-input" 
                                id="newsletterEmail" 
                                placeholder="Tu correo electrónico"
-                               required
-                               autocomplete="email">
+                               required>
                     </div>
                     <div class="newsletter-input-group">
                         <i class="fab fa-whatsapp newsletter-input-icon" style="color:#25D366"></i>
                         <input type="tel" 
                                class="newsletter-input" 
                                id="newsletterWhatsapp" 
-                               placeholder="WhatsApp (opcional)"
-                               autocomplete="tel">
+                               placeholder="WhatsApp (opcional)">
                     </div>
                     <button type="submit" class="newsletter-submit-btn">
                         <span>Suscribirme</span>
