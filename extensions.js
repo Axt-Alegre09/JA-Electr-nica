@@ -312,14 +312,6 @@
             }
             
             Utils.notify(`Mostrando ${this.categoryNames[category]}`, 'info');
-            
-            // Scroll to products
-            const productsGrid = Utils.$('#productsGrid');
-            if (productsGrid && Utils.isMobile()) {
-                setTimeout(() => {
-                    productsGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 300);
-            }
         }
     }
 
@@ -370,14 +362,6 @@
             
             const cardName = card.querySelector('.brand-name')?.textContent || this.brandNames[brand];
             Utils.notify(`Mostrando productos ${cardName}`, 'info');
-            
-            // Scroll to products
-            const productsGrid = Utils.$('#productsGrid');
-            if (productsGrid && Utils.isMobile()) {
-                setTimeout(() => {
-                    productsGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 300);
-            }
         }
     }
 

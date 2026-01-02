@@ -307,6 +307,13 @@
     transform: translateY(100%);
     transition: transform 0.3s ease;
     box-shadow: var(--shadow-xl);
+    /* Ocultar scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.location-modal-content::-webkit-scrollbar {
+    display: none;
 }
 
 .location-modal.active .location-modal-content {
