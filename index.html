@@ -1,34 +1,38 @@
 <!DOCTYPE html>
 <html lang="es" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="JA Electrónica - Tu tienda de confianza para relojes y tecnología. Casio, QyQ, Skmei y Aqua. Calidad garantizada en Paraguay.">
+    <meta name="description"
+        content="JA Electrónica - Tu tienda de confianza para relojes y tecnología. Casio, QyQ, Skmei y Aqua. Calidad garantizada en Paraguay.">
     <meta name="keywords" content="relojes, Casio, QyQ, Skmei, Aqua, tecnología, electrónica, Paraguay">
     <meta name="author" content="JA Electrónica">
     <meta name="theme-color" content="#2563eb">
-    
+
     <title>JA Electrónica - Relojes y Tecnología Premium</title>
-    
+
     <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="manifest" href="/manifest.json">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="logo.png">
-    
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="extensions.css">
-    
+    <link rel="stylesheet" href="user-panels.css">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <!-- Skip Link for Accessibility -->
     <a href="#main-content" class="sr-only">Saltar al contenido principal</a>
@@ -54,11 +58,8 @@
             <!-- Search -->
             <div class="search-container" role="search">
                 <i class="fas fa-search search-icon" aria-hidden="true"></i>
-                <input type="search" 
-                       placeholder="Buscar productos..." 
-                       id="mainSearch" 
-                       aria-label="Buscar productos"
-                       autocomplete="off">
+                <input type="search" placeholder="Buscar productos..." id="mainSearch" aria-label="Buscar productos"
+                    autocomplete="off">
             </div>
 
             <!-- Header Icons -->
@@ -67,9 +68,10 @@
                 <a href="index.html" class="icon-btn" title="Inicio" aria-label="Ir a inicio">
                     <i class="fas fa-home" aria-hidden="true"></i>
                 </a>
-                
+
                 <!-- Theme Toggle -->
-                <button class="icon-btn theme-toggle" id="themeToggle" title="Cambiar tema" aria-label="Cambiar tema claro/oscuro">
+                <button class="icon-btn theme-toggle" id="themeToggle" title="Cambiar tema"
+                    aria-label="Cambiar tema claro/oscuro">
                     <i class="fas fa-moon" aria-hidden="true"></i>
                 </button>
 
@@ -85,8 +87,7 @@
     <!-- ========== MOBILE LOGO BANNER ========== -->
     <div class="mobile-logo-banner" aria-hidden="true">
         <div class="logo-container">
-            <img src="logo.png" alt="JA Electrónica" width="42" height="42"
-                onerror="this.style.display='none';">
+            <img src="logo.png" alt="JA Electrónica" width="42" height="42" onerror="this.style.display='none';">
             <span class="logo-text">Electrónica</span>
         </div>
     </div>
@@ -183,7 +184,8 @@
     <!-- ========== MAIN LAYOUT ========== -->
     <div class="main-layout">
         <!-- ========== SIDEBAR FILTERS ========== -->
-        <aside class="filters-sidebar-bristol" id="filtersSidebar" role="complementary" aria-label="Filtros de productos">
+        <aside class="filters-sidebar-bristol" id="filtersSidebar" role="complementary"
+            aria-label="Filtros de productos">
             <!-- Sidebar Header (Mobile) -->
             <div class="sidebar-header">
                 <div class="sidebar-logo-container">
@@ -192,7 +194,7 @@
                     <span class="sidebar-brand-text" style="display:none;">JA</span>
                 </div>
             </div>
-            
+
             <!-- Filters Content -->
             <div class="filters-scrollable">
                 <!-- Specials Filter -->
@@ -201,9 +203,12 @@
                         <i class="fas fa-star" aria-hidden="true"></i> Especiales
                     </h3>
                     <ul class="filter-list" role="listbox">
-                        <li><a href="#" class="filter-link" data-special="sale" role="option">Sale <span class="filter-count">18</span></a></li>
-                        <li><a href="#" class="filter-link" data-special="new" role="option">Nuevos <span class="filter-count">5</span></a></li>
-                        <li><a href="#" class="filter-link" data-special="outlet" role="option">Outlet <span class="filter-count">12</span></a></li>
+                        <li><a href="#" class="filter-link" data-special="sale" role="option">Sale <span
+                                    class="filter-count">18</span></a></li>
+                        <li><a href="#" class="filter-link" data-special="new" role="option">Nuevos <span
+                                    class="filter-count">5</span></a></li>
+                        <li><a href="#" class="filter-link" data-special="outlet" role="option">Outlet <span
+                                    class="filter-count">12</span></a></li>
                     </ul>
                 </div>
 
@@ -213,9 +218,12 @@
                         <i class="fas fa-users" aria-hidden="true"></i> Género
                     </h3>
                     <ul class="filter-list" role="listbox">
-                        <li><a href="#" class="filter-link" data-gender="caballeros" role="option">Caballeros <span class="filter-count">24</span></a></li>
-                        <li><a href="#" class="filter-link" data-gender="damas" role="option">Damas <span class="filter-count">16</span></a></li>
-                        <li><a href="#" class="filter-link" data-gender="ninos" role="option">Niños <span class="filter-count">8</span></a></li>
+                        <li><a href="#" class="filter-link" data-gender="caballeros" role="option">Caballeros <span
+                                    class="filter-count">24</span></a></li>
+                        <li><a href="#" class="filter-link" data-gender="damas" role="option">Damas <span
+                                    class="filter-count">16</span></a></li>
+                        <li><a href="#" class="filter-link" data-gender="ninos" role="option">Niños <span
+                                    class="filter-count">8</span></a></li>
                     </ul>
                 </div>
 
@@ -228,7 +236,7 @@
                     </label>
                 </div>
 
-                <!-- User Section (Accordion) - AL FINAL -->
+                <!-- User Section (Accordion) -->
                 <div class="filter-section user-section-accordion">
                     <button class="user-accordion-toggle" id="userAccordionToggle" aria-expanded="false">
                         <div class="user-accordion-header">
@@ -240,13 +248,13 @@
                     <div class="user-accordion-content" id="userAccordionContent">
                         <ul class="user-menu-list">
                             <li>
-                                <a href="#" class="user-menu-link">
+                                <a href="#" class="user-menu-link" data-panel="datos">
                                     <i class="fas fa-cog"></i>
-                                    <span>Actualizar datos</span>
+                                    <span>Mis datos</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="user-menu-link">
+                                <a href="#" class="user-menu-link" data-panel="favoritos">
                                     <i class="fas fa-heart"></i>
                                     <span>Mis favoritos</span>
                                 </a>
@@ -300,190 +308,190 @@
             <div class="products-scroll-container">
                 <!-- Products Grid -->
                 <div class="products-grid-bristol" id="productsGrid" role="list">
-                
-                <!-- Product 1 -->
-                <article class="product-card-bristol" data-id="casio-efr539" data-brand="casio" data-gender="caballeros" data-category="deportivos" data-price="890000" role="listitem">
-                    <span class="product-badge-bristol sale">-25%</span>
-                    <button class="wishlist-btn-bristol">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400" 
-                             alt="Reloj Casio Edifice EFR-539"
-                             loading="lazy">
-                    </div>
-                    <div class="product-info-bristol">
-                        <span class="product-brand-bristol">Casio</span>
-                        <h2 class="product-title-bristol">Reloj Casio Edifice EFR-539</h2>
-                        <div class="product-price-bristol">
-                            <span class="price-current-bristol">₲ 890.000</span>
-                            <span class="price-original-bristol">₲ 1.190.000</span>
-                        </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
-                        </button>
-                    </div>
-                </article>
 
-                <!-- Product 2 -->
-                <article class="product-card-bristol" data-id="qyq-elegant" data-brand="qyq" data-gender="damas" data-category="elegantes" data-price="450000" role="listitem">
-                    <span class="product-badge-bristol new">Nuevo</span>
-                    <button class="wishlist-btn-bristol">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400" 
-                             alt="Reloj QyQ Elegant"
-                             loading="lazy">
-                    </div>
-                    <div class="product-info-bristol">
-                        <span class="product-brand-bristol">QyQ</span>
-                        <h2 class="product-title-bristol">Reloj QyQ Elegant Damas</h2>
-                        <div class="product-price-bristol">
-                            <span class="price-current-bristol">₲ 450.000</span>
-                        </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                    <!-- Product 1 -->
+                    <article class="product-card-bristol" data-id="casio-efr539" data-brand="casio"
+                        data-gender="caballeros" data-category="deportivos" data-price="890000" role="listitem">
+                        <span class="product-badge-bristol sale">-25%</span>
+                        <button class="wishlist-btn-bristol">
+                            <i class="far fa-heart"></i>
                         </button>
-                    </div>
-                </article>
+                        <div class="product-image-bristol">
+                            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400"
+                                alt="Reloj Casio Edifice EFR-539" loading="lazy">
+                        </div>
+                        <div class="product-info-bristol">
+                            <span class="product-brand-bristol">Casio</span>
+                            <h2 class="product-title-bristol">Reloj Casio Edifice EFR-539</h2>
+                            <div class="product-price-bristol">
+                                <span class="price-current-bristol">₲ 890.000</span>
+                                <span class="price-original-bristol">₲ 1.190.000</span>
+                            </div>
+                            <button class="btn-add-cart-bristol">
+                                <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                            </button>
+                        </div>
+                    </article>
 
-                <!-- Product 3 -->
-                <article class="product-card-bristol" data-id="skmei-deportivo" data-brand="skmei" data-gender="caballeros" data-category="digitales" data-price="180000" role="listitem">
-                    <button class="wishlist-btn-bristol">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=400" 
-                             alt="Reloj Skmei Digital"
-                             loading="lazy">
-                    </div>
-                    <div class="product-info-bristol">
-                        <span class="product-brand-bristol">Skmei</span>
-                        <h2 class="product-title-bristol">Reloj Skmei Deportivo Digital</h2>
-                        <div class="product-price-bristol">
-                            <span class="price-current-bristol">₲ 180.000</span>
-                        </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                    <!-- Product 2 -->
+                    <article class="product-card-bristol" data-id="qyq-elegant" data-brand="qyq" data-gender="damas"
+                        data-category="elegantes" data-price="450000" role="listitem">
+                        <span class="product-badge-bristol new">Nuevo</span>
+                        <button class="wishlist-btn-bristol">
+                            <i class="far fa-heart"></i>
                         </button>
-                    </div>
-                </article>
+                        <div class="product-image-bristol">
+                            <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400"
+                                alt="Reloj QyQ Elegant" loading="lazy">
+                        </div>
+                        <div class="product-info-bristol">
+                            <span class="product-brand-bristol">QyQ</span>
+                            <h2 class="product-title-bristol">Reloj QyQ Elegant Damas</h2>
+                            <div class="product-price-bristol">
+                                <span class="price-current-bristol">₲ 450.000</span>
+                            </div>
+                            <button class="btn-add-cart-bristol">
+                                <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                            </button>
+                        </div>
+                    </article>
 
-                <!-- Product 4 -->
-                <article class="product-card-bristol" data-id="aqua-infantil" data-brand="aqua" data-gender="ninos" data-category="deportivos" data-price="120000" role="listitem">
-                    <span class="product-badge-bristol sale">-15%</span>
-                    <button class="wishlist-btn-bristol">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1594534475808-b18fc33b045e?w=400" 
-                             alt="Reloj Aqua Infantil"
-                             loading="lazy">
-                    </div>
-                    <div class="product-info-bristol">
-                        <span class="product-brand-bristol">Aqua</span>
-                        <h2 class="product-title-bristol">Reloj Aqua Infantil Resistente</h2>
-                        <div class="product-price-bristol">
-                            <span class="price-current-bristol">₲ 120.000</span>
-                            <span class="price-original-bristol">₲ 140.000</span>
-                        </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                    <!-- Product 3 -->
+                    <article class="product-card-bristol" data-id="skmei-deportivo" data-brand="skmei"
+                        data-gender="caballeros" data-category="digitales" data-price="180000" role="listitem">
+                        <button class="wishlist-btn-bristol">
+                            <i class="far fa-heart"></i>
                         </button>
-                    </div>
-                </article>
+                        <div class="product-image-bristol">
+                            <img src="https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=400"
+                                alt="Reloj Skmei Digital" loading="lazy">
+                        </div>
+                        <div class="product-info-bristol">
+                            <span class="product-brand-bristol">Skmei</span>
+                            <h2 class="product-title-bristol">Reloj Skmei Deportivo Digital</h2>
+                            <div class="product-price-bristol">
+                                <span class="price-current-bristol">₲ 180.000</span>
+                            </div>
+                            <button class="btn-add-cart-bristol">
+                                <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                            </button>
+                        </div>
+                    </article>
 
-                <!-- Product 5 -->
-                <article class="product-card-bristol" data-id="casio-she3059" data-brand="casio" data-gender="damas" data-category="clasicos" data-price="780000" role="listitem">
-                    <button class="wishlist-btn-bristol">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1539874754764-5a96559165b0?w=400" 
-                             alt="Reloj Casio Sheen"
-                             loading="lazy">
-                    </div>
-                    <div class="product-info-bristol">
-                        <span class="product-brand-bristol">Casio</span>
-                        <h2 class="product-title-bristol">Reloj Casio Sheen SHE-3059</h2>
-                        <div class="product-price-bristol">
-                            <span class="price-current-bristol">₲ 780.000</span>
-                        </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                    <!-- Product 4 -->
+                    <article class="product-card-bristol" data-id="aqua-infantil" data-brand="aqua" data-gender="ninos"
+                        data-category="deportivos" data-price="120000" role="listitem">
+                        <span class="product-badge-bristol sale">-15%</span>
+                        <button class="wishlist-btn-bristol">
+                            <i class="far fa-heart"></i>
                         </button>
-                    </div>
-                </article>
+                        <div class="product-image-bristol">
+                            <img src="https://images.unsplash.com/photo-1594534475808-b18fc33b045e?w=400"
+                                alt="Reloj Aqua Infantil" loading="lazy">
+                        </div>
+                        <div class="product-info-bristol">
+                            <span class="product-brand-bristol">Aqua</span>
+                            <h2 class="product-title-bristol">Reloj Aqua Infantil Resistente</h2>
+                            <div class="product-price-bristol">
+                                <span class="price-current-bristol">₲ 120.000</span>
+                                <span class="price-original-bristol">₲ 140.000</span>
+                            </div>
+                            <button class="btn-add-cart-bristol">
+                                <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                            </button>
+                        </div>
+                    </article>
 
-                <!-- Product 6 -->
-                <article class="product-card-bristol" data-id="generico-minimalista" data-brand="genericos" data-gender="caballeros" data-category="clasicos" data-price="85000" role="listitem">
-                    <span class="product-badge-bristol new">Nuevo</span>
-                    <button class="wishlist-btn-bristol">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400" 
-                             alt="Reloj Clásico Minimalista"
-                             loading="lazy">
-                    </div>
-                    <div class="product-info-bristol">
-                        <span class="product-brand-bristol">Genéricos</span>
-                        <h2 class="product-title-bristol">Reloj Clásico Minimalista</h2>
-                        <div class="product-price-bristol">
-                            <span class="price-current-bristol">₲ 85.000</span>
-                        </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                    <!-- Product 5 -->
+                    <article class="product-card-bristol" data-id="casio-she3059" data-brand="casio" data-gender="damas"
+                        data-category="clasicos" data-price="780000" role="listitem">
+                        <button class="wishlist-btn-bristol">
+                            <i class="far fa-heart"></i>
                         </button>
-                    </div>
-                </article>
+                        <div class="product-image-bristol">
+                            <img src="https://images.unsplash.com/photo-1539874754764-5a96559165b0?w=400"
+                                alt="Reloj Casio Sheen" loading="lazy">
+                        </div>
+                        <div class="product-info-bristol">
+                            <span class="product-brand-bristol">Casio</span>
+                            <h2 class="product-title-bristol">Reloj Casio Sheen SHE-3059</h2>
+                            <div class="product-price-bristol">
+                                <span class="price-current-bristol">₲ 780.000</span>
+                            </div>
+                            <button class="btn-add-cart-bristol">
+                                <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                            </button>
+                        </div>
+                    </article>
 
-                <!-- Product 7 -->
-                <article class="product-card-bristol" data-id="skmei-elegante" data-brand="skmei" data-gender="damas" data-category="elegantes" data-price="220000" role="listitem">
-                    <button class="wishlist-btn-bristol">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400" 
-                             alt="Reloj Skmei Elegante"
-                             loading="lazy">
-                    </div>
-                    <div class="product-info-bristol">
-                        <span class="product-brand-bristol">Skmei</span>
-                        <h2 class="product-title-bristol">Reloj Skmei Elegante Damas</h2>
-                        <div class="product-price-bristol">
-                            <span class="price-current-bristol">₲ 220.000</span>
-                        </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                    <!-- Product 6 -->
+                    <article class="product-card-bristol" data-id="generico-minimalista" data-brand="genericos"
+                        data-gender="caballeros" data-category="clasicos" data-price="85000" role="listitem">
+                        <span class="product-badge-bristol new">Nuevo</span>
+                        <button class="wishlist-btn-bristol">
+                            <i class="far fa-heart"></i>
                         </button>
-                    </div>
-                </article>
+                        <div class="product-image-bristol">
+                            <img src="https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400"
+                                alt="Reloj Clásico Minimalista" loading="lazy">
+                        </div>
+                        <div class="product-info-bristol">
+                            <span class="product-brand-bristol">Genéricos</span>
+                            <h2 class="product-title-bristol">Reloj Clásico Minimalista</h2>
+                            <div class="product-price-bristol">
+                                <span class="price-current-bristol">₲ 85.000</span>
+                            </div>
+                            <button class="btn-add-cart-bristol">
+                                <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                            </button>
+                        </div>
+                    </article>
 
-                <!-- Product 8 -->
-                <article class="product-card-bristol" data-id="qyq-sport" data-brand="qyq" data-gender="caballeros" data-category="deportivos" data-price="320000" role="listitem">
-                    <span class="product-badge-bristol sale">-20%</span>
-                    <button class="wishlist-btn-bristol">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <div class="product-image-bristol">
-                        <img src="https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=400" 
-                             alt="Reloj QyQ Sport"
-                             loading="lazy">
-                    </div>
-                    <div class="product-info-bristol">
-                        <span class="product-brand-bristol">QyQ</span>
-                        <h2 class="product-title-bristol">Reloj QyQ Sport Cronógrafo</h2>
-                        <div class="product-price-bristol">
-                            <span class="price-current-bristol">₲ 320.000</span>
-                            <span class="price-original-bristol">₲ 400.000</span>
-                        </div>
-                        <button class="btn-add-cart-bristol">
-                            <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                    <!-- Product 7 -->
+                    <article class="product-card-bristol" data-id="skmei-elegante" data-brand="skmei"
+                        data-gender="damas" data-category="elegantes" data-price="220000" role="listitem">
+                        <button class="wishlist-btn-bristol">
+                            <i class="far fa-heart"></i>
                         </button>
-                    </div>
-                </article>
+                        <div class="product-image-bristol">
+                            <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400"
+                                alt="Reloj Skmei Elegante" loading="lazy">
+                        </div>
+                        <div class="product-info-bristol">
+                            <span class="product-brand-bristol">Skmei</span>
+                            <h2 class="product-title-bristol">Reloj Skmei Elegante Damas</h2>
+                            <div class="product-price-bristol">
+                                <span class="price-current-bristol">₲ 220.000</span>
+                            </div>
+                            <button class="btn-add-cart-bristol">
+                                <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Product 8 -->
+                    <article class="product-card-bristol" data-id="qyq-sport" data-brand="qyq" data-gender="caballeros"
+                        data-category="deportivos" data-price="320000" role="listitem">
+                        <span class="product-badge-bristol sale">-20%</span>
+                        <button class="wishlist-btn-bristol">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="product-image-bristol">
+                            <img src="https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=400"
+                                alt="Reloj QyQ Sport" loading="lazy">
+                        </div>
+                        <div class="product-info-bristol">
+                            <span class="product-brand-bristol">QyQ</span>
+                            <h2 class="product-title-bristol">Reloj QyQ Sport Cronógrafo</h2>
+                            <div class="product-price-bristol">
+                                <span class="price-current-bristol">₲ 320.000</span>
+                                <span class="price-original-bristol">₲ 400.000</span>
+                            </div>
+                            <button class="btn-add-cart-bristol">
+                                <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+                            </button>
+                        </div>
+                    </article>
 
                 </div>
 
@@ -496,8 +504,10 @@
                                 <p>Tu tienda de confianza para relojes y electrónica premium.</p>
                                 <div class="social-links">
                                     <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                                    <a href="https://www.instagram.com/axt_alegre09" target="_blank"><i class="fab fa-instagram"></i></a>
-                                    <a href="https://wa.me/595992544305" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                                    <a href="https://www.instagram.com/axt_alegre09" target="_blank"><i
+                                            class="fab fa-instagram"></i></a>
+                                    <a href="https://wa.me/595992544305" target="_blank"><i
+                                            class="fab fa-whatsapp"></i></a>
                                 </div>
                             </div>
 
@@ -512,7 +522,8 @@
 
                             <div class="footer-section">
                                 <h4>Ubicación</h4>
-                                <p><i class="fas fa-map-marker-alt"></i> Galería San Miguel, 9 De Marzo<br>Asunción 001224, Paraguay</p>
+                                <p><i class="fas fa-map-marker-alt"></i> Galería San Miguel, 9 De Marzo<br>Asunción
+                                    001224, Paraguay</p>
                                 <p><i class="fas fa-phone"></i> +595 992 544 305</p>
                             </div>
 
@@ -525,7 +536,7 @@
                                 </ul>
                             </div>
                         </div>
-                        
+
                         <div class="footer-bottom">
                             <p>&copy; 2026 JA Electrónica. Todos los derechos reservados.</p>
                         </div>
@@ -541,7 +552,7 @@
             <button class="location-close-btn" id="locationCloseBtn">
                 <i class="fas fa-times"></i>
             </button>
-            
+
             <div class="location-header">
                 <div class="location-icon">
                     <i class="fas fa-map-marker-alt"></i>
@@ -549,19 +560,15 @@
                 <h2>Nuestra Ubicación</h2>
                 <p>Visítanos en Asunción</p>
             </div>
-            
+
             <div class="location-body">
                 <div class="location-map">
-                    <iframe 
+                    <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d921.3727453722994!2d-57.58528243044434!3d-25.296282999102952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x945da5cfe7f6d88b%3A0x9e8c1b2d4e5f6c7a!2sGaleria%20San%20Miguel!5e0!3m2!1ses!2spy!4v1234567890"
-                        width="100%" 
-                        height="300" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy">
+                        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
                     </iframe>
                 </div>
-                
+
                 <div class="location-details">
                     <div class="location-item">
                         <div class="location-item-icon">
@@ -573,7 +580,7 @@
                             <p>Asunción 001224, Paraguay</p>
                         </div>
                     </div>
-                    
+
                     <div class="location-item">
                         <div class="location-item-icon">
                             <i class="fas fa-clock"></i>
@@ -584,7 +591,7 @@
                             <p class="text-muted">Domingos: Cerrado</p>
                         </div>
                     </div>
-                    
+
                     <div class="location-item">
                         <div class="location-item-icon">
                             <i class="fab fa-whatsapp"></i>
@@ -596,7 +603,7 @@
                             </a>
                         </div>
                     </div>
-                    
+
                     <div class="location-item">
                         <div class="location-item-icon">
                             <i class="fab fa-instagram"></i>
@@ -609,12 +616,14 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="location-actions">
-                    <a href="https://wa.me/595992544305?text=Hola!%20Quiero%20saber%20la%20ubicación" target="_blank" class="btn-primary btn-block">
+                    <a href="https://wa.me/595992544305?text=Hola!%20Quiero%20saber%20la%20ubicación" target="_blank"
+                        class="btn-primary btn-block">
                         <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
                     </a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Galeria+San+Miguel+9+De+Marzo+Asuncion" target="_blank" class="btn-secondary btn-block">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Galeria+San+Miguel+9+De+Marzo+Asuncion"
+                        target="_blank" class="btn-secondary btn-block">
                         <i class="fas fa-directions"></i> Ver en Google Maps
                     </a>
                 </div>
@@ -627,14 +636,14 @@
         <div class="cart-modal-content">
             <div class="cart-modal-header">
                 <h2 id="cartModalTitle">
-                    Mi Carrito 
+                    Mi Carrito
                     <span class="cart-count-badge" id="cartCountBadge">0</span>
                 </h2>
                 <button class="cart-close-btn" id="cartCloseBtn">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            
+
             <div class="cart-modal-body" id="cartModalBody">
                 <div class="cart-empty">
                     <i class="fas fa-shopping-cart"></i>
@@ -642,7 +651,7 @@
                     <a href="index.html" class="btn-primary btn-block">Seguir Comprando</a>
                 </div>
             </div>
-            
+
             <div class="cart-modal-footer" id="cartModalFooter" style="display: none;">
                 <div class="cart-subtotal">
                     <span>Subtotal:</span>
@@ -673,18 +682,13 @@
                 <form class="newsletter-popup-form" id="newsletterForm" novalidate>
                     <div class="newsletter-input-group">
                         <i class="fas fa-envelope newsletter-input-icon"></i>
-                        <input type="email" 
-                               class="newsletter-input" 
-                               id="newsletterEmail" 
-                               placeholder="Tu correo electrónico"
-                               required>
+                        <input type="email" class="newsletter-input" id="newsletterEmail"
+                            placeholder="Tu correo electrónico" required>
                     </div>
                     <div class="newsletter-input-group">
                         <i class="fab fa-whatsapp newsletter-input-icon" style="color:#25D366"></i>
-                        <input type="tel" 
-                               class="newsletter-input" 
-                               id="newsletterWhatsapp" 
-                               placeholder="WhatsApp (opcional)">
+                        <input type="tel" class="newsletter-input" id="newsletterWhatsapp"
+                            placeholder="WhatsApp (opcional)">
                     </div>
                     <button type="submit" class="newsletter-submit-btn">
                         <span>Suscribirme</span>
@@ -701,12 +705,14 @@
     <!-- ========== SCRIPTS ========== -->
     <script src="script.js" defer></script>
     <script src="extensions.js" defer></script>
+    <script src="user-panels.js" defer></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js');
+                navigator.serviceWorker.register('/sw.js');
             });
         }
     </script>
 </body>
+
 </html>
