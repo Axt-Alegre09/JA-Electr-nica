@@ -10,7 +10,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="logo.png">
 
-    <!-- Fonts - Preload para carga rápida -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
@@ -21,36 +21,6 @@
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="product-detail.css">
-
-    <!-- Critical CSS inline para evitar FOUC -->
-    <style>
-        /* Ocultar COMPLETAMENTE sidebar y main-layout del index */
-        .product-detail-page .filters-sidebar-bristol,
-        .product-detail-page .main-layout,
-        .product-detail-page .main-content-bristol,
-        .product-detail-page .products-scroll-container,
-        .product-detail-page .section-header-bristol,
-        .product-detail-page .products-grid-bristol {
-            display: none !important;
-            visibility: hidden !important;
-            width: 0 !important;
-            height: 0 !important;
-            overflow: hidden !important;
-            position: absolute !important;
-            left: -9999px !important;
-        }
-        
-        /* Reset completo del body */
-        html.product-detail-page,
-        body.product-detail-page,
-        .product-detail-page {
-            display: block !important;
-            overflow-x: hidden !important;
-            overflow-y: auto !important;
-            height: auto !important;
-            min-height: 100vh !important;
-        }
-    </style>
 </head>
 
 <body class="product-detail-page">
@@ -102,32 +72,16 @@
         </a>
     </div>
 
-    <!-- ========== NAVIGATION FIJA ========== -->
-    <nav class="main-nav" role="navigation">
-        <div class="container">
-            <a href="#" class="nav-link" data-action="categories">Categorías</a>
-            <a href="#" class="nav-link" data-action="brands">Marcas</a>
-            <a href="#" class="nav-link" data-action="location">Ubicación</a>
-            <a href="https://wa.me/595992544305?text=Hola!%20Tengo%20una%20consulta" target="_blank" class="nav-link">
-                <i class="fab fa-whatsapp"></i> Contacto
-            </a>
-        </div>
-    </nav>
-
-    <!-- ========== TOP INFO BAR ========== -->
-    <div class="top-info-bar">
+    <!-- ========== TOP INFO BAR (FIJO) ========== -->
+    <div class="top-info-bar" id="topInfoBar">
         <div class="top-bar-content">
             <span class="top-bar-item">
                 <i class="fas fa-truck"></i>
-                Envíos gratis en compras desde ₲ 350.000
-            </span>
-            <span class="top-bar-item desktop-only">
-                <i class="fas fa-shield-alt"></i>
-                Garantía de calidad
+                <span class="top-bar-text">Envíos gratis en compras desde ₲ 350.000</span>
             </span>
             <a href="https://wa.me/595992544305" target="_blank" class="top-bar-item top-bar-link">
                 <i class="fab fa-whatsapp"></i>
-                +595 992 544 305
+                <span>+595 992 544 305</span>
             </a>
         </div>
     </div>
@@ -148,9 +102,9 @@
         <div class="container">
             <!-- Product Section -->
             <div class="product-detail-wrapper">
-                <!-- Product Info (PRIMERO en móvil, DERECHA en desktop) -->
+                <!-- Product Info (PRIMERO en móvil) -->
                 <div class="product-info-section">
-                    <!-- Share -->
+                    <!-- Share (solo desktop) -->
                     <div class="share-wrapper">
                         <button class="share-btn" id="shareBtn">
                             <span>Envía una indirecta</span>
@@ -171,10 +125,7 @@
                 <!-- Gallery -->
                 <div class="product-gallery">
                     <div class="gallery-main">
-                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600" 
-                             alt="Producto" 
-                             id="mainProductImage" 
-                             class="main-image">
+                        <img src="" alt="Producto" id="mainProductImage" class="main-image">
                         <button class="wishlist-btn-gallery" id="wishlistBtnGallery">
                             <i class="far fa-heart"></i>
                         </button>
@@ -307,7 +258,7 @@
         </div>
     </div>
 
-    <!-- ========== MOBILE MENU (propio de product-detail) ========== -->
+    <!-- ========== MOBILE MENU ========== -->
     <div class="pd-mobile-menu-overlay" id="pdMobileMenuOverlay"></div>
     <div class="pd-mobile-menu" id="pdMobileMenu">
         <div class="pd-mobile-menu-header">
@@ -333,7 +284,7 @@
     <!-- ========== OVERLAY ========== -->
     <div class="overlay" id="overlay"></div>
 
-    <!-- ========== SCRIPT (solo el necesario) ========== -->
+    <!-- ========== SCRIPT ========== -->
     <script src="product-detail.js"></script>
 </body>
 

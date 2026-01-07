@@ -1,11 +1,11 @@
 /**
  * product-detail.js - JA Electrónica
- * VERSIÓN OPTIMIZADA - Carga instantánea, completamente independiente
+ * Notificaciones corregidas (sin overlay), carrito sincronizado
  */
 (function() {
     'use strict';
 
-    // ========== DATOS DE PRODUCTOS ==========
+    // ========== PRODUCTOS ==========
     const PRODUCTS = {
         'casio-efr539': {
             id: 'casio-efr539',
@@ -100,29 +100,38 @@
     };
 
     // ========== UTILS ==========
-    const $ = (sel) => document.querySelector(sel);
-    const $$ = (sel) => [...document.querySelectorAll(sel)];
-    const formatPrice = (n) => new Intl.NumberFormat('es-PY').format(n);
+    const $ = sel => document.querySelector(sel);
+    const $$ = sel => [...document.querySelectorAll(sel)];
+    const formatPrice = n => new Intl.NumberFormat('es-PY').format(n);
     
     const storage = {
         get: (k, d = null) => { try { return JSON.parse(localStorage.getItem(k)) || d; } catch { return d; } },
         set: (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
     };
 
-    const notify = (msg, type = 'success') => {
-        const old = $('.notification-toast');
+    // ========== TOAST NOTIFICATION (CORREGIDO) ==========
+    function notify(msg, type = 'success') {
+        // Remover toast anterior si existe
+        const old = $('.pd-toast');
         if (old) old.remove();
         
+        // Crear toast
         const toast = document.createElement('div');
-        toast.className = `notification-toast ${type}`;
-        toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i><span>${msg}</span>`;
+        toast.className = `pd-toast ${type}`;
+        
+        const icon = type === 'success' ? 'check-circle' : 
+                     type === 'error' ? 'exclamation-circle' : 'info-circle';
+        
+        toast.innerHTML = `<i class="fas fa-${icon}"></i><span>${msg}</span>`;
+        
         document.body.appendChild(toast);
         
+        // Auto-remove after 3s
         setTimeout(() => {
-            toast.style.animation = 'slideOutRight 0.3s ease forwards';
+            toast.style.animation = 'toastOut 0.3s ease forwards';
             setTimeout(() => toast.remove(), 300);
         }, 3000);
-    };
+    }
 
     // ========== STATE ==========
     let currentProduct = null;
@@ -130,30 +139,22 @@
 
     // ========== INIT ==========
     function init() {
-        // Cargar producto inmediatamente
         loadProduct();
-        
-        // Inicializar funcionalidades
         initTheme();
         initCart();
-        initNavLinks();
         initMobileMenu();
         initCartModal();
         bindEvents();
-        
-        // Sincronización entre pestañas
         initCartSync();
         
         console.log('✅ Product Detail loaded');
     }
 
-    // ========== CART SYNC (entre pestañas) ==========
+    // ========== CART SYNC ==========
     function initCartSync() {
-        // Escuchar cambios en localStorage desde otras pestañas
         window.addEventListener('storage', (e) => {
             if (e.key === 'ja_cart') {
                 updateCartBadge();
-                // Si el modal está abierto, actualizar también
                 const modal = $('#cartModal');
                 if (modal && modal.classList.contains('active')) {
                     renderCartModal();
@@ -161,13 +162,8 @@
             }
         });
         
-        // También sincronizar cuando la ventana recibe foco
         window.addEventListener('focus', () => {
             updateCartBadge();
-            const modal = $('#cartModal');
-            if (modal && modal.classList.contains('active')) {
-                renderCartModal();
-            }
         });
     }
 
@@ -178,7 +174,6 @@
         
         currentProduct = PRODUCTS[id] || PRODUCTS['casio-efr539'];
         
-        // Render inmediato
         renderProduct();
         renderRelated();
         updateFavoriteState();
@@ -187,41 +182,41 @@
     function renderProduct() {
         const p = currentProduct;
         
-        // Title
         document.title = `${p.title} - JA Electrónica`;
         
-        // Breadcrumb
         const bread = $('#breadcrumbProduct');
         if (bread) bread.textContent = p.title;
         
-        // Info
         $('#productBrand').textContent = p.brand.toUpperCase();
         $('#productTitle').textContent = p.title;
         $('#productCollection').textContent = p.collection;
         $('#productDescription').textContent = p.description;
         $('#productPrice').textContent = formatPrice(p.price);
         
-        // Main image
-        $('#mainProductImage').src = p.images[0];
-        $('#mainProductImage').alt = p.title;
+        const mainImg = $('#mainProductImage');
+        if (mainImg) {
+            mainImg.src = p.images[0];
+            mainImg.alt = p.title;
+        }
         
         // Thumbnails
         const thumbs = $('#galleryThumbnails');
-        thumbs.innerHTML = p.images.map((img, i) => `
-            <div class="thumbnail-item ${i === 0 ? 'active' : ''}" data-index="${i}">
-                <img src="${img}" alt="${p.title} ${i + 1}">
-            </div>
-        `).join('');
-        
-        // Thumb click
-        $$('.thumbnail-item').forEach(t => {
-            t.onclick = () => {
-                const i = parseInt(t.dataset.index);
-                $('#mainProductImage').src = p.images[i];
-                $$('.thumbnail-item').forEach(x => x.classList.remove('active'));
-                t.classList.add('active');
-            };
-        });
+        if (thumbs) {
+            thumbs.innerHTML = p.images.map((img, i) => `
+                <div class="thumbnail-item ${i === 0 ? 'active' : ''}" data-index="${i}">
+                    <img src="${img}" alt="${p.title} ${i + 1}">
+                </div>
+            `).join('');
+            
+            $$('.thumbnail-item').forEach(t => {
+                t.onclick = () => {
+                    const i = parseInt(t.dataset.index);
+                    mainImg.src = p.images[i];
+                    $$('.thumbnail-item').forEach(x => x.classList.remove('active'));
+                    t.classList.add('active');
+                };
+            });
+        }
     }
 
     function renderRelated() {
@@ -254,7 +249,7 @@
             </article>
         `).join('');
         
-        // Events
+        // Card click
         $$('.related-card').forEach(card => {
             card.onclick = (e) => {
                 if (e.target.closest('.related-wishlist-btn') || e.target.closest('.related-cart-btn')) return;
@@ -262,6 +257,7 @@
             };
         });
         
+        // Wishlist buttons
         $$('.related-wishlist-btn').forEach(btn => {
             btn.onclick = (e) => {
                 e.stopPropagation();
@@ -270,6 +266,7 @@
             };
         });
         
+        // Cart buttons
         $$('.related-cart-btn').forEach(btn => {
             btn.onclick = (e) => {
                 e.stopPropagation();
@@ -307,18 +304,6 @@
     function updateThemeIcon(theme) {
         const icon = $('#themeToggle i');
         if (icon) icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-    }
-
-    // ========== NAV LINKS ==========
-    function initNavLinks() {
-        $$('.nav-link[data-action]').forEach(link => {
-            link.onclick = (e) => {
-                e.preventDefault();
-                const action = link.dataset.action;
-                // Redirigir al index con el hash correspondiente
-                window.location.href = `index.html#${action}`;
-            };
-        });
     }
 
     // ========== MOBILE MENU ==========
@@ -421,7 +406,6 @@
         
         if (!body) return;
         
-        // Actualizar badge del modal también
         if (badge) badge.textContent = cart.reduce((s, i) => s + i.quantity, 0);
         
         if (cart.length === 0) {
@@ -438,7 +422,6 @@
         
         if (footer) footer.style.display = '';
         
-        // Renderizar items con el mismo formato que el index
         body.innerHTML = cart.map(item => `
             <div class="cart-item" data-id="${item.id}">
                 <div class="cart-item-image">
@@ -452,7 +435,7 @@
                             <button class="quantity-btn cart-qty-dec" data-id="${item.id}">
                                 <i class="fas fa-minus"></i>
                             </button>
-                            <input type="number" class="quantity-input" value="${item.quantity}" min="1" readonly>
+                            <input type="number" value="${item.quantity}" readonly>
                             <button class="quantity-btn cart-qty-inc" data-id="${item.id}">
                                 <i class="fas fa-plus"></i>
                             </button>
@@ -465,12 +448,11 @@
             </div>
         `).join('');
         
-        // Calcular total
         const total = cart.reduce((s, i) => s + (i.price * i.quantity), 0);
         const totalEl = $('#cartTotalPrice');
         if (totalEl) totalEl.textContent = `₲ ${formatPrice(total)}`;
         
-        // Bind events a los botones del carrito
+        // Bind events
         $$('.cart-qty-dec').forEach(btn => {
             btn.onclick = () => updateCartQuantity(btn.dataset.id, -1);
         });
@@ -537,10 +519,7 @@
         const btn = $('#addToFavoritesBtn');
         const gallery = $('#wishlistBtnGallery');
         
-        if (btn) {
-            btn.classList.toggle('active', isFav);
-        }
-        
+        if (btn) btn.classList.toggle('active', isFav);
         if (gallery) {
             gallery.classList.toggle('active', isFav);
             gallery.innerHTML = `<i class="${isFav ? 'fas' : 'far'} fa-heart"></i>`;
@@ -613,7 +592,7 @@
             };
         }
         
-        // Search redirect
+        // Search
         const search = $('#mainSearch');
         if (search) {
             search.onkeypress = (e) => {
