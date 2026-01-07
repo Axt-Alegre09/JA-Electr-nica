@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detalle del producto - JA Electrónica">
+    <title>Producto - JA Electrónica</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <!-- Fonts - Preload para carga rápida -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="product-detail.css">
+
+    <!-- Critical CSS inline para evitar FOUC -->
+    <style>
+        /* Ocultar COMPLETAMENTE sidebar y main-layout del index */
+        .product-detail-page .filters-sidebar-bristol,
+        .product-detail-page .main-layout,
+        .product-detail-page .main-content-bristol,
+        .product-detail-page .products-scroll-container,
+        .product-detail-page .section-header-bristol,
+        .product-detail-page .products-grid-bristol {
+            display: none !important;
+            visibility: hidden !important;
+            width: 0 !important;
+            height: 0 !important;
+            overflow: hidden !important;
+            position: absolute !important;
+            left: -9999px !important;
+        }
+        
+        /* Reset completo del body */
+        html.product-detail-page,
+        body.product-detail-page,
+        .product-detail-page {
+            display: block !important;
+            overflow-x: hidden !important;
+            overflow-y: auto !important;
+            height: auto !important;
+            min-height: 100vh !important;
+        }
+    </style>
+</head>
+
+<body class="product-detail-page">
+    <!-- ========== HEADER FIJO ========== -->
+    <header class="header-fixed" role="banner">
+        <div class="header-content">
+            <!-- Hamburger (solo móvil) -->
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menú">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Logo -->
+            <a href="index.html" class="header-brand">
+                <div class="logo-badge">
+                    <div class="logo-icon">
+                        <span class="logo-icon-text">JA</span>
+                    </div>
+                    <span class="logo-text">Electrónica</span>
+                </div>
+            </a>
+
+            <!-- Search -->
+            <div class="search-container" role="search">
+                <i class="fas fa-search search-icon"></i>
+                <input type="search" placeholder="Buscar productos..." id="mainSearch" autocomplete="off">
+            </div>
+
+            <!-- Icons -->
+            <div class="header-icons">
+                <button class="icon-btn theme-toggle" id="themeToggle" title="Cambiar tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="icon-btn" id="headerFavoritesBtn" title="Favoritos">
+                    <i class="far fa-heart"></i>
+                </button>
+                <button class="icon-btn cart-btn" id="cartBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== MOBILE LOGO BANNER ========== -->
+    <div class="mobile-logo-banner">
+        <a href="index.html" class="logo-container">
+            <img src="logo.png" alt="JA" width="42" height="42" onerror="this.style.display='none'">
+            <span class="logo-text">Electrónica</span>
+        </a>
+    </div>
+
+    <!-- ========== NAVIGATION FIJA ========== -->
+    <nav class="main-nav" role="navigation">
+        <div class="container">
+            <a href="#" class="nav-link" data-action="categories">Categorías</a>
+            <a href="#" class="nav-link" data-action="brands">Marcas</a>
+            <a href="#" class="nav-link" data-action="location">Ubicación</a>
+            <a href="https://wa.me/595992544305?text=Hola!%20Tengo%20una%20consulta" target="_blank" class="nav-link">
+                <i class="fab fa-whatsapp"></i> Contacto
+            </a>
+        </div>
+    </nav>
+
+    <!-- ========== TOP INFO BAR ========== -->
+    <div class="top-info-bar">
+        <div class="top-bar-content">
+            <span class="top-bar-item">
+                <i class="fas fa-truck"></i>
+                Envíos gratis en compras desde ₲ 350.000
+            </span>
+            <span class="top-bar-item desktop-only">
+                <i class="fas fa-shield-alt"></i>
+                Garantía de calidad
+            </span>
+            <a href="https://wa.me/595992544305" target="_blank" class="top-bar-item top-bar-link">
+                <i class="fab fa-whatsapp"></i>
+                +595 992 544 305
+            </a>
+        </div>
+    </div>
+
+    <!-- ========== BREADCRUMB ========== -->
+    <nav class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="index.html">Relojes</a></li>
+                <li class="active" id="breadcrumbProduct">Producto</li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="product-detail-main" id="mainContent">
+        <div class="container">
+            <!-- Product Section -->
+            <div class="product-detail-wrapper">
+                <!-- Product Info (PRIMERO en móvil, DERECHA en desktop) -->
+                <div class="product-info-section">
+                    <!-- Share -->
+                    <div class="share-wrapper">
+                        <button class="share-btn" id="shareBtn">
+                            <span>Envía una indirecta</span>
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                    </div>
+
+                    <!-- Brand -->
+                    <span class="product-brand" id="productBrand">CASIO</span>
+
+                    <!-- Title -->
+                    <h1 class="product-title" id="productTitle">Cargando...</h1>
+
+                    <!-- Collection -->
+                    <p class="product-collection">Colección: <span id="productCollection">-</span></p>
+                </div>
+
+                <!-- Gallery -->
+                <div class="product-gallery">
+                    <div class="gallery-main">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600" 
+                             alt="Producto" 
+                             id="mainProductImage" 
+                             class="main-image">
+                        <button class="wishlist-btn-gallery" id="wishlistBtnGallery">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="gallery-thumbnails" id="galleryThumbnails"></div>
+                </div>
+
+                <!-- Product Details -->
+                <div class="product-details-section">
+                    <!-- Description -->
+                    <div class="product-description-box">
+                        <p id="productDescription">Cargando descripción...</p>
+                    </div>
+
+                    <!-- Purchase Row -->
+                    <div class="purchase-row">
+                        <div class="quantity-selector">
+                            <button class="qty-btn" id="decreaseQty">−</button>
+                            <input type="number" class="qty-input" id="quantityInput" value="1" min="1" max="99" readonly>
+                            <button class="qty-btn" id="increaseQty">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-symbol">₲</span><span class="price-amount" id="productPrice">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="product-actions">
+                        <button class="btn-add-cart" id="addToCartBtn">
+                            <span>Añadir a la bolsa</span>
+                            <i class="fas fa-lock"></i>
+                        </button>
+                        <button class="btn-add-favorites" id="addToFavoritesBtn">
+                            <span>En favoritos</span>
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="product-features">
+                        <div class="feature-item">
+                            <i class="fas fa-truck"></i>
+                            <span>Envío gratis en compras desde ₲ 350.000</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Garantía de calidad</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>Soporte por WhatsApp</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Products -->
+            <section class="related-section">
+                <h2 class="related-title">Productos relacionados</h2>
+                <div class="related-grid" id="relatedProductsGrid"></div>
+            </section>
+        </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>JA Electrónica</h4>
+                    <p>Tu tienda de confianza para relojes y electrónica premium.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/axt_alegre09" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/595992544305" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Envíos</a></li>
+                        <li><a href="#">Garantía</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Ubicación</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Galería San Miguel, 9 De Marzo<br>Asunción 001224, Paraguay</p>
+                    <p><i class="fas fa-phone"></i> +595 992 544 305</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Ayuda</h4>
+                    <ul>
+                        <li><a href="#">Términos</a></li>
+                        <li><a href="#">Privacidad</a></li>
+                        <li><a href="https://wa.me/595992544305" target="_blank">Soporte</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 JA Electrónica. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== CART MODAL ========== -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal-content">
+            <div class="cart-modal-header">
+                <h2>Mi Carrito <span class="cart-count-badge" id="cartCountBadge">0</span></h2>
+                <button class="cart-close-btn" id="cartCloseBtn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="cart-modal-body" id="cartModalBody">
+                <div class="cart-empty">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Tu carrito está vacío</p>
+                    <a href="index.html" class="btn-primary btn-block">Seguir Comprando</a>
+                </div>
+            </div>
+            <div class="cart-modal-footer" id="cartModalFooter" style="display:none;">
+                <div class="cart-subtotal">
+                    <span>Subtotal:</span>
+                    <span id="cartTotalPrice">₲ 0</span>
+                </div>
+                <div class="cart-actions">
+                    <a href="checkout.html" class="btn-primary btn-block">Finalizar Pedido</a>
+                    <a href="index.html" class="btn-secondary btn-block">Seguir Comprando</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== MOBILE MENU (propio de product-detail) ========== -->
+    <div class="pd-mobile-menu-overlay" id="pdMobileMenuOverlay"></div>
+    <div class="pd-mobile-menu" id="pdMobileMenu">
+        <div class="pd-mobile-menu-header">
+            <div class="pd-menu-logo">
+                <img src="logo.png" alt="JA" width="36" height="36" onerror="this.style.display='none'">
+                <span>Electrónica</span>
+            </div>
+            <button class="pd-mobile-menu-close" id="pdMobileMenuClose"><i class="fas fa-times"></i></button>
+        </div>
+        <nav class="pd-mobile-menu-nav">
+            <a href="index.html" class="pd-menu-link"><i class="fas fa-home"></i> Inicio</a>
+            <a href="index.html" class="pd-menu-link"><i class="fas fa-list"></i> Categorías</a>
+            <a href="index.html" class="pd-menu-link"><i class="fas fa-tags"></i> Marcas</a>
+            <a href="https://wa.me/595992544305" target="_blank" class="pd-menu-link"><i class="fab fa-whatsapp"></i> Contacto</a>
+        </nav>
+    </div>
+
+    <!-- ========== WHATSAPP FLOAT ========== -->
+    <a href="https://wa.me/595992544305?text=Hola!%20Tengo%20una%20consulta" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ========== OVERLAY ========== -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- ========== SCRIPT (solo el necesario) ========== -->
+    <script src="product-detail.js"></script>
+</body>
+
+</html>

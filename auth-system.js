@@ -390,28 +390,31 @@
             const currentUser = this.getCurrentUser();
 
             if (currentUser) {
-                // Usuario logueado - Mostrar info y botón de logout
+                // Usuario logueado - Mostrar info del usuario
                 const sessionInfo = document.createElement('div');
                 sessionInfo.className = 'user-session-info active auth-menu-item-dynamic';
                 sessionInfo.innerHTML = `
-                    <div class="user-avatar">
-                        ${currentUser.avatar ? 
-                            `<img src="${currentUser.avatar}" alt="${currentUser.name}">` : 
-                            currentUser.name.charAt(0).toUpperCase()
-                        }
-                    </div>
-                    <div class="user-info">
-                        <div class="user-name">${currentUser.name}</div>
-                        <div class="user-email">${currentUser.email}</div>
+                    <div class="user-session-card">
+                        <div class="user-avatar">
+                            ${currentUser.avatar ? 
+                                `<img src="${currentUser.avatar}" alt="${currentUser.name}">` : 
+                                currentUser.name.charAt(0).toUpperCase()
+                            }
+                        </div>
+                        <div class="user-info">
+                            <div class="user-name" title="${currentUser.name}">${currentUser.name}</div>
+                            <div class="user-email" title="${currentUser.email}">${currentUser.email}</div>
+                        </div>
                     </div>
                 `;
 
                 // Insertar antes del primer elemento
                 userMenu.insertBefore(sessionInfo, userMenu.firstChild);
 
-                // Actualizar el botón de cerrar sesión
+                // Actualizar el botón de cerrar sesión para que sea visible
                 const logoutLink = Utils.$('.logout-link', userMenu);
                 if (logoutLink) {
+                    logoutLink.style.display = '';
                     logoutLink.onclick = (e) => {
                         e.preventDefault();
                         this.handleLogout();
@@ -420,8 +423,9 @@
             } else {
                 // Usuario NO logueado - Mostrar botón de login
                 const loginItem = document.createElement('li');
+                loginItem.className = 'auth-menu-item-dynamic';
                 loginItem.innerHTML = `
-                    <button class="auth-menu-item auth-menu-item-dynamic">
+                    <button class="auth-menu-item">
                         <i class="bi bi-box-arrow-in-right"></i>
                         <span>Iniciar Sesión</span>
                     </button>
@@ -682,13 +686,23 @@
             // Limpiar carrito actual y cargar carrito invitado si existe
             if (window.Cart) {
                 window.Cart.items = [];
-                window.Cart.updateUI();
+                
+                // Actualizar UI solo si existe la función
+                if (window.Cart.updateUI) {
+                    window.Cart.updateUI();
+                } else if (window.Cart.render) {
+                    window.Cart.render();
+                }
                 
                 // Restaurar carrito invitado si existe
                 const guestCart = Utils.storage.get(CONFIG.storageKeys.guestCart, []);
                 if (guestCart.length > 0) {
                     window.Cart.items = guestCart;
-                    window.Cart.updateUI();
+                    if (window.Cart.updateUI) {
+                        window.Cart.updateUI();
+                    } else if (window.Cart.render) {
+                        window.Cart.render();
+                    }
                 }
             }
 
@@ -734,7 +748,13 @@
 
             // Actualizar carrito actual
             window.Cart.items = mergedCart;
-            window.Cart.updateUI();
+            
+            // Actualizar UI solo si existe la función
+            if (window.Cart.updateUI) {
+                window.Cart.updateUI();
+            } else if (window.Cart.render) {
+                window.Cart.render();
+            }
         },
 
         saveCurrentCart() {
@@ -761,12 +781,20 @@
                 // Cargar carrito del usuario
                 const userCart = Utils.storage.get(`${CONFIG.storageKeys.userCart}_${currentUser.id}`, []);
                 window.Cart.items = userCart;
-                window.Cart.updateUI();
+                if (window.Cart.updateUI) {
+                    window.Cart.updateUI();
+                } else if (window.Cart.render) {
+                    window.Cart.render();
+                }
             } else {
                 // Cargar carrito invitado
                 const guestCart = Utils.storage.get(CONFIG.storageKeys.guestCart, []);
                 window.Cart.items = guestCart;
-                window.Cart.updateUI();
+                if (window.Cart.updateUI) {
+                    window.Cart.updateUI();
+                } else if (window.Cart.render) {
+                    window.Cart.render();
+                }
             }
         },
 
