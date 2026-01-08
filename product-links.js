@@ -44,11 +44,12 @@
             const productImage = card.querySelector('.product-image-bristol');
             if (productImage) {
                 productImage.style.transition = 'transform 0.3s ease';
+                
+                // CORREGIDO: Agregar parámetro 'e' o simplemente no usarlo
                 card.addEventListener('mouseenter', () => {
-                    if (!e.target.closest('.wishlist-btn-bristol')) {
-                        productImage.style.transform = 'scale(1.05)';
-                    }
+                    productImage.style.transform = 'scale(1.05)';
                 });
+                
                 card.addEventListener('mouseleave', () => {
                     productImage.style.transform = 'scale(1)';
                 });
