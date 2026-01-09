@@ -19,7 +19,7 @@ const cartBadge = document.querySelector('.cart-btn .badge');
 function initCart() {
     // Sincronizar tema con la página principal
     function syncTheme() {
-        const savedTheme = localStorage.getItem('theme') || 'light';
+        const savedTheme = localStorage.getItem('ja_theme') || localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
     }
     syncTheme();

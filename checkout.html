@@ -30,7 +30,6 @@
             --border-light: #e2e8f0;
             --border-medium: #cbd5e1;
             --header-height: 60px;
-            --iva-rate: 0.10;
         }
 
         [data-theme="dark"] {
@@ -360,15 +359,6 @@
             color: var(--text-secondary);
         }
 
-        .iva-badge {
-            background: var(--warning);
-            color: white;
-            font-size: 0.6875rem;
-            font-weight: 700;
-            padding: 0.25rem 0.5rem;
-            border-radius: 6px;
-        }
-
         .invoice-fields {
             margin-top: 1rem;
             display: none;
@@ -560,22 +550,6 @@
             color: var(--text-primary);
         }
 
-        .order-row.iva {
-            background: rgba(245, 158, 11, 0.1);
-            margin: 0 -1rem;
-            padding: 0.625rem 1rem;
-            border-radius: 8px;
-        }
-
-        .order-row.iva .order-row-label {
-            color: var(--warning);
-            font-weight: 600;
-        }
-
-        .order-row.iva .order-row-value {
-            color: var(--warning);
-        }
-
         .order-row.total {
             border-top: 2px solid var(--border-light);
             margin-top: 0.5rem;
@@ -676,26 +650,60 @@
         /* Download PDF button */
         .btn-download-pdf {
             width: 100%;
-            padding: 0.875rem;
-            background: var(--bg-muted);
-            color: var(--text-primary);
-            border: 2px solid var(--border-light);
+            padding: 1rem;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            border: none;
             border-radius: 10px;
-            font-size: 0.875rem;
+            font-size: 0.9375rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s;
             margin-top: 0.75rem;
             font-family: inherit;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 0.625rem;
+            box-shadow: 0 4px 14px rgba(220, 38, 38, 0.3);
         }
 
         .btn-download-pdf:hover {
-            border-color: var(--primary);
-            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+        }
+
+        .btn-download-pdf i {
+            font-size: 1.125rem;
+        }
+
+        /* Success state after order */
+        .order-success-message {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .order-success-message i {
+            font-size: 3rem;
+            color: var(--success);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .order-success-message h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 0.5rem;
+        }
+
+        .order-success-message p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
         }
 
         /* ========== EMPTY CART ========== */
@@ -939,7 +947,6 @@
 
         // ========== CONFIG ==========
         const CONFIG = {
-            IVA_RATE: 0.10,
             WHATSAPP_NUMBER: '595992544305',
             STORE_NAME: 'JA Electrónica',
             STORE_ADDRESS: 'Galería San Miguel, 9 De Marzo, Asunción',
@@ -989,14 +996,33 @@
         }
 
         function syncTheme() {
-            const keys = ['theme', 'ja_theme'];
-            for (const k of keys) {
-                const v = localStorage.getItem(k);
-                if (v) { 
-                    document.documentElement.setAttribute('data-theme', v); 
-                    return; 
-                }
+            // Leer de ja_theme primero (es la key principal del sistema)
+            let theme = localStorage.getItem('ja_theme');
+            
+            // Si no existe ja_theme, intentar leer de 'theme' (legacy/cart.js)
+            if (!theme) {
+                theme = localStorage.getItem('theme');
             }
+            
+            // Normalizar
+            if (theme) {
+                theme = theme.toLowerCase().trim();
+                if (theme !== 'dark' && theme !== 'light') {
+                    theme = (theme === 'true' || theme === '1') ? 'dark' : 'light';
+                }
+            } else {
+                // Si no hay nada guardado, usar preferencia del sistema
+                theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+            }
+            
+            // Aplicar tema
+            document.documentElement.setAttribute('data-theme', theme);
+            
+            // Sincronizar ambas keys para evitar inconsistencias futuras
+            localStorage.setItem('ja_theme', theme);
+            localStorage.setItem('theme', theme);
+            
+            console.log(`✅ Tema aplicado y sincronizado: ${theme}`);
         }
 
         function getUserData() {
@@ -1209,9 +1235,8 @@
                             <input type="checkbox" id="needInvoice">
                             <div class="invoice-toggle-content">
                                 <div class="invoice-toggle-title">Necesito factura con RUC</div>
-                                <div class="invoice-toggle-desc">Se agregará 10% de IVA al total</div>
+                                <div class="invoice-toggle-desc">IVA ya incluido en los precios</div>
                             </div>
-                            <span class="iva-badge">+10% IVA</span>
                         </label>
                         <div class="invoice-fields" id="invoiceFields">
                             ${userData.ruc ? '<div class="autofill-notice"><i class="fas fa-magic"></i> Datos cargados - puedes editarlos</div>' : ''}
@@ -1266,10 +1291,6 @@
                             <div class="order-row">
                                 <span class="order-row-label">Envío</span>
                                 <span class="order-row-value" id="shippingDisplay">Gratis</span>
-                            </div>
-                            <div class="order-row iva" id="ivaRow" style="display: none;">
-                                <span class="order-row-label"><i class="fas fa-percentage"></i> IVA (10%)</span>
-                                <span class="order-row-value" id="ivaAmount">₲ 0</span>
                             </div>
                             <div class="order-row total">
                                 <span class="order-row-label">Total</span>
@@ -1401,27 +1422,13 @@
                 });
             }
 
-            // Invoice toggle with IVA calculation
+            // Invoice toggle - solo mostrar/ocultar campos
             const invoiceToggle = $('#needInvoice');
             const invoiceFields = $('#invoiceFields');
-            const ivaRow = $('#ivaRow');
-            const ivaAmount = $('#ivaAmount');
-            const totalDisplay = $('#totalDisplay');
 
             if (invoiceToggle) {
                 invoiceToggle.addEventListener('change', (e) => {
                     invoiceFields.classList.toggle('show', e.target.checked);
-                    
-                    if (e.target.checked) {
-                        const iva = Math.round(subtotal * CONFIG.IVA_RATE);
-                        const totalWithIva = subtotal + iva;
-                        ivaRow.style.display = 'flex';
-                        ivaAmount.textContent = `₲ ${formatPrice(iva)}`;
-                        totalDisplay.textContent = `₲ ${formatPrice(totalWithIva)}`;
-                    } else {
-                        ivaRow.style.display = 'none';
-                        totalDisplay.textContent = `₲ ${formatPrice(subtotal)}`;
-                    }
                 });
             }
 
@@ -1492,9 +1499,8 @@
                 }
             }
 
-            // Calculate totals
-            const iva = needInvoice ? Math.round(subtotal * CONFIG.IVA_RATE) : 0;
-            const total = subtotal + iva;
+            // Calculate totals (IVA ya incluido en precios)
+            const total = subtotal;
 
             // Build order object for history
             const order = {
@@ -1505,7 +1511,6 @@
                 payment: payment,
                 items: cart,
                 subtotal,
-                iva,
                 total,
                 invoice: needInvoice ? { ruc: invoiceRuc, name: invoiceName } : null,
                 notes,
@@ -1526,12 +1531,6 @@
             let msg = `🛒 *NUEVO PEDIDO - ${CONFIG.STORE_NAME}*\n`;
             msg += `📋 *Orden:* ${orderNumber}\n\n`;
             msg += `📦 *Productos:*\n${itemsList}\n\n`;
-            msg += `💰 *Subtotal:* ₲${formatPrice(subtotal)}\n`;
-            
-            if (needInvoice) {
-                msg += `📊 *IVA (10%):* ₲${formatPrice(iva)}\n`;
-            }
-            
             msg += `💵 *TOTAL:* ₲${formatPrice(total)}\n\n`;
             msg += `👤 *Cliente:* ${fullName}\n`;
             msg += `📱 *Teléfono:* ${phone}\n`;
@@ -1566,23 +1565,70 @@
             const whatsappUrl = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
             window.open(whatsappUrl, '_blank');
 
-            // Show success and PDF button
+            // Show success state
+            const summaryCard = $('.order-summary .checkout-card');
+            if (summaryCard) {
+                // Reemplazar contenido con estado de éxito
+                summaryCard.innerHTML = `
+                    <div class="order-success-message">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>¡Pedido Confirmado!</h3>
+                        <p>Tu pedido <strong>${orderNumber}</strong> ha sido enviado correctamente</p>
+                    </div>
+                    
+                    <div class="order-number" style="margin-bottom: 1rem;">
+                        <i class="fas fa-hashtag"></i>
+                        Orden: <strong>${orderNumber}</strong>
+                    </div>
+
+                    <div class="order-totals" style="margin-bottom: 1.5rem;">
+                        <div class="order-row">
+                            <span class="order-row-label">Productos</span>
+                            <span class="order-row-value">${cart.length} ${cart.length === 1 ? 'item' : 'items'}</span>
+                        </div>
+                        <div class="order-row total">
+                            <span class="order-row-label">Total Pagado</span>
+                            <span class="order-row-value">₲ ${formatPrice(total)}</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-download-pdf" id="downloadPdfBtn">
+                        <i class="fas fa-file-pdf"></i>
+                        Descargar Comprobante PDF
+                    </button>
+
+                    <div class="summary-note" style="margin-top: 1rem;">
+                        <i class="fas fa-info-circle"></i>
+                        <p>Te contactaremos por WhatsApp para confirmar tu pedido. Guarda tu comprobante PDF.</p>
+                    </div>
+
+                    <a href="index.html" class="checkout-submit" style="background: var(--primary); margin-top: 1rem;">
+                        <i class="fas fa-home"></i>
+                        Volver a la Tienda
+                    </a>
+                `;
+
+                // Bind PDF download button
+                const pdfBtn = $('#downloadPdfBtn');
+                if (pdfBtn) {
+                    pdfBtn.addEventListener('click', generatePDF);
+                }
+            }
+
+            // Show toast
             toast('¡Pedido enviado! Te contactaremos pronto.', 'success');
-            
-            // Show PDF download button
-            const pdfBtn = $('#downloadPdf');
-            if (pdfBtn) pdfBtn.style.display = 'flex';
 
             // Clear cart
             localStorage.removeItem(cartKey);
 
-            // Redirect after delay
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 5000);
+            // Disable forms
+            $$('.checkout-forms input, .checkout-forms select, .checkout-forms textarea, .checkout-forms button').forEach(el => {
+                el.disabled = true;
+                el.style.opacity = '0.6';
+            });
         }
 
-        // ========== GENERATE PDF ==========
+        // ========== GENERATE PDF - PROFESIONAL ==========
         function generatePDF() {
             const order = window.lastOrder;
             if (!order) {
@@ -1591,127 +1637,348 @@
             }
 
             const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-
-            // Header
-            doc.setFillColor(37, 99, 235);
-            doc.rect(0, 0, 210, 40, 'F');
-            
-            doc.setTextColor(255, 255, 255);
-            doc.setFontSize(24);
-            doc.setFont('helvetica', 'bold');
-            doc.text('JA Electrónica', 20, 25);
-            
-            doc.setFontSize(10);
-            doc.setFont('helvetica', 'normal');
-            doc.text('Comprobante de Pedido', 20, 33);
-
-            // Order info
-            doc.setTextColor(0, 0, 0);
-            doc.setFontSize(12);
-            doc.setFont('helvetica', 'bold');
-            doc.text(`Orden: ${order.orderNumber}`, 140, 20);
-            
-            doc.setFontSize(10);
-            doc.setFont('helvetica', 'normal');
-            const date = new Date(order.date);
-            doc.text(`Fecha: ${date.toLocaleDateString('es-PY')}`, 140, 28);
-            doc.text(`Hora: ${date.toLocaleTimeString('es-PY')}`, 140, 35);
-
-            // Customer info
-            let y = 55;
-            doc.setFontSize(12);
-            doc.setFont('helvetica', 'bold');
-            doc.text('Datos del Cliente', 20, y);
-            
-            doc.setFontSize(10);
-            doc.setFont('helvetica', 'normal');
-            y += 8;
-            doc.text(`Nombre: ${order.customer.fullName}`, 20, y);
-            y += 6;
-            doc.text(`Teléfono: ${order.customer.phone}`, 20, y);
-            y += 6;
-            doc.text(`Email: ${order.customer.email}`, 20, y);
-
-            // Delivery
-            y += 12;
-            doc.setFont('helvetica', 'bold');
-            doc.text('Entrega', 20, y);
-            doc.setFont('helvetica', 'normal');
-            y += 8;
-            if (order.delivery === 'store') {
-                doc.text('Retiro en tienda: ' + CONFIG.STORE_ADDRESS, 20, y);
-            } else {
-                doc.text(`Envío a: ${order.delivery.address}, ${order.delivery.city}, ${order.delivery.department}`, 20, y);
-            }
-
-            // Products table
-            y += 15;
-            doc.setFont('helvetica', 'bold');
-            doc.text('Productos', 20, y);
-            
-            y += 8;
-            doc.setFillColor(240, 240, 240);
-            doc.rect(20, y - 5, 170, 8, 'F');
-            doc.setFontSize(9);
-            doc.text('Producto', 22, y);
-            doc.text('Cant.', 120, y);
-            doc.text('Precio', 140, y);
-            doc.text('Subtotal', 165, y);
-
-            doc.setFont('helvetica', 'normal');
-            y += 8;
-
-            order.items.forEach(item => {
-                const name = `${item.brand || ''} ${item.title}`.substring(0, 40);
-                doc.text(name, 22, y);
-                doc.text(String(item.quantity), 125, y);
-                doc.text(`₲${formatPrice(item.price)}`, 140, y);
-                doc.text(`₲${formatPrice(item.price * item.quantity)}`, 165, y);
-                y += 7;
+            const doc = new jsPDF({
+                orientation: 'portrait',
+                unit: 'mm',
+                format: 'a4'
             });
 
-            // Totals
-            y += 5;
-            doc.line(20, y, 190, y);
-            y += 8;
+            // Colores corporativos
+            const colors = {
+                primary: [37, 99, 235],      // #2563eb
+                primaryDark: [29, 78, 216],  // #1d4ed8
+                success: [16, 185, 129],     // #10b981
+                dark: [15, 23, 42],          // #0f172a
+                gray: [71, 85, 105],         // #475569
+                lightGray: [148, 163, 184],  // #94a3b8
+                bgLight: [248, 250, 252],    // #f8fafc
+                white: [255, 255, 255]
+            };
+
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const pageHeight = doc.internal.pageSize.getHeight();
+            const margin = 20;
+            let y = 0;
+
+            // ========== HEADER CON GRADIENTE ==========
+            // Fondo header
+            doc.setFillColor(...colors.primary);
+            doc.rect(0, 0, pageWidth, 45, 'F');
             
-            doc.text(`Subtotal:`, 140, y);
-            doc.text(`₲${formatPrice(order.subtotal)}`, 165, y);
-            
-            if (order.iva > 0) {
-                y += 7;
-                doc.text(`IVA (10%):`, 140, y);
-                doc.text(`₲${formatPrice(order.iva)}`, 165, y);
-            }
-            
-            y += 7;
+            // Franja decorativa
+            doc.setFillColor(...colors.primaryDark);
+            doc.rect(0, 42, pageWidth, 3, 'F');
+
+            // Logo texto "JA"
+            doc.setFillColor(...colors.white);
+            doc.roundedRect(margin, 10, 25, 25, 4, 4, 'F');
+            doc.setTextColor(...colors.primary);
+            doc.setFontSize(16);
             doc.setFont('helvetica', 'bold');
-            doc.setFontSize(12);
-            doc.text(`TOTAL:`, 140, y);
-            doc.text(`₲${formatPrice(order.total)}`, 165, y);
+            doc.text('JA', margin + 12.5, 26, { align: 'center' });
 
-            // Invoice data
-            if (order.invoice) {
-                y += 15;
-                doc.setFontSize(10);
-                doc.text('Datos de Facturación', 20, y);
-                doc.setFont('helvetica', 'normal');
-                y += 7;
-                doc.text(`RUC: ${order.invoice.ruc}`, 20, y);
+            // Nombre de la empresa
+            doc.setTextColor(...colors.white);
+            doc.setFontSize(22);
+            doc.setFont('helvetica', 'bold');
+            doc.text('Electrónica', margin + 30, 22);
+            
+            doc.setFontSize(9);
+            doc.setFont('helvetica', 'normal');
+            doc.text('Comprobante de Pedido', margin + 30, 30);
+
+            // Número de orden (derecha)
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'bold');
+            doc.text('ORDEN', pageWidth - margin, 15, { align: 'right' });
+            doc.setFontSize(14);
+            doc.text(order.orderNumber, pageWidth - margin, 23, { align: 'right' });
+            
+            const orderDate = new Date(order.date);
+            doc.setFontSize(8);
+            doc.setFont('helvetica', 'normal');
+            doc.text(orderDate.toLocaleDateString('es-PY', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            }), pageWidth - margin, 30, { align: 'right' });
+            doc.text(orderDate.toLocaleTimeString('es-PY'), pageWidth - margin, 36, { align: 'right' });
+
+            y = 55;
+
+            // ========== SECCIÓN: DATOS DEL CLIENTE ==========
+            // Título de sección
+            doc.setFillColor(...colors.bgLight);
+            doc.roundedRect(margin, y, pageWidth - (margin * 2), 8, 2, 2, 'F');
+            doc.setTextColor(...colors.primary);
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'bold');
+            doc.text('📋 DATOS DEL CLIENTE', margin + 3, y + 5.5);
+            y += 14;
+
+            // Info del cliente en 2 columnas
+            doc.setTextColor(...colors.dark);
+            doc.setFontSize(9);
+            
+            const col1X = margin;
+            const col2X = pageWidth / 2 + 5;
+
+            doc.setFont('helvetica', 'bold');
+            doc.text('Nombre:', col1X, y);
+            doc.setFont('helvetica', 'normal');
+            doc.text(order.customer.fullName, col1X + 20, y);
+
+            doc.setFont('helvetica', 'bold');
+            doc.text('Email:', col2X, y);
+            doc.setFont('helvetica', 'normal');
+            doc.text(order.customer.email, col2X + 15, y);
+
+            y += 7;
+
+            doc.setFont('helvetica', 'bold');
+            doc.text('Teléfono:', col1X, y);
+            doc.setFont('helvetica', 'normal');
+            doc.text(order.customer.phone, col1X + 22, y);
+
+            y += 12;
+
+            // ========== SECCIÓN: ENTREGA ==========
+            doc.setFillColor(...colors.bgLight);
+            doc.roundedRect(margin, y, pageWidth - (margin * 2), 8, 2, 2, 'F');
+            doc.setTextColor(...colors.primary);
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'bold');
+            doc.text('🚚 MÉTODO DE ENTREGA', margin + 3, y + 5.5);
+            y += 14;
+
+            doc.setTextColor(...colors.dark);
+            doc.setFontSize(9);
+
+            if (order.delivery === 'store') {
+                doc.setFont('helvetica', 'bold');
+                doc.text('Retiro en tienda', col1X, y);
                 y += 6;
-                doc.text(`Razón Social: ${order.invoice.name}`, 20, y);
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(...colors.gray);
+                doc.text(CONFIG.STORE_ADDRESS, col1X, y);
+            } else {
+                doc.setFont('helvetica', 'bold');
+                doc.text('Envío a domicilio', col1X, y);
+                y += 6;
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(...colors.gray);
+                doc.text(`${order.delivery.address}`, col1X, y);
+                y += 5;
+                doc.text(`${order.delivery.city}, ${order.delivery.department}`, col1X, y);
             }
 
-            // Footer
-            doc.setFontSize(8);
-            doc.setTextColor(128, 128, 128);
-            doc.text(`${CONFIG.STORE_NAME} - ${CONFIG.STORE_PHONE}`, 105, 280, { align: 'center' });
-            doc.text('Gracias por tu compra', 105, 285, { align: 'center' });
+            y += 12;
 
-            // Save
-            doc.save(`Pedido_${order.orderNumber}.pdf`);
-            toast('PDF descargado correctamente', 'success');
+            // ========== SECCIÓN: MÉTODO DE PAGO ==========
+            doc.setFillColor(...colors.bgLight);
+            doc.roundedRect(margin, y, pageWidth - (margin * 2), 8, 2, 2, 'F');
+            doc.setTextColor(...colors.primary);
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'bold');
+            doc.text('💳 MÉTODO DE PAGO', margin + 3, y + 5.5);
+            y += 14;
+
+            doc.setTextColor(...colors.dark);
+            doc.setFontSize(9);
+            doc.setFont('helvetica', 'normal');
+            const paymentMethod = order.payment === 'cash' ? 'Efectivo' : 'Transferencia Bancaria';
+            doc.text(paymentMethod, col1X, y);
+
+            y += 12;
+
+            // ========== SECCIÓN: PRODUCTOS ==========
+            doc.setFillColor(...colors.bgLight);
+            doc.roundedRect(margin, y, pageWidth - (margin * 2), 8, 2, 2, 'F');
+            doc.setTextColor(...colors.primary);
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'bold');
+            doc.text('📦 DETALLE DE PRODUCTOS', margin + 3, y + 5.5);
+            y += 12;
+
+            // Header de tabla
+            doc.setFillColor(...colors.primaryDark);
+            doc.rect(margin, y, pageWidth - (margin * 2), 8, 'F');
+            
+            doc.setTextColor(...colors.white);
+            doc.setFontSize(8);
+            doc.setFont('helvetica', 'bold');
+            doc.text('PRODUCTO', margin + 3, y + 5.5);
+            doc.text('CANT.', margin + 95, y + 5.5);
+            doc.text('PRECIO', margin + 115, y + 5.5);
+            doc.text('SUBTOTAL', margin + 145, y + 5.5);
+            y += 10;
+
+            // Filas de productos
+            doc.setTextColor(...colors.dark);
+            doc.setFont('helvetica', 'normal');
+            
+            let rowIndex = 0;
+            order.items.forEach(item => {
+                // Alternar color de fondo
+                if (rowIndex % 2 === 0) {
+                    doc.setFillColor(252, 252, 253);
+                    doc.rect(margin, y - 2, pageWidth - (margin * 2), 10, 'F');
+                }
+
+                // Nombre del producto (truncado si es muy largo)
+                const productName = `${item.brand || ''} ${item.title}`.trim();
+                const truncatedName = productName.length > 45 ? productName.substring(0, 42) + '...' : productName;
+                
+                doc.setFontSize(8);
+                doc.setTextColor(...colors.dark);
+                doc.text(truncatedName, margin + 3, y + 4);
+                
+                doc.setTextColor(...colors.gray);
+                doc.text(String(item.quantity), margin + 100, y + 4, { align: 'center' });
+                doc.text(`₲ ${formatPrice(item.price)}`, margin + 115, y + 4);
+                
+                doc.setTextColor(...colors.dark);
+                doc.setFont('helvetica', 'bold');
+                doc.text(`₲ ${formatPrice(item.price * item.quantity)}`, margin + 145, y + 4);
+                doc.setFont('helvetica', 'normal');
+
+                y += 10;
+                rowIndex++;
+            });
+
+            // Línea separadora
+            y += 2;
+            doc.setDrawColor(...colors.lightGray);
+            doc.setLineWidth(0.5);
+            doc.line(margin, y, pageWidth - margin, y);
+            y += 8;
+
+            // ========== TOTALES ==========
+            const totalsX = pageWidth - margin - 60;
+            
+            // Subtotal
+            doc.setFontSize(9);
+            doc.setTextColor(...colors.gray);
+            doc.setFont('helvetica', 'normal');
+            doc.text('Subtotal:', totalsX, y);
+            doc.text(`₲ ${formatPrice(order.subtotal)}`, pageWidth - margin, y, { align: 'right' });
+            y += 6;
+
+            // Envío
+            doc.text('Envío:', totalsX, y);
+            doc.setTextColor(...colors.success);
+            doc.text(order.delivery === 'store' ? 'Gratis' : 'A calcular', pageWidth - margin, y, { align: 'right' });
+            y += 8;
+
+            // Total
+            doc.setFillColor(...colors.success);
+            doc.roundedRect(totalsX - 5, y - 4, 70, 12, 2, 2, 'F');
+            
+            doc.setTextColor(...colors.white);
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'bold');
+            doc.text('TOTAL:', totalsX, y + 3);
+            doc.setFontSize(12);
+            doc.text(`₲ ${formatPrice(order.total)}`, pageWidth - margin - 3, y + 3, { align: 'right' });
+
+            y += 18;
+
+            // Nota IVA
+            doc.setTextColor(...colors.lightGray);
+            doc.setFontSize(7);
+            doc.setFont('helvetica', 'italic');
+            doc.text('* IVA incluido en todos los precios', pageWidth - margin, y, { align: 'right' });
+
+            y += 10;
+
+            // ========== SECCIÓN: FACTURACIÓN (si aplica) ==========
+            if (order.invoice) {
+                doc.setFillColor(...colors.bgLight);
+                doc.roundedRect(margin, y, pageWidth - (margin * 2), 8, 2, 2, 'F');
+                doc.setTextColor(...colors.primary);
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'bold');
+                doc.text('📄 DATOS DE FACTURACIÓN', margin + 3, y + 5.5);
+                y += 14;
+
+                doc.setTextColor(...colors.dark);
+                doc.setFontSize(9);
+                
+                doc.setFont('helvetica', 'bold');
+                doc.text('RUC:', col1X, y);
+                doc.setFont('helvetica', 'normal');
+                doc.text(order.invoice.ruc, col1X + 12, y);
+
+                doc.setFont('helvetica', 'bold');
+                doc.text('Razón Social:', col2X, y);
+                doc.setFont('helvetica', 'normal');
+                doc.text(order.invoice.name, col2X + 28, y);
+
+                y += 12;
+            }
+
+            // ========== NOTAS (si hay) ==========
+            if (order.notes) {
+                doc.setFillColor(...colors.bgLight);
+                doc.roundedRect(margin, y, pageWidth - (margin * 2), 8, 2, 2, 'F');
+                doc.setTextColor(...colors.primary);
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'bold');
+                doc.text('📝 NOTAS DEL PEDIDO', margin + 3, y + 5.5);
+                y += 14;
+
+                doc.setTextColor(...colors.gray);
+                doc.setFontSize(9);
+                doc.setFont('helvetica', 'italic');
+                
+                // Dividir notas largas en múltiples líneas
+                const splitNotes = doc.splitTextToSize(order.notes, pageWidth - (margin * 2) - 6);
+                doc.text(splitNotes, margin + 3, y);
+                y += splitNotes.length * 5 + 5;
+            }
+
+            // ========== FOOTER ==========
+            const footerY = pageHeight - 25;
+
+            // Línea decorativa
+            doc.setDrawColor(...colors.primary);
+            doc.setLineWidth(1);
+            doc.line(margin, footerY - 8, pageWidth - margin, footerY - 8);
+
+            // Info de contacto
+            doc.setTextColor(...colors.gray);
+            doc.setFontSize(8);
+            doc.setFont('helvetica', 'normal');
+            
+            doc.text(CONFIG.STORE_NAME, margin, footerY);
+            doc.text(CONFIG.STORE_ADDRESS, margin, footerY + 4);
+            
+            doc.text(`Tel: ${CONFIG.STORE_PHONE}`, pageWidth - margin, footerY, { align: 'right' });
+            doc.text('WhatsApp: +595 992 544 305', pageWidth - margin, footerY + 4, { align: 'right' });
+
+            // Mensaje de agradecimiento
+            doc.setFillColor(...colors.primary);
+            doc.roundedRect(pageWidth/2 - 35, footerY + 8, 70, 10, 3, 3, 'F');
+            doc.setTextColor(...colors.white);
+            doc.setFontSize(9);
+            doc.setFont('helvetica', 'bold');
+            doc.text('¡Gracias por tu compra!', pageWidth/2, footerY + 14, { align: 'center' });
+
+            // Código QR simulado (cuadrado decorativo)
+            doc.setFillColor(...colors.bgLight);
+            doc.rect(pageWidth - margin - 20, footerY - 5, 20, 20, 'F');
+            doc.setFillColor(...colors.primary);
+            doc.setFontSize(6);
+            doc.setTextColor(...colors.primary);
+            doc.text('ESCANEA', pageWidth - margin - 10, footerY + 7, { align: 'center' });
+            doc.text('PARA MÁS', pageWidth - margin - 10, footerY + 10, { align: 'center' });
+
+            // ========== GUARDAR PDF ==========
+            const fileName = `JA_Electronica_Pedido_${order.orderNumber}.pdf`;
+            doc.save(fileName);
+            
+            toast('Comprobante PDF descargado correctamente', 'success');
         }
 
         // ========== INIT ==========
