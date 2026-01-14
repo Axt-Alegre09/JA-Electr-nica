@@ -53,9 +53,6 @@
                 <button class="icon-btn theme-toggle" id="themeToggle" title="Cambiar tema">
                     <i class="fas fa-moon"></i>
                 </button>
-                <button class="icon-btn" id="headerFavoritesBtn" title="Favoritos">
-                    <i class="far fa-heart"></i>
-                </button>
                 <button class="icon-btn cart-btn" id="cartBtn">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="badge">0</span>
@@ -85,6 +82,56 @@
             </a>
         </div>
     </div>
+
+    <!-- ========== OVERLAY ========== -->
+    <div class="overlay" id="pdMobileMenuOverlay"></div>
+
+    <!-- ========== SIDEBAR (IGUAL AL INDEX) ========== -->
+    <aside class="filters-sidebar-bristol" id="pdMobileMenu" role="complementary" aria-label="Filtros de productos">
+        <!-- Sidebar Header (Mobile) -->
+        <div class="sidebar-header">
+            <div class="sidebar-logo-container">
+                <img src="logo.png" alt="JA Electrónica" class="sidebar-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="sidebar-brand-text" style="display:none;">JA</span>
+            </div>
+        </div>
+
+        <!-- Filters Content -->
+        <div class="filters-scrollable">
+            <!-- Specials Filter -->
+            <div class="filter-section">
+                <h3 class="filter-section-title">
+                    <i class="fas fa-star" aria-hidden="true"></i> Especiales
+                </h3>
+                <ul class="filter-list" role="listbox">
+                    <li><a href="index.html" class="filter-link" data-special="sale" role="option">Sale <span class="filter-count">18</span></a></li>
+                    <li><a href="index.html" class="filter-link" data-special="new" role="option">Nuevos <span class="filter-count">5</span></a></li>
+                    <li><a href="index.html" class="filter-link" data-special="outlet" role="option">Outlet <span class="filter-count">12</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Gender Filter -->
+            <div class="filter-section">
+                <h3 class="filter-section-title">
+                    <i class="fas fa-users" aria-hidden="true"></i> Género
+                </h3>
+                <ul class="filter-list" role="listbox">
+                    <li><a href="index.html" class="filter-link" data-gender="caballeros" role="option">Caballeros <span class="filter-count">24</span></a></li>
+                    <li><a href="index.html" class="filter-link" data-gender="damas" role="option">Damas <span class="filter-count">16</span></a></li>
+                    <li><a href="index.html" class="filter-link" data-gender="ninos" role="option">Niños <span class="filter-count">8</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Discount Checkbox -->
+            <div class="filter-section">
+                <label class="filter-checkbox-label">
+                    <input type="checkbox" id="withDiscount">
+                    <span>Con Descuento</span>
+                    <span class="filter-count">18</span>
+                </label>
+            </div>
+        </div>
+    </aside>
 
     <!-- ========== BREADCRUMB ========== -->
     <nav class="breadcrumb-nav">
@@ -258,31 +305,10 @@
         </div>
     </div>
 
-    <!-- ========== MOBILE MENU ========== -->
-    <div class="pd-mobile-menu-overlay" id="pdMobileMenuOverlay"></div>
-    <div class="pd-mobile-menu" id="pdMobileMenu">
-        <div class="pd-mobile-menu-header">
-            <div class="pd-menu-logo">
-                <img src="logo.png" alt="JA" width="36" height="36" onerror="this.style.display='none'">
-                <span>Electrónica</span>
-            </div>
-            <button class="pd-mobile-menu-close" id="pdMobileMenuClose"><i class="fas fa-times"></i></button>
-        </div>
-        <nav class="pd-mobile-menu-nav">
-            <a href="index.html" class="pd-menu-link"><i class="fas fa-home"></i> Inicio</a>
-            <a href="index.html" class="pd-menu-link"><i class="fas fa-list"></i> Categorías</a>
-            <a href="index.html" class="pd-menu-link"><i class="fas fa-tags"></i> Marcas</a>
-            <a href="https://wa.me/595992544305" target="_blank" class="pd-menu-link"><i class="fab fa-whatsapp"></i> Contacto</a>
-        </nav>
-    </div>
-
     <!-- ========== WHATSAPP FLOAT ========== -->
     <a href="https://wa.me/595992544305?text=Hola!%20Tengo%20una%20consulta" target="_blank" class="whatsapp-float">
         <i class="fab fa-whatsapp"></i>
     </a>
-
-    <!-- ========== OVERLAY ========== -->
-    <div class="overlay" id="overlay"></div>
 
     <!-- ========== SCRIPT ========== -->
     <script src="product-detail.js"></script>

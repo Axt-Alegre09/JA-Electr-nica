@@ -3,8 +3,7 @@
  * Diseño según Canva - Top info bar fijo, sin main-nav
  */
 
-/* ========== CRITICAL OVERRIDES ========== */
-.product-detail-page .filters-sidebar-bristol,
+/* ========== CRITICAL OVERRIDES - CORREGIDO ========== */
 .product-detail-page .main-layout,
 .product-detail-page .main-content-bristol,
 .product-detail-page .products-scroll-container,
@@ -12,6 +11,13 @@
 .product-detail-page .products-grid-bristol,
 .product-detail-page .main-nav {
     display: none !important;
+}
+
+/* ✅ SIDEBAR SOLO SE OCULTA EN DESKTOP, EN MÓVIL DEBE MOSTRARSE */
+@media (min-width: 992px) {
+    .product-detail-page .filters-sidebar-bristol {
+        display: none !important;
+    }
 }
 
 html:has(.product-detail-page),
@@ -45,7 +51,6 @@ body.product-detail-page {
     padding-bottom: 0.75rem !important;
     border: none !important;
     box-shadow: none !important;
-    /* Altura exacta para calcular el top del info-bar */
     height: 52px !important;
     box-sizing: border-box !important;
 }
@@ -64,26 +69,21 @@ body.product-detail-page {
     border: none !important;
 }
 
-/* Desktop: debajo del header */
 @media (min-width: 992px) {
     .top-info-bar {
         top: var(--header-height) !important;
     }
     
-    /* Ocultar mobile-logo-banner en desktop */
     .product-detail-page .mobile-logo-banner {
         display: none !important;
     }
 }
 
-/* Tablet y móvil: pegado directamente al mobile-logo-banner */
 @media (max-width: 991px) {
     .top-info-bar {
-        /* header (60px) + mobile-logo-banner (52px) = 112px */
         top: calc(var(--header-height) + 52px) !important;
     }
     
-    /* Pseudo-elemento para cubrir cualquier gap */
     .product-detail-page .mobile-logo-banner::after {
         content: '';
         position: absolute;
@@ -139,7 +139,6 @@ body.product-detail-page {
     opacity: 0.8;
 }
 
-/* Responsive Top Bar */
 @media (max-width: 767px) {
     .top-bar-content {
         flex-direction: column;
@@ -161,20 +160,17 @@ body.product-detail-page {
 .breadcrumb-nav {
     background: var(--bg-body);
     padding: var(--space-4) 0;
-    /* Espacio para header + top-info-bar */
     margin-top: calc(var(--header-height) + 38px);
 }
 
 @media (max-width: 991px) {
     .breadcrumb-nav {
-        /* header + mobile-logo-banner + top-info-bar */
         margin-top: calc(var(--header-height) + 52px + 50px);
     }
 }
 
 @media (max-width: 767px) {
     .breadcrumb-nav {
-        /* header + mobile-logo-banner + top-info-bar (más pequeño en móvil) */
         margin-top: calc(var(--header-height) + 52px + 46px);
     }
 }
@@ -381,7 +377,6 @@ body.product-detail-page {
     background: var(--bg-elevated);
 }
 
-/* Thumbnails */
 .gallery-thumbnails {
     display: flex;
     gap: var(--space-3);
@@ -447,7 +442,6 @@ body.product-detail-page {
     margin: 0;
 }
 
-/* Purchase Row */
 .purchase-row {
     display: flex;
     align-items: center;
@@ -518,7 +512,6 @@ body.product-detail-page {
     .price-amount { font-size: 1.5rem; }
 }
 
-/* Actions */
 .product-actions {
     display: flex;
     gap: var(--space-3);
@@ -595,7 +588,6 @@ body.product-detail-page {
     }
 }
 
-/* Features */
 .product-features {
     display: flex;
     flex-direction: column;
@@ -777,97 +769,6 @@ body.product-detail-page {
     background: var(--primary-dark);
     border-color: var(--primary-dark);
     color: white;
-}
-
-/* ========== MOBILE MENU ========== */
-.pd-mobile-menu-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 1100;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s;
-}
-
-.pd-mobile-menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.pd-mobile-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 280px;
-    background: var(--bg-surface);
-    z-index: 1101;
-    transform: translateX(-100%);
-    transition: transform 0.3s;
-    display: flex;
-    flex-direction: column;
-}
-
-.pd-mobile-menu.active {
-    transform: translateX(0);
-}
-
-.pd-mobile-menu-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: var(--space-4) var(--space-5);
-    border-bottom: 1px solid var(--border-light);
-    background: var(--primary-dark);
-    color: white;
-}
-
-.pd-menu-logo {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-weight: 600;
-}
-
-.pd-menu-logo img {
-    border-radius: var(--radius-sm);
-}
-
-.pd-mobile-menu-close {
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 1.25rem;
-    cursor: pointer;
-    padding: var(--space-2);
-}
-
-.pd-mobile-menu-nav {
-    display: flex;
-    flex-direction: column;
-    padding: var(--space-4) 0;
-}
-
-.pd-menu-link {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    padding: var(--space-4) var(--space-5);
-    color: var(--text-primary);
-    text-decoration: none;
-    font-weight: 500;
-    transition: background 0.2s;
-}
-
-.pd-menu-link:hover {
-    background: var(--bg-muted);
-}
-
-.pd-menu-link i {
-    width: 20px;
-    text-align: center;
-    color: var(--text-muted);
 }
 
 /* ========== WHATSAPP FLOAT ========== */
@@ -1199,7 +1100,7 @@ body.product-detail-page {
     width: 100%;
 }
 
-/* ========== TOAST NOTIFICATIONS (CORREGIDO - sin overlay) ========== */
+/* ========== TOAST NOTIFICATIONS ========== */
 .pd-toast {
     position: fixed;
     bottom: 24px;
